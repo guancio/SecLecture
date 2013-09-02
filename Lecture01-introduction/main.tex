@@ -270,9 +270,9 @@ floor of Osquars Backe 2
     the applicable objectives of preserving
     
     \begin{itemize}
-    \item integrity
+    \item integrity (data/system)
     \item availability
-    \item confidentiality
+    \item confidentiality (data/privacy)
     \end{itemize}
 of  information system resources, including
  
@@ -291,6 +291,13 @@ of  information system resources, including
     \includegraphics[width=0.7\linewidth]{concepts}
   \end{center}
 \end{frame}
+
+\begin{frame}{Additional concepts}
+  \begin{itemize}
+  \item Authenticity
+  \item Accountability
+  \end{itemize}
+\end{frame}  
 
 \begin{frame}{Levels of impact}
   \begin{itemize}
@@ -326,7 +333,7 @@ of  information system resources, including
 \item not simple in complex systems 
 \item must consider potential attacks 
 \item procedures used counter-intuitive 
-\item involve algorithms and secret info 
+\item involve several algorithms and secret info 
 \item must decide where to deploy mechanisms 
 \item battle of wits between attacker / admin 
 \item not perceived on benefit until fails 
@@ -351,7 +358,7 @@ of  information system resources, including
 
 \begin{frame}{Vulnerabilities and Attacks }
   \begin{itemize}
-    \item system resource vulnerabilities may 
+    \item vulnerabilities: system resources  may 
       
       \begin{itemize}
         \item be corrupted (loss of integrity) 
@@ -387,25 +394,25 @@ of  information system resources, including
 
 \begin{frame}{Threat Consequences}
   \begin{itemize}
-    \item unauthorized disclosure 
+    \item unauthorized disclosure (confidentiality) 
       \begin{itemize}
         \item exposure, interception, inference, intrusion 
         \end{itemize}
       \end{itemize}
   \begin{itemize}
-    \item deception 
+    \item deception (integrity/authenticity/accountability)
       \begin{itemize}
         \item masquerade, falsification, repudiation 
         \end{itemize}
       \end{itemize}
   \begin{itemize}
-    \item disruption 
+    \item disruption (availability/integrity)
       \begin{itemize}
         \item incapacitation, corruption, obstruction 
         \end{itemize}
       \end{itemize}
   \begin{itemize}
-    \item usurpation 
+    \item usurpation (system integrity)
       \begin{itemize}
       \item misappropriation, misuse
       \end{itemize}
@@ -414,13 +421,13 @@ of  information system resources, including
 
 \begin{frame}{Scope of Computer Security}
   \begin{center}
-    \includegraphics[width=0.7\linewidth]{securityScope}
+    \includegraphics[width=0.8\linewidth]{securityScope}
   \end{center}
 \end{frame}
 
 \begin{frame}{Network Security Attacks}
   \begin{itemize}
-    \item  classify as passive or active 
+    \item  classified as passive or active 
     \item  passive attacks are eavesdropping 
       \begin{itemize}
       \item release of message contents 
@@ -435,7 +442,6 @@ of  information system resources, including
       \item denial of service 
       \item hard to prevent so aim to detect 
     \end{itemize}
-    \item  \todo{Networking Security class next term}
     \end{itemize}
 \end{frame}
 
