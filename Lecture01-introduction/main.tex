@@ -32,8 +32,9 @@
     \item PostDoc on formal verification
     \item Enthusiast software developer
     \item robertog@kth.se
+    \item use KTH social for questions
     \item \alert{Always} use the e-mail subject: [DD2395] ...
-    \item Office: \todo{level 5, room 4424}
+    \item Office: level 5, room 4525
     \item You are welcomed (no booking required, no fee) Wednesday:
       14:00-15:00
   \end{itemize}
@@ -45,6 +46,7 @@
     \item From now until December
     \item 3 Credits Lab + 3 Credits Examination
     \item Labs start September 17
+    \item Starts lab in advance
   \end{itemize}
 \end{frame}
 
@@ -79,7 +81,12 @@
 \begin{frame}{People}
   \begin{itemize}
     \item Course leader/exams: Roberto Guanciale
-    \item Former Course leader/exams: Sonja Buchegger (KTH professor)
+    \item Former Course leader/exams: Sonja Buchegger (KTH associate
+      professor)
+      \begin{itemize}
+        \item on maternity leave $\Rightarrow$
+        \item she will not read e-mails frequently
+      \end{itemize}
     \item Alexander Baltatzis,
       Olof Hagsand,
       Mikael Goldmann
@@ -87,7 +94,9 @@
       Marten Trolin
     \item Lab assistants: 
       Benjamin Greschbach,
-      Guillermo Rodriguez Cano
+      Guillermo Rodriguez Cano,
+      Pedro de Carvalho Gomes,
+      Hamed Nemati
   \end{itemize}
 \end{frame}
 
@@ -96,7 +105,7 @@
     \item Check course website regularly for updates!
     \item DD2395 on KTH Social
     \item https://www.kth.se/social/course/DD2395/
-    \item \alert{Confirm their registration for the course}
+    \item \alert{Confirm your registration for the course}
       \begin{itemize}
         \item on ``my pages'' when logged into KTH
       \end{itemize}
@@ -134,7 +143,7 @@
 \begin{frame}{Lab Exercises}
   \begin{itemize}
     \item See schema for times and rooms
-    \item Instructions on web site on \todo{September 11}
+    \item Instructions on web site
     \item 4 different exercises
       \begin{enumerate}
         \item on GnuPG, remote or at CSC
@@ -163,9 +172,9 @@
   \item 4/10 Iptables lab registration 
   \item 11/10 Seminar topic registration 
   \item 18/10 Web attacks lab completion 
-  \item 08/11 Seminar time registration 
+  \item 8/11 Seminar time registration 
   \item 15/11 Seminar report completion 
-  \item 22/11 Seminar feedback completion 
+  \item 22/11 Seminar feedback completion
   \end{itemize}
 \end{frame}
 
@@ -192,7 +201,6 @@
   \item William Stallings and Lawrie Brown, Computer Security:
     Principles and Practice, published by Pearson 
   \item Ross Anderson, Security Engineering, Free online
-  \item \todo{images}
   \end{itemize}
 \end{frame}
 
@@ -213,11 +221,12 @@ floor of Osquars Backe 2
   \end{itemize}
 \end{frame}
 
-\begin{frame}{RAPP}
+\begin{frame}{Registration}
   \begin{itemize}
-    \item Register for DD2395, if not already done so 
-    \item Specify that you're taking the course 
-    \item https://rapp.csc.kth.se/rapp/
+    \item No more RAPP
+    \item Log in on KTH
+    \item ``my pages''
+    \item Confirm your registration
   \end{itemize}
 \end{frame}
  
@@ -231,7 +240,6 @@ floor of Osquars Backe 2
 
 \begin{frame}{Next Courses}
   \begin{itemize}
-  \item Networking Security with Johan Karlander
   \item Foundations of Cryptography with Douglas Wikstr\:om
   \item Software Security with Dilian Gurov
   \item Networking Security courses with Panos
@@ -258,6 +266,14 @@ floor of Osquars Backe 2
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Slides}
+  \begin{itemize}
+  \item Lawrie Brown (coauthor of the book)
+  \item Sonja Buchegger
+  \item My changes
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Overview}
   \begin{itemize}
   \item \alert{Computer Security}: protection afforded to an 
@@ -265,9 +281,9 @@ floor of Osquars Backe 2
     the applicable objectives of preserving
     
     \begin{itemize}
-    \item integrity
+    \item integrity (data/system)
     \item availability
-    \item confidentiality
+    \item confidentiality (data/privacy)
     \end{itemize}
 of  information system resources, including
  
@@ -281,10 +297,49 @@ of  information system resources, including
   \end{itemize}
 \end{frame}
 
+
 \begin{frame}{Key Security Concepts}
   \begin{center}
     \includegraphics[width=0.7\linewidth]{concepts}
   \end{center}
+\end{frame}
+
+\begin{frame}{Security Myth}
+  
+  \begin{itemize}
+\item   ``The only secure computer is one that's unplugged, locked in a safe,
+  and buried 20 feet under the ground in a secret location...'' --
+  Dennis Huges, FBI.
+\item<2-> Only if you relax availability
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Additional concepts}
+  \begin{itemize}
+  \item Authenticity
+  \item Accountability
+  \end{itemize}
+\end{frame}  
+
+\begin{frame}{Levels of impact}
+  \begin{itemize}
+  \item Low
+    \begin{itemize}
+      \item Confidentiality of student list
+      \item Integrity of on-line pools
+      \item Availability of a node in peer-to-peer file sharing
+    \end{itemize}
+  \item Moderate    
+    \begin{itemize}
+      \item Confidentiality of student grade
+      \item Integrity of a web forum
+    \end{itemize}
+  \item High
+    \begin{itemize}
+      \item Availability of SCADA systems
+      \item Integrity of financial transactions
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Challenges}
@@ -300,10 +355,10 @@ of  information system resources, including
 \item not simple in complex systems 
 \item must consider potential attacks 
 \item procedures used counter-intuitive 
-\item involve algorithms and secret info 
+\item involve several algorithms and secret info 
 \item must decide where to deploy mechanisms 
 \item battle of wits between attacker / admin 
-\item not perceived on benefit until fails 
+\item not perceived as benefit until fails 
 \item requires regular monitoring 
 \item too often an after-thought 
 \item regarded as impediment to using system
@@ -325,7 +380,7 @@ of  information system resources, including
 
 \begin{frame}{Vulnerabilities and Attacks }
   \begin{itemize}
-    \item system resource vulnerabilities may 
+    \item vulnerabilities: system resources  may 
       
       \begin{itemize}
         \item be corrupted (loss of integrity) 
@@ -361,25 +416,25 @@ of  information system resources, including
 
 \begin{frame}{Threat Consequences}
   \begin{itemize}
-    \item unauthorized disclosure 
+    \item unauthorized disclosure (confidentiality) 
       \begin{itemize}
         \item exposure, interception, inference, intrusion 
         \end{itemize}
       \end{itemize}
   \begin{itemize}
-    \item deception 
+    \item deception (integrity/authenticity/accountability)
       \begin{itemize}
         \item masquerade, falsification, repudiation 
         \end{itemize}
       \end{itemize}
   \begin{itemize}
-    \item disruption 
+    \item disruption (availability/integrity)
       \begin{itemize}
         \item incapacitation, corruption, obstruction 
         \end{itemize}
       \end{itemize}
   \begin{itemize}
-    \item usurpation 
+    \item usurpation (system integrity)
       \begin{itemize}
       \item misappropriation, misuse
       \end{itemize}
@@ -388,13 +443,13 @@ of  information system resources, including
 
 \begin{frame}{Scope of Computer Security}
   \begin{center}
-    \includegraphics[width=0.7\linewidth]{securityScope}
+    \includegraphics[width=0.8\linewidth]{securityScope}
   \end{center}
 \end{frame}
 
 \begin{frame}{Network Security Attacks}
   \begin{itemize}
-    \item  classify as passive or active 
+    \item  classified as passive or active 
     \item  passive attacks are eavesdropping 
       \begin{itemize}
       \item release of message contents 
@@ -409,7 +464,6 @@ of  information system resources, including
       \item denial of service 
       \item hard to prevent so aim to detect 
     \end{itemize}
-    \item  Networking Security class next term
     \end{itemize}
 \end{frame}
 
