@@ -6,7 +6,7 @@
 \newcommand{\todo}[1]{\alert{TODO #1}}
 
 \title{Intrusion Detection}
-\subtitle{Lecture 8 \\ Computer Security DD2395}
+\subtitle{Lecture 8 \\ Chapter 8\\Computer Security DD2395}
 \author[R. Guanciale]{
   Roberto Guanciale\\
   robertog@kth.se
@@ -16,14 +16,6 @@
 
 \begin{frame}[plain]
   \titlepage
-\end{frame}
-
-\begin{frame}{Computer Security}
-  \begin{itemize}
-    \item Prevention 
-    \item Detection 
-    \item Response/Recovery
-  \end{itemize}
 \end{frame}
 
 \begin{frame}{Intruders}
@@ -56,6 +48,7 @@
   \item running a packet sniffer 
   \item impersonating a user to reset password 
   \item using an unattended workstation 
+  \item wireless cracking
   \end{itemize}
 \end{frame}
 
@@ -108,8 +101,7 @@ system resources in an unauthorized manner.
 
 \begin{frame}{Hacker Behavior Example}
   \begin{itemize}
-  \item select target using IP lookup tools 
-  \item map network for accessible services 
+  \item map network for accessible services  (e.g. NMAP)
   \item identify potentially vulnerable services 
   \item brute force (guess) passwords
   \item install remote administration tool 
@@ -142,6 +134,20 @@ system resources in an unauthorized manner.
   \item use sniffers to capture passwords
   \item do not stick around until noticed
   \item make few or no mistakes. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Criminal Enterprise Example}
+  \begin{itemize}
+  \item exploit OS/user flows to install Encrypting ransomware
+    \begin{itemize}
+      \item encrypt all documents (e.g. .doc/.zip/PostgreSQL databases)
+      \item delete (and override) the plain files
+      \item wide spread in 2005 (symmetric encryption)
+      \item usage of public key cryptography (from 2006)
+    \end{itemize}
+  \item force user to pay for the decryption keys
+  \item payments by premium SMS services/Paysafecard/Bitcoins
   \end{itemize}
 \end{frame}
 
@@ -189,6 +195,7 @@ system resources in an unauthorized manner.
       \begin{itemize}
       \item e.g. password guessing or acquisition
       \end{itemize}
+    \item NSA
   \end{itemize}
 \end{frame}
 
@@ -206,6 +213,18 @@ system resources in an unauthorized manner.
       \item analyzers - determine if intrusion has occurred
       \item user interface - manage / direct / view IDS
       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{IDS Motivations}
+  \begin{itemize}
+    \item if intrusion detected quickly then the intruder can be
+      identified and ejected promptly, reducing damage
+      (e.g. Bouncer)
+    \item deterrent
+      (e.g. Bobby)
+    \item collect information to strength intrusion prevention
+      (e.g. \dots)
   \end{itemize}
 \end{frame}
 
@@ -250,6 +269,10 @@ system resources in an unauthorized manner.
   \begin{itemize}
   \item Defense has to work all the time, attack only 
     once
+  \item That's the same in physical security
+  \item Today we were unlucky,
+    but remember we only have to be lucky once.
+    You will have to be lucky always
   \end{itemize}
   For stories about intrusions, penetration testing, 
 see Kevin Mitnick ``The Art of Intrusion''
@@ -322,10 +345,19 @@ see Kevin Mitnick ``The Art of Intrusion''
 
 \begin{frame}{What if \dots}
   \begin{itemize}
+  \item e.g. Facebook: ``you account is temporarily locked
+    \begin{itemize}
+      \item geolocation (users travel)
+      \item device (users buy new devices/wipe out the previous one)
+    \end{itemize}
   \item You are being hacked while training the 
     system? 
   \item There is a new normal? Difference between 
     abnormal normal and actual attack?
+    \begin{itemize}
+      \item black Friday
+      \item \dots
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -442,6 +474,15 @@ see Kevin Mitnick ``The Art of Intrusion''
     \end{itemize}
   \item initially were single systems 
   \item more recently are/emulate entire networks
+  \item usage of virtual platform and networks
+  \item usage of watermark in digital contents (Canary trap)
+  \item an email address that is not used for any other purpose than
+    to receive spam
+  \item try on your network
+    \begin{itemize}
+      \item leave your phone wi-fi tethering unsecured
+      \item use WEP on your wi-fi
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
