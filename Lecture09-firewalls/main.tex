@@ -26,6 +26,14 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Seminar Lab}
+  \begin{itemize}
+  \item Topics published Friday
+  \item Deadline for topic registration postponed up to this Friday
+  \item Suggest other topics promptly
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Firewalls}
   \begin{itemize}
   \item History 
@@ -74,7 +82,10 @@ and the furnace.
     defence 
     \begin{itemize}
     \item single choke point to impose security
+    \item complement host-protection
+    \item mitigate time-to-path attack window
     \end{itemize}
+  \item Firewall one of the ``intrusion prevention systems''
   \end{itemize}
 \end{frame}
 
@@ -103,7 +114,7 @@ to ensure that they are allowed.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Firewall Capabilities \& Limits}
+\begin{frame}[t]{Firewall (IPSs) Capabilities \& Limits}
   \begin{itemize}
   \item capabilities: 
     \begin{itemize}
@@ -113,26 +124,22 @@ to ensure that they are allowed.
       NAT, usage monitoring, IPSEC VPNs 
     \end{itemize}
   \item limitations?
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Firewall Capabilities \& Limits}
-  \begin{itemize}
-  \item capabilities: 
-    \begin{itemize}
-    \item defines a single choke point 
-    \item provides a location for monitoring security events 
-    \item convenient platform for some Internet functions such as 
-    NAT, usage monitoring, IPSEC VPNs 
-    \end{itemize}
-  \item limitations: 
-    \begin{itemize}
+    \only<2>{
+      \begin{itemize}
     \item cannot protect against attacks bypassing firewall 
     \item may not protect fully against internal threats 
     \item improperly secure wireless LAN 
     \item laptop, PDA, portable storage device infected outside 
     then used inside
+    \item Stuxnet
+      \begin{itemize}
+        \item initially spread using USB pens
+        \item exploits to infect other computers in the private
+          networks that are not directly connected to the Internet
+        \item infects project files belonging to Siemens control software
+      \end{itemize}
     \end{itemize}
+  }
   \end{itemize}
 \end{frame}
 
@@ -170,12 +177,6 @@ to ensure that they are allowed.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{}
-  \begin{center}
-    \includegraphics[width=1\linewidth]{1337_part_1}
-  \end{center}
-\end{frame}
-
 \begin{frame}{Packet Filter Rules}
   \begin{center}
     \includegraphics[width=0.6\linewidth]{filter-rules}
@@ -200,8 +201,8 @@ to ensure that they are allowed.
   \item reviews packet header information but also keeps 
     info on TCP connections 
     \begin{itemize}
-    \item typically have low, “known” port no for server 
-    \item and high, dynamically assigned client port no 
+    \item typically have low, ``known'' port number for server 
+    \item and high, dynamically assigned client port number
     \item simple packet filter must allow all return high port 
       numbered packets back in 
     \item stateful inspection packet firewall tightens rules for TCP 
@@ -210,6 +211,7 @@ to ensure that they are allowed.
       packets matching an entry in this directory 
     \item may also track TCP seq numbers as well
     \end{itemize}
+  \item can act as man in the middle
   \end{itemize}
 \end{frame}
 
@@ -249,6 +251,70 @@ to ensure that they are allowed.
     \end{itemize}
   \end{itemize}
 \end{frame}
+
+\begin{frame}{Exchange and store ``filters''}
+  \begin{itemize}
+  \item 2009 - 2010 BredoLab botnet 30M hosts
+  \item http://www.projecthoneypot.org/ Active stats (This Week)
+  \begin{itemize}
+      \item 3204 harvesters
+      \item 285314 spam servers
+      \item 7430 comment spammers
+      \item 87457 dictionary attackers
+      \item 344 rule breakers
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bloom filter}
+  \begin{itemize}
+  \item Space-efficient probabilistic data structure for set membership
+  \item False positive matches are possible
+  \item False negatives are not
+    \[
+      x \not \in BF(S) \Rightarrow x \not \in S
+    \]
+  \item  A Bloom filter with $1\%$ error can be created using
+    $\sim$ 9.6 bits per element
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Bloom filter}
+  \begin{itemize}
+  \item $m$-bit array
+  \item $k$ hash functions $f_k : S \rightarrow [0, m-1]$
+  \item $f_k$ independent functions with a uniform random distribution
+  \item example: $m = 16$, $k=2$, $f_1(ip) = (ip.1+ip.3) \% m$,
+    $f_2(ip) = (ip.2+ip.4) \% m$
+  \end{itemize}
+  \only<2> {
+  $B = New() : for\  i \in [0, m-1]. B[i] := 0$\\
+  \includegraphics[width=0.8\linewidth]{bloom0}
+  }
+  \only<3-4> {
+  $B = Add(B, x): for\ j \in [1,k], B[f_k(x)] := 1$\\
+  }
+  \only<3> {
+  \includegraphics[width=0.8\linewidth]{bloom1}
+  }
+  \only<4> {
+  \includegraphics[width=0.8\linewidth]{bloom2}
+  }
+  \only<5> {
+  $Query(B, x): \prod_{j \in [1,k]} B[f_k(x)] = 1$\\
+  }
+  \only<6> {
+  Lossless union\\
+  $B = B_1 \cup B_2: for\ i \in [0,m-1], B[i] = B_1[i] \vee B_2[i]$\\
+  \includegraphics[width=0.8\linewidth]{bloom3}
+  }
+  \only<7> {
+  Lossy intersection\\
+  $B = B_1 \cap B_2: for\ i \in [0,m-1], B[i] = B_1[i] \wedge B_2[i]$\\
+  \includegraphics[width=0.8\linewidth]{bloom4}
+  }
+\end{frame}
+
 
 \begin{frame}{Firewall Basing}
   \begin{itemize}
@@ -395,10 +461,91 @@ to ensure that they are allowed.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Unified Threat Management Products}
-  \begin{center}
-    \includegraphics[width=0.45\linewidth]{utmp}
-  \end{center}
+\begin{frame}{An example: SMTP}
+  \begin{itemize}
+  \item TCP/IP vulnerabilities
+    \begin{itemize}
+    \item SYN flood/spoofing (packet filtering)
+    \item external attacker using src port 25 (stateful inspection)
+    \end{itemize}
+  \item SMTP vulnerabilities
+    \begin{itemize}
+    \item sendmail buffer overflow (SE-Linux)
+    \end{itemize}
+  \item Mime vulnerabilities
+    \begin{itemize}
+    \item PNG buffer overflow (SMTP IPS/antivirus)
+    \end{itemize}
+  \item User vulnerabilities
+    \begin{itemize}
+    \item Phishing‎ (Train users/SMTP IPS/antispam)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Antispam: naive Bayes classifier}
+  \begin{itemize}
+  \item probabilistic classifier based on applying Bayes' theorem
+  \item assumes with strong (naive) independence assumption
+  \item still effective
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Antispam: naive Bayes classifier}
+  \begin{itemize}
+  \item \alert{Really naive assumptions}
+  \item let $C$ be a class random variable: $C \in \{spam,ok\}$
+  \item let $F_i$ be a feature random variable:
+    \begin{itemize}
+      \item $F_i \in \{true,false\}$  if the mail contains the word
+        ``lottery''
+      \item $F_i \in \{true,false\}$  if the mail sender is ``yahoo.com''
+      \item $F_i \in \{0 \dots 24\}$  mail delivery hour
+    \end{itemize}
+  \item compute $P(C|F_1 \dots F_n)$
+  \item if $P(C=spam|F_1 \dots F_n) > P(C=ok|F_1 \dots F_n)$ tag the email
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Antispam: naive Bayes classifier}
+  \begin{itemize}
+    \only<1> {
+  \item compute $P(C|F_1 \dots F_n)$
+  \item Bayes' theorem
+    \[
+    P(C|F_1 \dots F_n) =
+    \frac
+    {P(C) P(F_1 \dots F_n | C) }
+    {P(F_1 \dots F_n)}
+    \]
+  \item let $Z = P(F_1 \dots F_n)$, $Z$ does not depends on $C$
+    \[
+    P(C|F_1 \dots F_n) =
+    \frac
+    {P(C) P(F_1 \dots F_n | C) }
+    {Z}
+    \]
+  }
+  \item by Chain rule: $P(X_1 \dots X_n) = \prod{P(X_i | X_1 \dots X_{i-1})}$
+    \[
+    P(C|F_1 \dots F_n) =
+    \frac
+    {P(C) 
+     \prod{P(F_i| (C,  F_1, \dots, F_{i-1})}
+    }
+    {Z}
+    \]
+  \item<2-> independence hypotheses $P(F_i| (C,  F_1, \dots, F_{i-1})
+    = P(F_i| C)$
+    \[
+    P(C|F_1 \dots F_n) =
+    \frac
+    {P(C) 
+     \prod{P(F_i| C)}
+    }
+    {Z}
+    \]
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Summary}
