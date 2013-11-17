@@ -1,0 +1,106 @@
+\documentclass{beamer}
+\usetheme{Frankfurt}
+
+\usepackage{listings}
+
+\newcommand{\todo}[1]{\alert{TODO #1}}
+
+\title{Malware}
+\subtitle{Lecture 10 \\ Computer Security DD2395}
+\author[R. Guanciale]{
+  Roberto Guanciale\\
+  robertog@kth.se
+}
+\date{2013-11-04}
+\begin{document}
+
+\begin{frame}{SMTP}
+  \begin{itemize}
+  \item A sends: from: c@C to: b@B hello
+  \item B sends: from: b@B to: c@C vacation message
+  \item C sends: from: c@C to: b@B vacation message
+  \item Quota full
+  \item User not allowed e.g. SMTP fax proxy
+  \item Non existing user
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ZIP}
+  \begin{itemize}
+  \item Infinite recursive zip: e.g. r.zip
+  \item Bombs (e.g. non recursive files)    
+    \begin{itemize}
+      \item gzip: 100 GB, 97 MB compressed, 1000:1 ration
+      \item bzip2: 100 GB, 69 KB, $1.6*10^6$:1
+      \item PNG image: 19000 x 19000, 1-bit (45 MB) expand in 24-bit
+        color to 1 GB, 44 KB compressed, 1000:1
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{XML}
+  \footnotesize \begin{verbatim}
+<?xml version="1.0"?>
+<!DOCTYPE lolz [
+ <!ENTITY lol "lol">
+ <!ELEMENT lolz (#PCDATA)>
+ <!ENTITY lol1 "&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;">
+ <!ENTITY lol2 "&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;&lol1;">
+ <!ENTITY lol3 "&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;">
+ <!ENTITY lol4 "&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;">
+ <!ENTITY lol5 "&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;">
+ <!ENTITY lol6 "&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;">
+ <!ENTITY lol7 "&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;">
+ <!ENTITY lol8 "&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;">
+ <!ENTITY lol9 "&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;">
+]>
+<lolz>&lol9;</lolz>
+  \end{verbatim}
+  \begin{itemize}
+    \item 1 KB file
+    \item 3GB XML (DOM worst)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Fork Bomb}
+  \begin{itemize}
+  \item PostgreSQL 7.2
+  \item Uses elapsed milliseconds to compute number of thread to spawn
+  \item No limit check
+  \item<2-> What happen if you advance the date of one year?
+  \item<3-> Network Time Protocol attack
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Old SMS attack}
+  \begin{itemize}
+  \item Limited number of SMSs (i.e. 9) stored into the phone
+  \item No limit in the reception from the provider
+  \item Usage of zombie and Internet free SMS servers
+  \item Fill and block the SMS reception of a user
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{HTTP}
+  \begin{itemize}
+  \item Distributed flood (spiders)
+  \item Slashdotted
+  \item Slowloris
+  \begin{itemize}
+    \item HTTP server: one thread/one request
+    \item Open connection
+    \item Infinitely (and slowly) send HTTP headers
+    \item Consume the thread pool
+  \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\end{document}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
