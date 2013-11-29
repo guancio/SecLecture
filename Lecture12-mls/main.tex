@@ -1,0 +1,407 @@
+\documentclass{beamer}
+\usetheme{Frankfurt}
+
+\usepackage{listings}
+
+\title{Multilevel Security}
+\subtitle{Lecture 12 \\ Computer Security DD2395}
+\author[R. Guanciale]{
+  Roberto Guanciale\\
+  robertog@kth.se
+}
+\date{2013-11-18}
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Computer Security Models}
+  \begin{itemize}
+  \item all complex systems have eventually revealed flaws (design)
+  \item extraordinary difficult to implement (hw/sw) the design
+    without introducing bugs
+  \item design/implementation
+  \item methods to prove that a design satisfies a set of security requirements
+  \item methods to prove that the implementation conforms the design
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Access controls}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    M & file1 & file2 & directory \\
+    \hline
+    user1 & r,w & r & r,w,x \\
+    \hline
+    user2 & r,w & - & r \\
+    \hline
+    user3 & r & - & r,w \\
+    \hline
+  \end{tabular}
+  \begin{itemize}
+  \item $s$ can do $op$ on $o$ if $op \in M[s,o]$
+  \item Discretionary AC: ``owner'' sets permissions
+    \begin{itemize}
+      \item users make mistakes
+    \end{itemize}
+  \item Mandatory AC: system-wide policy decides
+    \begin{itemize}
+      \item DAC can not give more access than MAC
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Multi-Level Security}
+  \begin{itemize}
+  \item MLS uses ordered security classes, e.g.
+    \begin{itemize}
+    \item hardware: supervisor/user CPU modes
+    \item software: superuser/user Linux/Windows
+    \item military: top secret, secret, confidential, restricted, unclassified 
+    \item business: strategic, sensitive, confidential, public
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bell-La Padula (BLP) Model}
+  \begin{itemize}
+  \item developed in 1970s
+  \item formal access control model
+  \item subjects and objects have a \alert{security class}
+    \begin{itemize}
+    \item subject has a \alert{security clearance} level
+    \item object has a \alert{security classification} level
+    \item class control how subject may access an object
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bell-La Padula (BLP) Model}
+  \begin{itemize}
+  \item security levels (partially) ordered, form a (lattice) tree
+    \begin{itemize}
+    \item $L0 < L1 < L2 < L3$
+    \item $L0 < L1$, $L0 < L2$, $L1 < L3$, $L2 < L3$
+    \end{itemize}
+    \alert{picture}
+  \item captures \alert{confidentiality}
+    \begin{itemize}
+      \item information can not flow from more secure to 
+        less secure levels
+    \end{itemize}
+    \item access modes:
+    \begin{itemize}
+    \item read ($r$)
+    \item append ($a$)
+    \item write ($w$)
+    \item execute ($x$)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP State}
+  \begin{itemize}
+  \item triple $(b,M,f)$
+  \item current access set $b = \{(s_1,o_1,a_1),\dots,(s_n,o_n,a_n)\}$
+    \begin{itemize}
+    \item $(s_i,o_i,a_i)$: the subject $s_i$ is exercising the access
+      $a_i$ to the object $o$
+    \end{itemize}
+  \item current access matrix $M$
+    \begin{itemize}
+    \item $s$ can do $op$ on $o$ if $op \in M[s,o]$
+    \end{itemize}
+  \item level functions $f=(f_o, f_s, f_c)$
+    \begin{itemize}
+      \item $f_o(o_j)$: classification level of object $o_j$
+      \item $f_s(s_j)$: security clearance (max sec.level) of subject $s_j$
+      \item $f_c(s_j)$: current sec.level of subject $s_j$
+        ($f_c(s_j) \leq f_s(s_j)$)
+    \end{itemize}
+    \item more detailed models is a quadrupkle $(b,M,f, H)$,
+      where $H$ is an object hierarchy respecting the security level partial
+      order
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP: Simple Security}
+  \begin{itemize}
+  \item ss-property: no read up
+  \item a subject may read only if it has at least as high security
+    clearance as the object
+  \item $(s_i, o_i, read) \in b$ then
+    $f_c(s_i) \geq f_o(o_i)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP: Simple Security}
+  \begin{itemize}
+  \item is ss-property sufficient to guarantee confidentiality?
+    \begin{itemize}
+    \item information can not flow from more secure to 
+      less secure levels
+    \end{itemize}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{mlisious_writer}
+  \end{center}
+\end{frame}
+
+\begin{frame}{BLP: Star Security}
+  \begin{itemize}
+  \item $*$-property: no write down
+  \item a subject may write (append) only if it has equal (at most as)  security
+    clearance as the object
+  \item $(s_i, o_i, write) \in b$ then
+    $f_c(s_i) = f_o(o_i)$
+  \item $(s_i, o_i, append) \in b$ then
+    $f_c(s_i) \leq f_o(o_i)$
+  \item with the ss-property implies that:
+    \begin{itemize}
+      \item can't read a high-level object while writing a lower-level
+        object
+      \item $(s_i, o'_i, read) \in b$ then
+        $f_o(o') \leq f_o(o)$
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP: Discretionary Security}
+  \begin{itemize}
+  \item ds-property: discretionary access control
+  \item only (owner) permitted accesses are allowed
+  \item $(s_i, o_i, a_i) \in b$ then
+    $a_i \in M[s_i, o_i]$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP: system security}
+  \begin{itemize}
+  \item a state $S=(b,M,f)$ is secure and only if 
+    \begin{itemize}
+      \item $ss-property(S)$
+      \item $*-property(S)$
+      \item $ds-property(S)$
+    \end{itemize}
+  \item a transition $S \rightarrow S'$ is secure if
+    both $S$ and $S'$ are secure
+  \item a system is secure if the initial state(s) is secure
+    and all transitions are secure
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Prove security: state space analysis}
+  \begin{itemize}
+  \item $R$ = the set of states reachable by transitions from a
+    (set of) initial state(s) $\star$
+  \item $P$ = the set of authorized states (the three properties hold)
+  \item System secure if $R \subseteq P$
+  \item System insecure if $\exists S \in R. S \not \in P$
+  \end{itemize}
+  \only<2> {
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{secure_system}
+  \end{center}}
+  \only<3> {
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{insicure_system}
+  \end{center}}
+\end{frame}
+
+\begin{frame}{Prove security: state space analysis}
+  \begin{itemize}
+  \item Prove that initial state is secure 
+  \item Show that each transition preserves security
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP Rules}
+  \begin{itemize}
+    \item get access: add a triple $(s,o,a)$ to $b$
+    \item release access: remove triple from $b$
+    \item change object level ($f_o$)
+    \item change current level of subject ($f_c$)
+    \item give access permission (M) 
+    \item rescind access permission (M) 
+    \item object hierarchy: create an object: add a leaf,
+      delete a group of objects (H)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BLP: Example (i)}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{example1}
+  \end{center}
+\end{frame}
+
+\begin{frame}{BLP: Example (ii)}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{example2}
+  \end{center}
+\end{frame}
+
+\begin{frame}{BLP: Example (iii)}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{example3}
+  \end{center}
+\end{frame}
+
+\begin{frame}{BLP Limitation}
+  \begin{itemize}
+    \item No internal provision for downgrading
+    \item Classification creep by consolidation of 
+      documents from different sources and levels
+    \item \alert{trusted subjects}: set of subjects which are 
+      allowed to break *-property (assuming they always 
+      ``clean'' the information)
+    \item ``trusted''  means ``can hurt you''
+    \item ``trustworthy'' means ``verified not to hurt you''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Biba Integrity Model}
+  \begin{itemize}
+    \item deals with integrity
+    \item uses integrity levels
+    \item reverses permitted flows: 
+      no ``dirty'' low-integrity info may flow to ``clean'' 
+      high-level info, but other way OK
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Biba Policy}
+  \begin{itemize}
+    \item simple integrity
+      \begin{itemize}
+      \item no write up
+      \item $(s_i, o_i, write) \in b$ then
+        $i_c(s_i) \ge i_o(o_i)$
+      \end{itemize}
+    \item integrity confinement
+      \begin{itemize}
+      \item no read down
+      \item $(s_i, o_i, read) \in b$ then
+        $i_c(s_i) \le i_o(o_i)$
+      \end{itemize}
+    \item invocation property
+      \begin{itemize}
+      \item invocation property
+      \item $(s_i, s_j, invoke) \in b$ then
+        $i_c(s_i) \ge i_c(s_j)$
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chinese Wall model}
+  \begin{itemize}
+    \item inspired by commercial applications
+    \item conflict of interest
+    \item hierarchical
+      \begin{itemize}
+      \item objects ($O \in DS$): individual item of information
+      \item dataset ($DS \in CI$): all objects that concern the same corporation
+      \item conflict of interest class ($CI$): corporations in competition
+      \end{itemize}
+    \item information can not flow between two corporations in competition
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chinese Wall policy}
+  \begin{itemize}
+    \item keep access list $H$
+    \item simple security rule
+      \begin{itemize}
+        \item $(s_i, o_i, read) \in b$ then $ss(s_i,o_i)$ where
+        \item $\exists o_j \in DS(O). (s_i, o_j, read) \in H$ or
+        \item $\not \exists o_j \in CI(O). (s_i, o_j, read) \in H$
+        \item read allowed if the subject already accesses the dataset
+          or he has not accessed any information from the CI
+      \end{itemize}
+    \item $*$-property rule
+      \begin{itemize}
+        \item $(s_i, o_i, write) \in b$ then
+        \item $ss(s_i,o_i)$
+        \item $\forall o_j.ss(s_i,o_j) \Rightarrow DS(o_j) = DS(o_i)$
+        \item read allowed if the subject can read the object and can
+          not read outside the DS
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chinese Wall: Example}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{ChineseWall}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Reference Monitor}
+  \begin{itemize}
+  \item complete mediation
+  \item isolation
+  \item verifiability
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{reference_monitor}
+  \end{center}
+\end{frame}
+
+\begin{frame}{RBAC MLS}
+  TODO
+\end{frame}
+
+\begin{frame}{MLS and (relational)-databases}
+  \only<1>{
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{database1}
+  \end{center}
+}
+  \only<2>{
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{database2}
+  \end{center}
+}
+\end{frame}
+
+\begin{frame}{MLS, databases and read}
+  \begin{itemize}
+  \item DBMS enforces simple security rule (no read up) 
+  \item inference problems if have column granularity
+    \begin{itemize}
+    \item if can query on restricted data can infer its existence 
+    \item SELECT Ename FROM Employee WHERE Salary > 50K 
+    \item solution is to check access to all query data 
+    \end{itemize}
+  \item also have problems if have row granularity 
+    \begin{itemize}
+    \item null response indictes restricted/empty result 
+    \end{itemize}
+  \item no extra concerns if have element granularity 
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{MLS, databases and write}
+  \begin{itemize}
+  \item enforce *-security rule (no write down) 
+  \item have problem if a low clearance user wants to 
+    insert a row with a primary key that already exists 
+    in a higher level row:
+    \begin{itemize}
+    \item can reject, but user knows row exists 
+    \item can replace, compromises data integrity 
+    \item can polyinstantiation and insert multiple rows with same 
+      key, creates conflicting entries
+    \end{itemize}
+  \item same alternatives occur on update 
+  \item avoid problem if use database / table granularity
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
