@@ -21,9 +21,9 @@
   \item all complex systems have eventually revealed flaws (design)
   \item extraordinary difficult to implement (hw/sw) the design
     without introducing bugs
-  \item design/implementation
   \item methods to prove that a design satisfies a set of security requirements
   \item methods to prove that the implementation conforms the design
+  \item today: models and their enforcement
   \end{itemize}
 \end{frame}
 
@@ -84,7 +84,6 @@
     \item $L0 < L1 < L2 < L3$
     \item $L0 < L1$, $L0 < L2$, $L1 < L3$, $L2 < L3$
     \end{itemize}
-    \alert{picture}
   \item captures \alert{confidentiality}
     \begin{itemize}
       \item information can not flow from more secure to 
@@ -106,7 +105,7 @@
   \item current access set $b = \{(s_1,o_1,a_1),\dots,(s_n,o_n,a_n)\}$
     \begin{itemize}
     \item $(s_i,o_i,a_i)$: the subject $s_i$ is exercising the access
-      $a_i$ to the object $o$
+      $a_i$ to the object $o_i$
     \end{itemize}
   \item current access matrix $M$
     \begin{itemize}
@@ -139,13 +138,15 @@
   \begin{itemize}
   \item is ss-property sufficient to guarantee confidentiality?
     \begin{itemize}
-    \item information can not flow from more secure to 
+    \item<2-> information can not flow from more secure to 
       less secure levels
     \end{itemize}
   \end{itemize}
+  \only<2> {
   \begin{center}
     \includegraphics[width=0.5\linewidth]{mlisious_writer}
   \end{center}
+  }
 \end{frame}
 
 \begin{frame}{BLP: Star Security}
@@ -178,7 +179,7 @@
 
 \begin{frame}{BLP: system security}
   \begin{itemize}
-  \item a state $S=(b,M,f)$ is secure and only if 
+  \item a state $S=(b,M,f)$ is secure if and only if 
     \begin{itemize}
       \item $ss-property(S)$
       \item $*-property(S)$
@@ -347,7 +348,24 @@
 \end{frame}
 
 \begin{frame}{RBAC MLS}
-  TODO
+  \begin{itemize}
+    \item each permission assigns a read or write permission to an
+      object
+    \item the read level of a role is the least upper bound of the
+      level of readable objects
+    \item the write level of a role is the greatest lower bound of the
+      level of writable objects
+    \item for each user assignment, the role read level musts be
+      dominated by the user security level  
+    \item for each user assignment, the role write level musts dominate
+      the user security level  
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{RBAC MLS}
+  \begin{center}
+    \includegraphics[width=0.6\linewidth]{roles}
+  \end{center}
 \end{frame}
 
 \begin{frame}{MLS and (relational)-databases}
@@ -369,12 +387,12 @@
   \item inference problems if have column granularity
     \begin{itemize}
     \item if can query on restricted data can infer its existence 
-    \item SELECT Ename FROM Employee WHERE Salary > 50K 
+    \item SELECT name FROM Employee WHERE Salary $>$ 50K 
     \item solution is to check access to all query data 
     \end{itemize}
   \item also have problems if have row granularity 
     \begin{itemize}
-    \item null response indictes restricted/empty result 
+    \item null response in join queries can indicate restricted/empty result 
     \end{itemize}
   \item no extra concerns if have element granularity 
   \end{itemize}
@@ -398,6 +416,71 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Trusted Platform Module}
+  \begin{itemize}
+  \item secure coprocessor that stores cryptographic keys and
+    implement crypto functionality
+  \item key assumption: the coprocessor is tamper proof
+  \item TPM endorsement key: a unique RSA key burned into the chip
+    during its production
+  \item Disk encryption
+  \item Video output only to trusted screen 
+  \item Etc..
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{TPM: Authenticated boot}
+  \begin{itemize}
+  \item boot chain
+    \begin{itemize}
+      \item Boot ROM $S_0$ executes, then loads and starts BIOS
+      \item BIOS $S_1$ executes, then loads and starts Boot Loader
+        (e.g. GRUB)
+      \item Boot loader $S_2$
+      \item Kernel $S_3$
+      \item SATA/SCSI driver
+      \item Ext4/NTFS driver
+      \item ....
+      \item Login service
+      \item Shell
+      \item Chrome
+      \item Plug in
+    \end{itemize}
+   \item each stage $S_i$
+     
+     \begin{itemize}
+       \item measure $S_{i+1}$ by computing the hash of the executable
+         code of $S_{i+1}$
+       \item asks to the TPM to append to the log $LOG_{i+1} =
+         SHA1(LOG_{i} | S_{i+1})$
+     \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{TPM: Criticism}
+  \begin{itemize}
+    \item Not only protects the user but also from the user
+    \item Depends on the endorsement key is burned into the
+      chip at the manufacturing plant
+      
+      \begin{itemize}
+      \item manufacturer must have had access to the private key at least
+        during the time of manufacturing
+      \item The user
+        will have to blindly trust the manufacturer
+      \item  the company that
+        designed the chip
+      \item those companies allowed to make software
+        for the chip
+      \item the authorities
+      in the country where the chip was manufactured
+      \item usage of Physically Unclonable Function
+      \end{itemize}
+      
+    \item Users unable to exercise legal rights: e.g. legal backups
+    \item Users vulnerable to vendor withdrawal of service
+  \end{itemize}
+\end{frame}
 
 \end{document}
 
