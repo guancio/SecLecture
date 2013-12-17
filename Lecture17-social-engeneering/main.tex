@@ -9,11 +9,24 @@
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2013-11-18}
+\date{2013-12-17}
 \begin{document}
 
 \begin{frame}[plain]
   \titlepage
+\end{frame}
+
+\begin{frame}{Human resource security}
+  \begin{itemize}
+    \item Security of a system depends on the user behavior
+    \item e.g. DB with 135 M users, top 100 passwords cover 6 M users
+    \item e.g. users sharing passwords
+    \item e.g. unattended workstations
+    \item Users can represent information flows that are not
+      constrained by software/hardware
+    \item Business process and procedures
+    \item These information can carry authentication tokens
+  \end{itemize}
 \end{frame}
 
 
@@ -47,53 +60,56 @@ Brad Sagan, social psychologist
     \item Attribution
     \item Linking
     \item Fear
-    \item Reactance
+    \item Reactance (e.g. reverse psychology)
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Techniques: Trapping of roles}
   \begin{itemize}
-    \item build a common enemy / being ally
+    \item Build a common enemy / being ally
     \item The devil-snake: genesis book, the snake convinces Eve that God was
       keeping his best power for himself, thus forbidding to eat from
       the ``Tree of Life''
-    \item Today: call an enterprise and inform about the internal
+    \item<2-> Today: call an enterprise and inform about the internal
       corporate restructuring
-    \item The enterprise stakholders the common enemy 
+    \item<2-> The enterprise stakholders the common enemy 
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Techniques: Read victim's openness/curiosity}
   \begin{itemize}
-    \item allow the victim to found a gift
+    \item Allow the victim to found a gift
     \item The trojan horse: Ulysses fooled the Trojans into believing
        his army had abandoned their siege by leaving a large
       wooden horse (full of soldiers) - a ``gift'' - outside the gates of the city
-    \item Today: Baiting: left a USB pen in the parking lot
-    \item Today: left a DVD titled ``CVC recodring''
-    \item Today: build an opened WiFi (at the airport) and dump the traffic
+    \item<2-> Today: (Baiting) left a USB pen in the parking lot
+    \item<2-> Today: left a DVD titled ``CVC recodring''
+    \item<2-> Today: build an opened WiFi (at the airport) and dump the traffic
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Techniques: offer benefits}
   \begin{itemize}
-    \item offer benefits to a victim to spread to other victims
+    \item Offer benefits to a victim to spread
     \item Ponzi scheme:  told friends if they invested with him, he
       would double their investment within 90 days. His scheme
       involved using new money to pay off older investors, and the
       entire business was being run at a loss
-    \item Today: Bernie Madoff
-    \item Today: Bitcoins?
+    \item Today: Bernie Madoff ($\$$ 65 billion, 10/30 years)
+    \item<2-> Today: Bitcoins?
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Techniques: Credibility}
   \begin{itemize}
     \item Look official, act official, people will believe you are official
-    \item Frank Abagnale who was able to
+    \item Frank Abagnale was able to
       convince Pan Am employees, and many others, that he was an
       airline pilot in the 1960, by dressing in a Pan Am pilot's uniform
-    \item Today: 
+    \item<2-> Today: (Attribution) during a phone call demostrate to know
+      the organizational chart, to persuade the listener that you are
+      an organizazion employee
+    \item<2-> Today: (Attribution) use the exact lingo
   \end{itemize}
 \end{frame}
 
@@ -104,7 +120,7 @@ Brad Sagan, social psychologist
     \item when a person tags along with
 another person who is authorized to gain entry into a restricted area,
 or pass a certain checkpoint.
-    \item Surreptitiously following an individual authorized to enter
+    \item Following an individual authorized to enter
       a location, giving the appearance of being legitimately escorted
     \item Joining a large crowd authorized to enter, and pretending to
       be a member of the crowd that is largely unchecked
@@ -130,20 +146,67 @@ or pass a certain checkpoint.
   \begin{itemize}
     \item Distracting from systematic thinking
     \item Momentum of compliance
-    \item Bury questions
-    \item Get pieces from different sources
-    \item Test with personal information
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Other Techniques}
-  \begin{itemize}
-    \item Distracting from systematic thinking
-    \item Momentum of compliance
-    \item Bury questions
+    \item Hide questions
     \item Get pieces from different sources
     \item Test with personal information
     \item Phishing
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Real case: the first call}
+  \begin{itemize}
+    \item[victim] Tom DeLay, Bookkeeping
+    \item[attacker] Help Desk.
+      We're trying to troubleshoot a computer networking problem.
+    \item[\dots]
+    \item[attacker] Let me give you my cell phone number.
+      Then you can reach me directly if you need to.
+    \item[victim] That'd be great. Go ahead
+    \item[\dots]
+    \item[attacker] I need to check which port your computer is
+      connected to. Take a look on your computer and see if there's a
+      sticker somewhere that says something like ``Port Number''.
+    \item Let Me Help You
+    \item Disclosing a non-sensitive information
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Real case: the second call, two days later}
+  \begin{itemize}
+    \item[IT Guy] Hi, this is Bob
+    \item[attacker] I'm in Tom DeLay's office in
+      Bookkeeping. We're trying to troubleshoot a cabling problem. I
+      need you to disable Port 6-47.
+    \item[\dots]
+    \item Tom DeLay's office in Bookkeeping, Port 6-47
+    \item Attribution, Lingo
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Real case: the third call, INCOMING}
+  \begin{itemize}
+    \item[victim] Hi, I've a network problem as you said, please
+      help me, I've a deadline
+    \item[attacker] I can solve the problem in 3 hours
+    \item[victim] Can you do faster
+    \item[attacker] I give you the maximum priority, I will try to fix
+      as soon as possible
+    \item[\dots] (call to the IT to restore the network)
+    \item Became an Ally
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Real case: the forth call}
+  \begin{itemize}
+    \item[attacker] Can you check the network?
+    \item[victim] Great it works!!!
+    \item[attacker] We still have firewall problems, if you want you
+      can install this software to prevent your network from being
+      isolated during our reconfigurations 
+    \item[victim] Thanks!!
+    \item[\dots] 
+    \item Authentication
+    \item Take into account what can be done today with VoIP systems
   \end{itemize}
 \end{frame}
 
@@ -154,11 +217,11 @@ or pass a certain checkpoint.
     \item In October 2013, artificial intelligence company Vicarious
       claimed that it had developed software that was able to solve
       modern CAPTCHAs with character recognition rates of up to $90\%$
-    \item Hire People To Solve CAPTCHA Challenges: 
+    \item<2-> Hire People To Solve CAPTCHA Challenges: 
 set up a ``Turing Farm'' to
 employ people to look at computer screens and answer CAPTCHA
 challenges. 
-\item ``Turing Porn/Warez Farm'', in which spammers also run a porn site that is
+\item<3-> ``Turing Porn/Warez Farm'', in which spammers also run a porn site that is
   gated by CAPTCHA challenges, which are actually ripped directly from
   the target service CAPTCHA
   \end{itemize}
@@ -179,8 +242,7 @@ challenges.
     \item Clear protocols that are enforced
     \item Awareness training
     \item Simple rules to define sensitive information
-    \item Simple rule to identify 
-    \item 
+    \item Simple rule to identify / authorize
     \item Data classification policy
     \item Testing
     \item Least Privilege
@@ -196,8 +258,8 @@ challenges.
       inputs
     \item e.g. the millionaire problem:
       $x_1 > x_2$
-    \item social networks
-    \item enterprise cooperation
+    \item e.g. social networks
+    \item e.g. enterprise cooperation
   \end{itemize}
 \end{frame}
 
@@ -211,9 +273,9 @@ challenges.
         \item $1$ generates private/public key $p_k, P_k$, generates random $r_0, r_1$
         \item $1 \rightarrow 2: P_k,r_0,r_1$
         \item $2$ generates random $k$
-        \item $2 \rightarrow 1: P_k(r_{x_2}) + k = v$
-        \item $1$ computes $k_i = p_k(v)-r_i$: $k_0=k$ or $k_1=k$
-        \item $1 \rightarrow 2: m'_0+k_0, m'_1+k_1$
+        \item $2 \rightarrow 1: P_k(k) + r_{x_2} = v$
+        \item $1$ computes $k_i = p_k(v-r_i)$: $k_0=k$ or $k_1=k$
+        \item $1 \rightarrow 2: m'_i = m_i+k_i$
         \item $2$ computes $m'_{x_2} - k$
       \end{enumerate}
     \item Can be extended as $1$ out of $n$ transfer
@@ -225,7 +287,7 @@ challenges.
   
   \begin{itemize}
   \item let $g$ be a boolean gate $g:\{0,1\} \times \{0,1\}
-    \rightarrow \{0,1\}$ (zero, one, and, or, xor, nand, first, second)
+    \rightarrow \{0,1\}$ (and, or, xor, \dots)
   \item let $k^0_1$, $k^1_1$, $k^0_2$, $k^1_2$, $k^0_3$, $k^1_3$ be
     six keys of a symmetric encryption scheme
   \item encode the gateway as a random permutation of
@@ -242,15 +304,15 @@ challenges.
 \end{frame}
 
 
-\begin{frame}{Garbled gate example}
-  \begin{tabular}{cccccccc}
-    1 & 2 & AND & OR & > & = \\
-    0 & 0 & 0   & 0  & 0 & 1 \\
-    0 & 1 & 0   & 1  & 0 & 0 \\
-    1 & 0 & 0   & 1  & 1 & 0 \\
-    1 & 1 & 1   & 1  & 0 & 1 \\
-  \end{tabular}
-\end{frame}
+% \begin{frame}{Garbled gate example}
+%   \begin{tabular}{cccccccc}
+%     1 & 2 & AND & OR & > & = \\
+%     0 & 0 & 0   & 0  & 0 & 1 \\
+%     0 & 1 & 0   & 1  & 0 & 0 \\
+%     1 & 0 & 0   & 1  & 1 & 0 \\
+%     1 & 1 & 1   & 1  & 0 & 1 \\
+%   \end{tabular}
+% \end{frame}
 
 \begin{frame}{Building blocks (2): Yao's garbled circuits (2)}
   \begin{itemize}
@@ -273,16 +335,39 @@ challenges.
   \item Participant $1$ sends the encryption of its input bits to $2$
   \item How can the participant $2$ obtain the encryption of its input
     bits?
-  \item<2-> OT-transfer
-  \item<2-> Participant $2$ executes the circuit
+  \item<2-> OT-transfer, for each bit it executes the 1-2 OT to get
+    the wire key corresponding to $0$ or $1$
+  \item<3-> Participant $2$ executes the circuit
   \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Example: $>$}
-  $max([b_{10}, b_{11}], [b_{20}, b_{21}] = (b_{10} > b_{20}) or
-  ((b_{10} = b_{20}) and (b_{11} > b_{22}))$
+\begin{frame}{Exam}
+  \begin{itemize}
+  \item Only topics of the book
+  \item Similar to the previous years
+  \item Closed book
+  \item Examples
+    \begin{itemize}
+      \item Explain the concepts of honeypot
+      \item Million user names and passwords were leaked
+        by hackers and put up on a web forum.
+        The passwords were hashed but not salted
+      \item Explain the strengths and weaknesses of each of the
+        following ﬁrewall deployment scenarios: network perimeter,
+        host based
+      \item Explain the IP spoofing and its security effects
+      \item Write a C program with a buffer overflow
+      \item Describe the strategies used by a virus to hide himself
+      \item Describe an cryptography algorithm
+    \end{itemize}
+  \end{itemize}
 \end{frame}
+
+% \begin{frame}{Example: $>$}
+%   $max([b_{10}, b_{11}], [b_{20}, b_{21}] = (b_{10} > b_{20}) or
+%   ((b_{10} = b_{20}) and (b_{11} > b_{22}))$
+% \end{frame}
 
 \end{document}
 
