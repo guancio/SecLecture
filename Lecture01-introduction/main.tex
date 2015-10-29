@@ -11,7 +11,7 @@
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2014-11-03}
+\date{2015-11-03}
 \begin{document}
 
 \begin{frame}[plain]
@@ -351,6 +351,12 @@ E level: e.g. Exampliofy high and low impact losses of confidentiality
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{Security}
+  \begin{itemize}
+  \item When a system is secure?
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Overview}
   \begin{itemize}
   \item \alert{Computer Security}: protection afforded to an 
@@ -381,22 +387,84 @@ of  information system resources, including
   \end{center}
 \end{frame}
 
+\begin{frame}{Overview}
+  \begin{itemize}
+  \item \alert{Computer Security}: protection afforded to an 
+    automated information system in order to attain 
+    the \alert{applicable objectives} of preserving
+    
+    \begin{itemize}
+    \item integrity (data/system)
+    \item availability
+    \item confidentiality (data/privacy)
+    \end{itemize}
+of  information system resources, including
+ 
+\begin{itemize}
+  \item hardware
+  \item software
+  \item firmware
+  \item information/data
+  \item telecommunications
+\end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Applicable objective}
+``A design without specification cannot be right or wrong,
+  it can only be surprising!''
+  \\
+  Young\\[20pt]
+``A system without specification cannot be insecure,
+  it can only be surprising!''
+  TODO: Picture
+  TODO: Complexity
+\end{frame}
+
+\begin{frame}[t]{Applicable objective}
+  Can we secure systems against
+\begin{itemize}
+\item<2-> Script kiddie: unskilled hacker using tools written by others?
+\item<3-> Hacker?
+\item<4-> Intelligence agencies?
+\item<5-> Nuclear war?
+\item<6-> Alien invasion?
+\end{itemize}
+\begin{center}
+\only<2>{
+  \includegraphics[width=0.4\linewidth]{scriptkid}
+  }
+\only<3>{
+  \includegraphics[width=0.4\linewidth]{hacker}
+  }
+\only<4>{
+  \includegraphics[width=0.4\linewidth]{NSA}
+  }
+\only<5>{
+  \includegraphics[width=0.4\linewidth]{nuclear}
+  }
+\only<6>{
+  \includegraphics[width=0.4\linewidth]{alien}
+  }
+\end{center}
+\end{frame}
+
+
+
+
 \begin{frame}{Security Myth}
   
   \begin{itemize}
 \item   ``The only secure computer is one that's unplugged, locked in a safe,
   and buried 20 feet under the ground in a secret location...'' --
   Dennis Huges, FBI.
-\item<2-> Only if you relax availability
+\item<2-> It does no preserve the system availability
+\item<2->Security must be phrased in terms of clear goals and
+environment
   \end{itemize}
 \end{frame}
-
-\begin{frame}{Additional concepts}
-  \begin{itemize}
-  \item Authenticity
-  \item Accountability
-  \end{itemize}
-\end{frame}  
 
 \begin{frame}{Levels of impact}
   \begin{itemize}
@@ -428,95 +496,157 @@ of  information system resources, including
 \end{frame}
  
 \begin{frame}{Computer Security Challenges}
+\begin{center}
+%  \includegraphics[width=0.9\linewidth]{thewall}(cambiare immagine)
+  \includegraphics[width=0.9\linewidth]{thewall1}
+\end{center}
+\end{frame}
+
+%% \begin{frame}{Computer Security Challenges}
+%%   \begin{itemize}
+%% \item not simple in complex systems 
+%% \item must consider potential attacks 
+%% \item procedures used counter-intuitive 
+%% \item involve several algorithms and secret info 
+%% \item must decide where to deploy mechanisms 
+%% \item battle of wits between attacker / admin 
+%% \item not perceived as benefit until fails 
+%% \item requires regular monitoring 
+%% \item too often an after-thought 
+%% \item regarded as impediment to using system
+%%   \end{itemize}
+%% \end{frame}
+
+\begin{frame}{Computer Security Terminology}
+  \begin{center}
+\only<1>{\includegraphics[width=0.9\linewidth]{term-0}}
+\only<2>{\includegraphics[width=0.9\linewidth]{term-1}}
+\only<3>{\includegraphics[width=0.9\linewidth]{term-2}}
+\only<4>{\includegraphics[width=0.9\linewidth]{term-3}}
+\only<5>{\includegraphics[width=0.9\linewidth]{term-4}}
+\only<6>{\includegraphics[width=0.9\linewidth]{term-5}}
+\only<7>{\includegraphics[width=0.9\linewidth]{term-6}}
+\only<8>{\includegraphics[width=0.9\linewidth]{term-final}}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.4\textwidth}
+\only<1>{\includegraphics[width=1\linewidth]{term-0-bis}}
+\only<2>{\includegraphics[width=1\linewidth]{term-1-bis}}
+\only<3>{\includegraphics[width=1\linewidth]{term-2-bis}}
+\only<4>{\includegraphics[width=1\linewidth]{term-3-bis}}
+\only<5>{\includegraphics[width=1\linewidth]{term-4-bis}}
+\only<6>{\includegraphics[width=1\linewidth]{term-5-bis}}
+\only<7>{\includegraphics[width=1\linewidth]{term-final-bis}}
+  \end{column}
+
+    \begin{column}{0.6\textwidth}
   \begin{itemize}
-\item not simple in complex systems 
-\item must consider potential attacks 
-\item procedures used counter-intuitive 
-\item involve several algorithms and secret info 
-\item must decide where to deploy mechanisms 
-\item battle of wits between attacker / admin 
-\item not perceived as benefit until fails 
-\item requires regular monitoring 
-\item too often an after-thought 
-\item regarded as impediment to using system
+  \item<1-> Student grade
+  \item<2-> KTH
+  \item<3-> Be corrupted
+  \item<4-> Student
+  \item<5-> Usage of untrusted of HTML parameters
+  \item<6-> SQL injection
+  \item<7>  Backup
   \end{itemize}
+  \end{column}
+\end{columns}
 \end{frame}
 
+\begin{frame}{Example Stuxnet (2006/2007)}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.4\textwidth}
+\only<1>{\includegraphics[width=1\linewidth]{term-0-bis}}
+\only<2>{\includegraphics[width=1\linewidth]{term-1-bis}}
+\only<3>{\includegraphics[width=1\linewidth]{term-2-bis}}
+\only<4>{\includegraphics[width=1\linewidth]{term-3-bis}}
+\only<5>{\includegraphics[width=1\linewidth]{term-4-bis}}
+\only<7>{\includegraphics[width=1\linewidth]{term-5-bis}}
+\only<6>{\includegraphics[width=1\linewidth]{term-final-bis}}
+  \end{column}
 
-\begin{frame}{Security Terminology}
-  \begin{center}
-    \includegraphics[width=0.7\linewidth]{terminology}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Security Terminology}
-  \begin{center}
-    \includegraphics[width=0.7\linewidth]{terminology2}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Vulnerabilities and Attacks }
+    \begin{column}{0.6\textwidth}
   \begin{itemize}
-    \item vulnerabilities: system resources  may 
+  \item<1-> Centrifuges for nuclear research
+  \item<2-> Iran
+  \item<3-> Physical damage
+  \item<4-> ???
+  \item<5-> Windows bugs -
+    Malicious device drivers - 
+    Malicious PLC programs - $\dots$
+  \item<7-> Infection of USB drives - Steal private keys of certificates - Subvert of communications between the WinCC and the PLC - $\dots$
+  \item<6->  Signature of device driver - LAN
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+%% \begin{frame}{Vulnerabilities and Attacks }
+%%   \begin{itemize}
+%%     \item vulnerabilities: system resources  may 
       
-      \begin{itemize}
-        \item be corrupted (loss of integrity) 
-        \item become leaky (loss of confidentiality) 
-        \item become unavailable (loss of availability) 
-      \end{itemize}
-    \item attacks are threats carried out and may be 
-      \begin{itemize}
-        \item passive
-        \item active
-        \item insider
-        \item outsider
-      \end{itemize}
-  \end{itemize}
-\end{frame}
+%%       \begin{itemize}
+%%         \item be corrupted (loss of integrity) 
+%%         \item become leaky (loss of confidentiality) 
+%%         \item become unavailable (loss of availability) 
+%%       \end{itemize}
+%%     \item attacks are threats carried out and may be 
+%%       \begin{itemize}
+%%         \item passive
+%%         \item active
+%%         \item insider
+%%         \item outsider
+%%       \end{itemize}
+%%   \end{itemize}
+%% \end{frame}
 
-\begin{frame}{Countermeasures}
+%% \begin{frame}{Countermeasures}
   
-  \begin{itemize}
-    \item means used to deal with security attacks 
+%%   \begin{itemize}
+%%     \item means used to deal with security attacks 
       
-      \begin{itemize}
-        \item prevent 
-        \item detect 
-        \item recover 
-      \end{itemize}
-    \item may result in new vulnerabilities 
-    \item will have residual vulnerability 
-    \item goal is to minimize risk given constraints
-  \end{itemize}
-\end{frame}
+%%       \begin{itemize}
+%%         \item prevent 
+%%         \item detect 
+%%         \item recover 
+%%       \end{itemize}
+%%     \item may result in new vulnerabilities 
+%%     \item will have residual vulnerability 
+%%     \item goal is to minimize risk given constraints
+%%   \end{itemize}
+%% \end{frame}
 
 
-\begin{frame}{Threat Consequences}
-  \begin{itemize}
-    \item unauthorized disclosure (confidentiality) 
-      \begin{itemize}
-        \item exposure, interception, inference, intrusion 
-        \end{itemize}
-      \end{itemize}
-  \begin{itemize}
-    \item deception (integrity/authenticity/accountability)
-      \begin{itemize}
-        \item masquerade, falsification, repudiation 
-        \end{itemize}
-      \end{itemize}
-  \begin{itemize}
-    \item disruption (availability/integrity)
-      \begin{itemize}
-        \item incapacitation, corruption, obstruction 
-        \end{itemize}
-      \end{itemize}
-  \begin{itemize}
-    \item usurpation (system integrity)
-      \begin{itemize}
-      \item misappropriation, misuse
-      \end{itemize}
-    \end{itemize}
-\end{frame}
+%% \begin{frame}{Threat Consequences}
+%%   \begin{itemize}
+%%     \item unauthorized disclosure (confidentiality) 
+%%       \begin{itemize}
+%%         \item exposure, interception, inference, intrusion 
+%%         \end{itemize}
+%%       \end{itemize}
+%%   \begin{itemize}
+%%     \item deception (integrity/authenticity/accountability)
+%%       \begin{itemize}
+%%         \item masquerade, falsification, repudiation 
+%%         \end{itemize}
+%%       \end{itemize}
+%%   \begin{itemize}
+%%     \item disruption (availability/integrity)
+%%       \begin{itemize}
+%%         \item incapacitation, corruption, obstruction 
+%%         \end{itemize}
+%%       \end{itemize}
+%%   \begin{itemize}
+%%     \item usurpation (system integrity)
+%%       \begin{itemize}
+%%       \item misappropriation, misuse
+%%       \end{itemize}
+%%     \end{itemize}
+%% \end{frame}
 
 \begin{frame}{Scope of Computer Security}
   \begin{center}
@@ -579,6 +709,13 @@ of  information system resources, including
         recover from attack 
         \item security service - counter security attacks 
       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Questions}
+  \begin{itemize}
+    \item 15 mins before lecture
+    \item 15 mins after lecture
   \end{itemize}
 \end{frame}
 
