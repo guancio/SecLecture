@@ -198,5 +198,175 @@ fe80::216:d3ff:fecc:c00d
     \includegraphics[width=0.7\linewidth]{http}
 \end{frame}
 
+\begin{frame}{Questions?}
+    Questions?
+\end{frame}
+
+\begin{frame}{Operating Systems}
+  \begin{itemize}
+  \item An OS is a program that acts an intermediary
+    between the user of a computer and computer
+    hardware
+  \item Major cost of general purpose computing is
+    software
+  \item OS simplifies and manages the complexity of running
+    application programs efficiently
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Goals of OS}
+  \begin{itemize}
+  \item Simplify the execution of user programs and
+    make solving user problems easier.
+  \item Allow sharing of hardware and software resources.
+  \item Make application software portable and versatile.
+  \item Provide isolation, security and protection among
+    user programs.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example of OSes}
+  \begin{itemize}
+  \item Windows/Linux/OS X ($\sim$ 50 milions LOC)
+  \item<2-> Android/iOS ($\sim$ 50 milions LOC)
+  \item<3-> S40 ($\sim$ 1 milions LOC)
+  \item<4-> Free RTOS ($\sim$ 10 000 LOC)
+  \item<5-> L4 microkernel ($\sim$ 10 000 LOC)
+  \item<6-> Automotive
+  \item<7-> SCADA
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{How we run Chrome and Open Office on the same CPU?}
+  How we run Chrome and Open Office on the same CPU?
+\end{frame}
+
+\begin{frame}{HW architecture}
+  \begin{itemize}
+  \item Memory
+  \item CPU
+    \begin{itemize}
+    \item Registers (super fast small memory, program counter)
+    \item Privilege level (i.e. Ring 3/Ring 0, PL1/PL0, CPU modes)
+    \end{itemize}
+  \item OS-kernel takes control of privileged level
+  \item Everithing else uses non-privileged level
+  \end{itemize}
+  \includegraphics[width=0.5\linewidth]{hw}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \begin{itemize}
+  \item Modern systems do not use directly physical addresses
+    \begin{itemize}
+    \item Free to allocate applications in different memory area
+    \item Free to dynamically allocate memory for processes
+    \item Run the same software in systems with 1GB or 2 GB of memory
+    \item Run the same binary as two distinct processes
+    \end{itemize}
+  \item Virtual memory
+    \begin{itemize}
+    \item SW uses virtual addresses
+    \item HW configuration maps virtual addresses to physical addresses
+    \item HW configuration updatable
+    \item HW configuration are called page tables
+    \item HW mechanism is called Memory Management Unit
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.8\linewidth]{va2pa}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.8\linewidth]{hw2}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.8\linewidth]{hw3}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.8\linewidth]{hw4}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.6\linewidth]{process}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.6\linewidth]{process1}
+\end{frame}
+
+\begin{frame}{Virtual Memory}
+  \includegraphics[width=0.6\linewidth]{process2}
+\end{frame}
+
+\begin{frame}{Context switch}
+    \begin{itemize}
+    \item Switch from Open Office to Chrome
+    \begin{itemize}
+    \item<2-> Change the current PT
+    \item<3-> Backup the registers
+    \item<4-> Guarantee fairness
+    \end{itemize}
+    \item<5-> Invoke the OS every x seconds
+    \end{itemize}
+    \includegraphics[width=0.3\linewidth]{process2}
+\end{frame}
+
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{process3}
+\end{frame}
+
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{switch1}
+\end{frame}
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{switch2}
+\end{frame}
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{switch3}
+\end{frame}
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{switch4}
+\end{frame}
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{switch5}
+\end{frame}
+\begin{frame}{Context switch}
+  \includegraphics[width=0.7\linewidth]{switch6}
+\end{frame}
+
+\begin{frame}{Devices}
+  \includegraphics[width=0.7\linewidth]{network}
+\end{frame}
+
+\begin{frame}{System calls}
+    \begin{itemize}
+    \item Request OS services
+    \item File management
+    \item Device Management
+    \item Memory allocation
+    \item Process Control
+    \item Communication
+    \item Print to the terminal
+    \item \dots
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{OS API}
+    \begin{itemize}
+    \item Syscall low level (and non-portable)
+    \item Library or API that sits between normal programs and the
+      operating system 
+    \item Unix-like: libc, glibc
+    \item Windows NT, that API is part of the Native API, in the
+      ntdll.dll library
+    \item in POSIX: open, read, write, close, wait, exec, fork, exit, mmap
+    \end{itemize}
+\end{frame}
+
 
 \end{document}
