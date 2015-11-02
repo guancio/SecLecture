@@ -15,11 +15,10 @@
   <graph edgedefault="directed" id="G">
     <data key="d7"/>
     <node id="n0">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="27.0" width="150.8159999999998" x="881.9599999999874" y="670.5119999999562"/>
-          <y:Fill hasColor="false" transparent="false"/>
+          <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="28.3984375" x="61.2087812499999" y="4.515625">CPU<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -33,7 +32,6 @@
       </data>
     </node>
     <node id="n1">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="319.7760000000004" width="124.19200000000001" x="1132.183999999987" y="513.215999999956"/>
@@ -52,11 +50,10 @@
       </data>
     </node>
     <node id="n2">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="27.0" width="76.4079999999999" x="956.3679999999873" y="697.5119999999562"/>
-          <y:Fill hasColor="false" transparent="false"/>
+          <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="36.6953125" x="19.85634374999995" y="4.515625">Mode<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -70,7 +67,6 @@
       </data>
     </node>
     <node id="n3">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="27.0" width="74.4079999999999" x="881.9599999999874" y="697.5119999999562"/>
@@ -88,7 +84,6 @@
       </data>
     </node>
     <node id="n4">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="27.0" width="150.8159999999998" x="881.9599999999874" y="751.7519999999563"/>
@@ -106,7 +101,6 @@
       </data>
     </node>
     <node id="n5">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="30.0" width="30.0" x="1146.3679999999872" y="743.2719999999563"/>
@@ -125,7 +119,6 @@ OO<y:LabelModel>
       </data>
     </node>
     <node id="n6">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="30.0" width="30.0" x="1182.527999999987" y="743.2719999999563"/>
@@ -144,7 +137,6 @@ CR<y:LabelModel>
       </data>
     </node>
     <node id="n7">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="34.608000000000004" width="84.78399999999999" x="1151.8879999999872" y="557.8479999999561"/>
@@ -163,7 +155,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n8">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="1151.8879999999872" y="592.455999999956"/>
@@ -181,7 +172,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n9">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="1151.8879999999872" y="539.111999999956"/>
@@ -199,7 +189,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n10">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="34.608000000000004" width="84.78399999999999" x="1151.8879999999872" y="659.9279999999561"/>
@@ -217,7 +206,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n11">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="1151.8879999999872" y="694.5359999999562"/>
@@ -235,7 +223,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n12">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="1151.8879999999872" y="641.1919999999561"/>
@@ -253,7 +240,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n13">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="34.608000000000004" width="84.78399999999999" x="914.9759999999874" y="599.503999999956"/>
@@ -272,7 +258,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n14">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="914.9759999999874" y="634.1119999999561"/>
@@ -290,7 +275,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n15">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="914.9759999999874" y="580.767999999956"/>
@@ -308,7 +292,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n16">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="34.608000000000004" width="84.78399999999999" x="914.9759999999874" y="513.215999999956"/>
@@ -327,7 +310,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n17">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="914.9759999999874" y="547.823999999956"/>
@@ -345,7 +327,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n18">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="18.736000000000047" width="84.78399999999999" x="914.9759999999874" y="494.4799999999559"/>
@@ -363,7 +344,6 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n19">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="27.0" width="150.8159999999998" x="881.9599999999874" y="805.9919999999564"/>
@@ -381,12 +361,11 @@ Office<y:LabelModel>
       </data>
     </node>
     <node id="n20">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.cloud">
           <y:Geometry height="90.832" width="177.27999999999997" x="638.7199999999866" y="531.2479999999559"/>
-          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" modelName="custom" textColor="#000000" visible="true" width="189.736328125" x="-6.228164062500014" y="22.46287499999994">OS restores the PL0 mode
 and jumps back to the Chrome
 saved program counter<y:LabelModel>
@@ -400,7 +379,6 @@ saved program counter<y:LabelModel>
       </data>
     </node>
     <node id="n21">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="30.0" width="30.0" x="1182.527999999987" y="787.543999999951"/>
@@ -418,7 +396,6 @@ saved program counter<y:LabelModel>
       </data>
     </node>
     <node id="n22">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="30.0" width="30.0" x="1146.3679999999872" y="787.543999999951"/>
@@ -436,7 +413,6 @@ saved program counter<y:LabelModel>
       </data>
     </node>
     <edge id="e0" source="n0" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -447,7 +423,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e1" source="n4" target="n6">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -462,7 +437,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e2" source="n14" target="n11">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -473,7 +447,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e3" source="n15" target="n12">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -484,7 +457,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e4" source="n17" target="n8">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -495,7 +467,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e5" source="n18" target="n9">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -506,7 +477,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e6" source="n19" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -528,7 +498,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e7" source="n20" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:GenericEdge configuration="com.yworks.edge.framed">
           <y:Path sx="0.0" sy="0.0" tx="-48.32799999998758" ty="3.1080000000438304"/>
@@ -538,7 +507,6 @@ saved program counter<y:LabelModel>
       </data>
     </edge>
     <edge id="e8" source="n20" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:GenericEdge configuration="com.yworks.edge.framed">
           <y:Path sx="0.0" sy="0.0" tx="11.74800000001244" ty="5.548000000043771"/>

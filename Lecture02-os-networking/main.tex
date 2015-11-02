@@ -58,7 +58,7 @@ in practice
 
 \begin{frame}{Stack}
   \begin{center}
-    \includegraphics[width=0.6\linewidth]{stack}
+    \includegraphics[width=0.7\linewidth]{stack}
   \end{center}
 \end{frame}
 
@@ -72,9 +72,9 @@ in practice
   \begin{itemize}
   \item Using a link-level protocol, you can now communicate
     directly over a link
-  \item The network layer (IP) primarily adds the ability to cross
+  \item<2-> The network layer (IP) primarily adds the ability to cross
     several networks using 'routing'
-  \item Each interface in an IPv4 Internet is assigned a unique 32-bit
+  \item<2-> Each interface in an IPv4 Internet is assigned a unique 32-bit
 internet address (Not node addresses!)
   \begin{itemize}
 \item Address types
@@ -83,13 +83,13 @@ internet address (Not node addresses!)
 \item Multicast - one-to-many
 \item Broadcast - one-to-all
   \end{itemize}
-\item Notation, dotted-decimal: 192.36.125.18
-\item An address has two purposes
+\item<3-> Notation, dotted-decimal: 192.36.125.18
+\item<3-> An address has two purposes
   \begin{itemize}
 \item Netid (prefix) identifies a network
 \item Hostid identifies a node on that network
   \end{itemize}
-\item Slash notation: 192.36.120.0/21
+\item<4-> Slash notation: 192.36.120.0/21
   \end{itemize}
 \end{frame}
 
@@ -114,7 +114,7 @@ internet address (Not node addresses!)
   \item 3 - Destination Unreachable
   \item 8 - Echo request (used to ping)
   \item 9 - Router Advertisement
-  \item 11 - Time Exceeded[
+  \item 11 - Time Exceeded
   \item 13 - Timestamp
   \item 14 - Timestamp Reply
   \item \dots
@@ -152,7 +152,7 @@ internet address (Not node addresses!)
 \end{frame}
 
 \begin{frame}{TCP}
-    \includegraphics[width=0.7\linewidth]{synack}
+    \includegraphics[width=0.7\linewidth]{connections}
 \end{frame}
 
 \begin{frame}{DNS}
@@ -164,6 +164,7 @@ addresses.
 fe80::216:d3ff:fecc:c00d
 \item Names add another layer of indirection
 \begin{itemize}
+\item Name $\Rightarrow$ IP $\Rightarrow$ link-level identifier
 \item One name can map to several logical addresses
 \item One logical adress can map to several names
 \item Names can be used for other things than just addressing
@@ -263,7 +264,9 @@ fe80::216:d3ff:fecc:c00d
   \item OS-kernel takes control of privileged level
   \item Everithing else uses non-privileged level
   \end{itemize}
+  \begin{center}
   \includegraphics[width=0.5\linewidth]{hw}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Virtual Memory}
@@ -324,7 +327,7 @@ fe80::216:d3ff:fecc:c00d
     \end{itemize}
     \item<5-> Invoke the OS every x seconds
     \end{itemize}
-    \includegraphics[width=0.3\linewidth]{process2}
+    \includegraphics[width=0.3\linewidth]{process}
 \end{frame}
 
 \begin{frame}{Context switch}
