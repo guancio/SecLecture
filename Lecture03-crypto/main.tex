@@ -1,0 +1,228 @@
+\documentclass{beamer}
+\usetheme{Frankfurt}
+
+\usepackage{listings}
+
+\newcommand{\todo}[1]{\alert{TODO #1}}
+
+\title{Cryptography}
+\subtitle{Lecture 3 \\ Computer Security DD2395}
+\author[R. Guanciale]{
+  Roberto Guanciale\\
+  robertog@kth.se
+}
+\date{2015-11-05}
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline for Today}
+  \begin{itemize}
+    \item Cryptographyc Tools
+    \item Symmetric encryption
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Symmetric encryption}
+  \begin{itemize}
+  \item Only type of encryption from Julius Caesar until 1970s
+  \item Guarantee confidentiality
+  \item Guarantee integrity if there is a notion of well-formedness
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{symm}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Symmetric encryption}
+  \begin{itemize}
+  \item Requirements
+    \begin{itemize}
+  \item Strong encryption algorithm
+    \begin{itemize}
+      \item Even if the attacker know the algorithm and several
+        ciphertexts, he can not obtain the plaintexts or the key
+      \item Even if the attacker know the algorithm, several
+        ciphertexts and the corresponding plaintexts,
+        he can not decrypt further plaintexts or figure out the key
+    \end{itemize}
+  \item The two partners must agree on the secret key
+    \end{itemize}
+  \item<2-> General attack mechanisms
+    \begin{itemize}
+      \item Cryptanalysis
+      \item Bruteforce
+        \begin{itemize}
+          \item <3->56 bits, 1 Decryption/$\mu s \Rightarrow$ $1142$ years
+          \item <3->56 bits, $10^6$ Decryption/$\mu s \Rightarrow$
+            $10$ hours
+          \item <3->128 bits, 1 Decryption/$\mu s \Rightarrow$ $10^{24}$ years
+          \item <3->128 bits, $10^6$ Decryption/$\mu s \Rightarrow$
+            $10^{18}$ years
+        \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Block encryption}
+  \begin{itemize}
+  \item Encryption algorithm process fixed-size blocks
+  \item<2-> DES
+    \begin{itemize}
+      \item Key 56 bits, block 64 bits
+    \end{itemize}
+  \item<3-> Triple-DES
+    \begin{itemize}
+    \item Key 112/168 bits, block 64 bits
+    \item $DES(DES^{-1}(DES(B,K_1), K_2), K_3)$
+    \item Slow in SW
+    \end{itemize}
+  \item<4-> AES
+    \begin{itemize}
+    \item Key 128/192/256 bits, block 128 bits
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Electronic code block}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{ECB}
+  \end{center}
+  \begin{itemize}
+  \item<2-> $P_i$ can have a fixed structure
+  \item <3-> $P_i$ can repeat
+  \item <4-> $C_i$ can be reordered
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Cipher Block Chaining}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{CBC}
+  \end{center}
+  \begin{itemize}
+  \item<2-> If the received is fooled to use $IV'$ than it decrypts\\
+    $P'_1 = IV' \oplus D(K,C_1)$ instead of 
+    $P_1 = IV \oplus D(K,C_1)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Cipher FeedBack}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{CFB}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t]{Counter mode}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{CTR}
+  \end{center}
+  \begin{itemize}
+  \item<2-> Efficiency, Random access, Provable secure, Requires only
+    encryption
+  \item<3-> Agreement on the counter
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Message authentication}
+  \begin{itemize}
+\item Symmetric encryption is not enough (e.g. block reordering)
+\item Protect integrity
+\item Guarantee that the sender is authentic
+\item Encryption is expensive
+\item Content aware routing
+\item Broadcast
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Message authentication code}
+  \begin{center}
+    \includegraphics[width=0.6\linewidth]{MAC}
+  \end{center}
+  \begin{itemize}
+\item E.g. last bits of DES(message)
+\item Message integrity
+\item Sender authenticity
+\item With sequence numbers, proper sequence
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{One way Hash functions}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{HASH}
+  \end{center}
+  \begin{itemize}
+\item Encryption is expensive
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Authentication via Hash functions}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{AuthHASH1}
+  \end{center}
+\end{frame}
+\begin{frame}{Authentication via Hash functions}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{AuthHASH2}
+  \end{center}
+\end{frame}
+\begin{frame}{Authentication via Hash functions}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{AuthHASH3}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Requirements for a secure Hash Function}
+  \begin{itemize}
+  \item $H$ can be applied to a block of arbitrary size
+  \item $H$ produces a fixed length output
+  \item $H(x)$ is relatively easy to compute
+  \item one-way/preimage resistant:\\
+    let $h$ be a code, it is ``infeasible'' to find $x$
+    such that $H(x)=h$
+  \item weak collision/second preimage resistant:\\
+    let $x$ be a block, it is ``infeasible'' to find $y \neq x$
+    such that $H(x)=H(y)$
+  \item strong  collision resistant:\\
+    it is ``infeasible'' to find $(x,y)$ such that $H(x)=H(y)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Questions?}
+  Questions?
+\end{frame}
+
+\begin{frame}{Requirements for a secure Hash Function}
+  Example
+\end{frame}
+
+\begin{frame}{Requirements for a secure Hash Function}
+  \begin{itemize}
+  \item<1-> What happen if $H(x)$ is difficult to compute?
+  \item<2-> What happen if it is not one-way?
+  \item<3-> What happen if it is not weak collision resistant?
+  \item<4> What happen if it is not strong  collision resistant?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Feistel Cipher Structure}
+  \begin{center}
+    \includegraphics[width=0.35\linewidth]{Feistel}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Data Encryption Standard (DES)}
+  \begin{itemize}
+  \item 56 bits key, 64 bits blocks 
+  \item Feistel Cipher Structure
+  \item 16 rounds, 16 sub-keys derived from the master key
+  \item Decryption is basically encryption in reverse order
+  \item Triple-$Des$ = $Des(Des^{-1}(Des, K1), K2), K3)$
+  \item Triple-$Des^{-1}$ = $Des^{-1}(Des(Des^{-1}, K3), K2), K1)$
+  \end{itemize}
+\end{frame}
+
+\end{document}
+
+%%  LocalWords:  decrypt
