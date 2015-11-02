@@ -43,16 +43,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{General Goals}
-  \begin{itemize}
-    \item Learn about security concepts
-    \item Have tools and methods to reason about security
-    \item Spot threats, vulnerabilities
-    \item Know, propose and evaluate counter-measures
-    \item Present concepts to others 
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Learning Outcomes}
   You should be able to
   \begin{itemize}
@@ -202,7 +192,7 @@ lecture break to coordinate
     01 & Admin, Intro [Ch.1] &         09 & Denial of Service [8] \\
     02 & OS/Networking  &              10 & Multi-level security [10] \\
     03 & Cryptography [2,20] &         11 & Buffer overflows [11] \\
-    04 & Authentication [3] &          12 & Social engineering \\
+    04 & Authentication [3, 21] &      12 & Social engineering \\
     05 & Intrusion detection [8] &     13 & Network forensic (Guest) \\
     06 & Web security (Guest) &        14 & SW security \\
     07 & Firewalls [9]  &              15 & ? + Certification (Guest) \\
@@ -292,7 +282,7 @@ E level: e.g. describe the difference between a stateless and stateful firewall
 \item Compare counter-measures and evaluate their side-effects\\
 E level: e.g. compare two authentication protocols
 \item Explain the basic computer security terminology and concepts and use them correctly\\
-E level: e.g. Exampliofy high and low impact losses of confidentiality
+E level: e.g. exemplify high and low impact losses of confidentiality
   \end{itemize}
   \end{frame}
 
@@ -313,7 +303,7 @@ E level: e.g. Exampliofy high and low impact losses of confidentiality
   \begin{itemize}
   \item Needed for lab exercises
   \item Who doesn't have an account and access card?
-  \item Go to the service center
+  \item Go to the service centre
   \end{itemize}
 \end{frame}
 
@@ -340,7 +330,7 @@ E level: e.g. Exampliofy high and low impact losses of confidentiality
   \item \alert{Do not attack a running system 
     without the consent of the owner 
     and the users}
-  \item Defense Against the Dark Arts
+  \item Defence Against the Dark Arts
   \end{itemize}
   \center{
   \includegraphics[width=0.7\linewidth]{exploits_of_a_mom}
@@ -504,32 +494,135 @@ of  information system resources, including
 \end{center}
 \end{frame}
 
-%% \begin{frame}{Computer Security Challenges}
-%%   \begin{itemize}
-%% \item not simple in complex systems 
-%% \item must consider potential attacks 
-%% \item procedures used counter-intuitive 
-%% \item involve several algorithms and secret info 
-%% \item must decide where to deploy mechanisms 
-%% \item battle of wits between attacker / admin 
-%% \item not perceived as benefit until fails 
-%% \item requires regular monitoring 
-%% \item too often an after-thought 
-%% \item regarded as impediment to using system
-%%   \end{itemize}
-%% \end{frame}
+\begin{frame}{Computer Security Challenges}
+  \begin{itemize}
+\item not simple in complex systems 
+\item must consider potential attacks 
+\item procedures used counter-intuitive 
+\item involve several algorithms and secret info 
+\item must decide where to deploy mechanisms 
+\item battle of wits between attacker / admin 
+\item not perceived as benefit until fails 
+\item requires regular monitoring 
+\item too often an after-thought 
+\item regarded as impediment to using system
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{Computer Security Terminology}
-  \begin{center}
-\only<1>{\includegraphics[width=0.9\linewidth]{term-0}}
-\only<2>{\includegraphics[width=0.9\linewidth]{term-1}}
-\only<3>{\includegraphics[width=0.9\linewidth]{term-2}}
-\only<4>{\includegraphics[width=0.9\linewidth]{term-3}}
-\only<5>{\includegraphics[width=0.9\linewidth]{term-4}}
-\only<6>{\includegraphics[width=0.9\linewidth]{term-5}}
-\only<7>{\includegraphics[width=0.9\linewidth]{term-6}}
-\only<8>{\includegraphics[width=0.9\linewidth]{term-final}}
-  \end{center}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-0}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \begin{itemize}
+  \item Hardware
+  \item Software
+  \item Data
+  \item Networks
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-1}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \begin{itemize}
+  \item Sysadmin
+  \item User
+  \item \dots
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-2}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \begin{itemize}
+  \item be corrupted
+  \item become leaky
+  \item become unavailable
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-3}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \begin{itemize}
+  \item Active/Passive attack
+  \item Inside/Outside attack
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-4}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \begin{itemize}
+  \item Weakness that can led to unmet the security policy
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-5}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \begin{itemize}
+  \item Unauthorised disclosure\\
+    (exposure/interception/\\
+    inference/intrusion)
+  \item Deception\\
+    (masquerade/falsification/\\
+    repudiation)
+  \item Disruption\\
+    (Incapacitation/Corruption/\\
+    Obstruction)
+  \item Usurpation\\
+    (Misappropriation/Misuse)
+  \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-6}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+ \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Computer Security Terminology}
+\begin{columns}[onlytextwidth]
+    \begin{column}{0.6\textwidth}
+\includegraphics[width=1\linewidth]{term-final}
+  \end{column}
+    \begin{column}{0.4\textwidth}
+  \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Example}
@@ -650,11 +743,11 @@ of  information system resources, including
 %%     \end{itemize}
 %% \end{frame}
 
-\begin{frame}{Scope of Computer Security}
-  \begin{center}
-    \includegraphics[width=0.8\linewidth]{securityScope}
-  \end{center}
-\end{frame}
+%% \begin{frame}{Scope of Computer Security}
+%%   \begin{center}
+%%     \includegraphics[width=0.8\linewidth]{securityScope}
+%%   \end{center}
+%% \end{frame}
 
 \begin{frame}{Network Security Attacks}
   \begin{itemize}
