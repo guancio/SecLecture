@@ -1,0 +1,69 @@
+nc At the command prompt type "NSLOOKUP <enter>".
+This will give you a ">" prompt.
+Type "set type=MX <enter>".
+Type "simpledns.com <enter>".
+
+
+
+
+nslookup
+set type=MX
+gmail.com
+
+
+telnet 74.125.143.27 25
+HELO microsoft.com
+
+mail from:<bill.gates@microsoft.com>
+
+RCPT TO: <guancio@gmail.com>
+DATA
+
+from:<bill.gates@microsoft.com>
+to: <guancio@gmail.com>
+subject: hello my dear friend
+
+You have 1GDollar in you account
+
+.
+
+quit
+
+
+nc -C 74.125.143.27 25 25
+HELO microsoft.com
+
+mail from:<bill.gates@microsoft.com>
+
+RCPT TO: <guancio@gmail.com>
+DATA
+
+from:<bill.gates@microsoft.com>
+to: <guancio@gmail.com>
+subject: hello my dear friend
+
+You have 1GDollar in you account
+
+.
+
+quit
+
+
+
+
+
+python -m SimpleHTTPServer 8000
+
+
+nc -C localhost 8000
+
+GET / HTTP/1.0
+
+
+nc -l 80
+
+
+HTTP/1.0 200 OK
+Content-type: text/html
+
+<html><body>hello</body></hello>
