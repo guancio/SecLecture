@@ -1,4 +1,4 @@
-nc At the command prompt type "NSLOOKUP <enter>".
+Bnc At the command prompt type "NSLOOKUP <enter>".
 This will give you a ">" prompt.
 Type "set type=MX <enter>".
 Type "simpledns.com <enter>".
@@ -11,27 +11,28 @@ set type=MX
 gmail.com
 
 
-telnet 74.125.143.27 25
-HELO microsoft.com
 
-mail from:<bill.gates@microsoft.com>
+nc -C IP 25 -4
+HELO kth.se
+
+mail from:<robertog@kth.se>
 
 RCPT TO: <guancio@gmail.com>
 DATA
 
-from:<bill.gates@microsoft.com>
+from:<robertog@kth.se>
 to: <guancio@gmail.com>
 subject: hello my dear friend
 
-You have 1GDollar in you account
+Hello, how are you?
+That's my mail
 
 .
 
 quit
 
 
-nc -C 74.125.143.27 25 25
-HELO microsoft.com
+nc -C 74.125.143.27 25 25 HELO microsoft.com
 
 mail from:<bill.gates@microsoft.com>
 
