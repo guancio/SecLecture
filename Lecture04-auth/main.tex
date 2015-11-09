@@ -25,6 +25,13 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Offtopic}
+  \begin{itemize}
+    \item $C = (P \oplus K_1) + K_2$
+    \item Lab W
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Public key encryption}
   \begin{itemize}
     \item Sharing symmetric keys is difficult
@@ -49,7 +56,7 @@
 
 \begin{frame}{Requirements}
   \begin{itemize}
-    \item It is easy for $B$ to generate the key pair $(PU_b,PR,b)$
+    \item It is easy for $B$ to generate the key pair $(PU_b,PR_b)$
     \item It is easy for $A$, knowing $PU_b$ and $M$, to compute $C=E(PU_b, M)$ 
     \item It is easy for $B$, knowing $PR_b$ and $C$, to compute $M=D(PR_b, C)$ 
     \item It is not feasible to compute $PR_b$ knowing $PU_b$ 
@@ -69,7 +76,7 @@
 \begin{frame}{Applications}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{certificate}\\
-  Digital Signature (i.e. authentication of sender/integrity of payload)
+  Digital Certificate (i.e. authentication/integrity of public keys)
   \end{center}
 \end{frame}
 
@@ -86,23 +93,26 @@
     \item Encryption: $C = M^e\ mod\ n$
     \item Decryption: $M = C^d\ mod\ n = (M^e\ mod\ n)^d\ mod\ n = (M^e)^d\ mod\ n = M^{ed}\ mod\ n$
     \item $e,d,n$ such that $M = M^{ed}\ mod\ n$
-    \item It is easy to compute $M^e\ mod\ n$ and $D^e\ mod\ n$
+    \item It is easy to compute $M^e\ mod\ n$ and $C^d\ mod\ n$
     \item It is not feasible to discover $d$ knowing $e$ and $n$
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Requirement 2: It is easy to compute $M^e\ mod\ n$ and $D^e\ mod\ n$}
+\begin{frame}[t]{Requirement 2: It is easy to compute $M^e\ mod\ n$ and $C^d\ mod\ n$}
   \begin{itemize}
-    \item Naive approach: compute $M^e$ ($O(e)$ multiplications, memory intensive)
-    \item<2-> Memory efficient: $a*b\ mod\ n = (a\ mod\ n)*(b\ mod\ n)\ mod\ n$\\ 
+  \item Naive approach: compute $M^e$ ($O(e)$ multiplications, memory intensive)
+    
+\only<2>{
+    \item Memory efficient: $a*b\ mod\ n = (a\ mod\ n)*(b\ mod\ n)\ mod\ n$\\ 
       $e=0$: $c_0 = 0 * M\ mod\ n$\\
       $e=1$: $c_1 = c_0 * M\ mod\ n$\\
       $e=2$: $c_2 = c_1 * M\ mod\ n$\\
       \dots
       $O(e)$ multiplications
+      }
     \item<3-> Right to left binary : $e = \prod_i a_i*2^i$\\ 
-      thus $M^e = M^{\prod_i a_i*2^i} = \prod_i (b^{2^i})^{a_i}$\\
-      thus $M^e\ mod\ n = (\prod_i (b^{2^i})^{a_i})\ mod\ n$\\
+      thus $M^e = M^{\prod_i a_i*2^i} = \prod_i (M^{2^i})^{a_i}$\\
+      thus $M^e\ mod\ n = (\prod_i (M^{2^i})^{a_i})\ mod\ n$\\[20pt]
       $C:=1$\\
       for $i \in [0\dots bits]$\\
       \ \ \ \  if ($a_i=1$) then $C:= C * M\ mod\ n$\\
@@ -112,13 +122,22 @@
 
 \begin{frame}{Requirement 1: $M = M^{ed}\ mod\ n$}
   \begin{itemize}
-    \item Use $n=p*q$, where $p,q$ primes 
-    \item Let $e$ and $d$ be multiplicative inverse modulo $\phi(n)$ (Euler totient function)
-    \item $e*d\ mod\ \phi(n) = 1$
-    \item $e*d = 1 + h(\phi(n))$
-    \item assuming that $m$ and $n$ are coprime, Euler theorem: $m^{\phi(n)} \equiv_{mod\ n} 1$\\
-    $m^{ed} = m^{1 + h(\phi(n))} = m*(m^{\phi(n)})^h \equiv_{mod\ n} m * 1^h \equiv_{mod\ n} m$
-    \item if $m$ and $n$ are not coprime, $m \equiv_{mod\ p} 0$\\
+    \item<2-> Use $n=p*q$, where $p,q$ primes 
+    \item<3-> Let $e$ and $d$ be multiplicative inverse modulo $\phi(n)$ (Euler totient function)
+      \begin{itemize}
+      \item<4-> $e*d\ mod\ \phi(n) = 1$
+      \item<5-> $e*d = 1 + h(\phi(n))$
+      \end{itemize}
+    \item<6-> assuming that $m$ and $n$ are coprime:
+      \begin{itemize}
+      \item<7-> Euler theorem: $m^{\phi(n)} \equiv_{mod\ n} 1$
+      \item<8-> $m^{ed} $
+        \only<9->{$= m^{1 + h(\phi(n))}$}
+        \only<10->{$= m*(m^{\phi(n)})^h$}
+        \only<11->{$\equiv_{mod\ n} m * 1^h$}
+        \only<12->{$\equiv_{mod\ n} m$}
+      \end{itemize}
+    \item<13> if $m$ and $n$ are not coprime, $m \equiv_{mod\ p} 0$\\
     proof uses Fermat's little theorem
   \end{itemize}
 \end{frame}
@@ -127,9 +146,9 @@
   \begin{itemize}
     \item $n=p*q$, where $p,q$ primes 
     \item $e*d\ mod\ \phi(n) = 1$
-    \item Euler total function is multiplicative: $a,b$ coprime then $\phi(a*b) = \phi(a)*\phi(b)$
-    \item If $a$ prime then $\phi(a) = (a-1)$ 
-    \item $\phi(n) = (p-1)(q-1)$
+    \item<2-> Euler total function is multiplicative: $a,b$ coprime then $\phi(a*b) = \phi(a)*\phi(b)$
+    \item<3-> If $a$ prime then $\phi(a) = (a-1)$ 
+    \item<4-> $\phi(n) = (p-1)(q-1)$
   \end{itemize}
 \end{frame}
 
@@ -138,9 +157,9 @@
     \item $n=p*q$, where $p,q$ primes 
     \item $e*d\ mod\ \phi(n) = 1$
     \item $\phi(n) = (p-1)(q-1)$
-    \item The multiplicative inverse of $e$ modulo $\phi(n)$ exists if and only if $e$ and $\phi(n)$ are coprime
-    \item Select $e$ as random coprime of $\phi(n)$
-    \item Compute $d$
+    \item<2-> The multiplicative inverse of $e$ modulo $\phi(n)$ exists if and only if $e$ and $\phi(n)$ are coprime
+    \item<3-> Select $e$ as random coprime of $\phi(n)$
+    \item<4-> Compute $d$
   \end{itemize}
 \end{frame}
 
@@ -209,10 +228,10 @@
 
 \begin{frame}{Means of Authentication}
   \begin{itemize}
-    \item Something the individual knows (PIN, password, name of the individual's dog) 
+    \item Something the individual knows (PIN, password, name of the individual's pet) 
     \item Something the individual possesses (physical keys, electronic keycards)
     \item Something the individual is (fingerprint, retina, PUFs)
-    \item Something the individual does (voice recognition, handwriting, CACPTCHA)
+    \item Something the individual does (voice recognition, handwriting, captcha)
   \end{itemize}
 \end{frame}
 
@@ -251,12 +270,11 @@
     \item Password stored as hashes: $ID \mid HPWD$ where $HPWD=H(PWD)$ 
     \item Authentication: $H(PWD) = rec.HPWD$
       \begin{itemize}
-        \item<2-> $H(PWD')=H(PWD)$
-        \item<3-> vulnerable to repetition: if $rec.PWD = rec'.PWD$ then $rec.HPWD = rec'.HPWD$
-        \item<4-> vulnerable to collisions
-        \item<5-> Reverse look up tables $L: h \rightarrow pwd$ (only for the most common passwords)
-        \item<6-> Cryptanalysis (the most common password in the file is either 123456, password, 12345, 12345678 or qwerty)
-        \item<7-> 6 million user-generated passwords; the 10,000 most common passwords give access to 98 percent of all accounts. 
+        \item<1-> vulnerable to repetition: if $rec.PWD = rec'.PWD$ then $rec.HPWD = rec'.HPWD$
+        \item<2-> vulnerable to collisions: $H(PWD')=H(PWD)$
+        \item<3-> Reverse look up tables $L: h \rightarrow pwd$ (only for the most common passwords)
+        \item<4-> Cryptanalysis (the most common password in the file is either 123456, password, 12345, 12345678 or qwerty)
+        \item<5-> 6 million user-generated passwords; the 10,000 most common passwords give access to 98 percent of all accounts. 
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -264,31 +282,31 @@
 
 \begin{frame}{Lookup tables}
   \begin{itemize}
-    \item Data: 16 bytes, hash 16 bytes: $2^{128}*16$ bytes 
-    \item Data: 16 letters, hash 16 bytes: $2^{75}*16$ bytes
-    \item Data: 16 capital letters, lower letters, digits, hash 16 bytes: $2^{95}*16$ bytes
-    \item Data: 8 ANSI chars, hash 16 bytes: $2^{56}*16$ bytes
-    \item Data: English dictionary, hash 16 bytes: $2^{11}*16$ bytes
+    \item Data: 16 bytes, hash 16 bytes: $2^{128}*16*2$ bytes 
+    \item Data: 16 letters, hash 16 bytes: $2^{75}*16*2$ bytes
+    \item Data: 16 capital letters, lower letters, digits, hash 16 bytes: $2^{95}*16*2$ bytes
+    \item Data: 8 ANSI chars, hash 16 bytes: $2^{56}*16*2$ bytes
+    \item Data: English dictionary, hash 16 bytes: $2^{18}*16*2$ bytes
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Rainbow tables}
+\begin{frame}{Rainbow tables: compute the inverse of h}
   \begin{itemize}
     \item offline
       \begin{itemize}
       \item let $\mathcal{P}$ be the plaintext space and $\mathcal{H}$ the hash code space
-      \item $H:\mathcal{P} \rightarrow \mathcal{H}$
-      \item define a reduction function $R: \mathcal{H} \rightarrow \mathcal{P}$ (it is not the inverse)
-      \item fix $k$, pick a random subset $\{p_0, \dots, p_n\}$ of $\mathcal{P}$
-      \item compute the chains $p_0$, $h^0_0 = H(p_0)$, $p^1_0 = R(h^0_0)$, $h^1_0 = H(p^1_0)$, \dots, 
+      \item<2-> $H:\mathcal{P} \rightarrow \mathcal{H}$
+      \item<3-> define a reduction function $R: \mathcal{H} \rightarrow \mathcal{P}$ (it is not the inverse)
+      \item<4-> fix $k$, pick a random subset $\{p_0, \dots, p_n\}$ of $\mathcal{P}$
+      \item<5-> compute the chains $p_0$, $h^0_0 = H(p_0)$, $p^1_0 = R(h^0_0)$, $h^1_0 = H(p^1_0)$, \dots, 
         $p^k_0 = R(h^{k-1}_0)$
-      \item store $(p_i, p^k_i)$
+      \item<6-> store $(p_i, p^k_i)$
       \end{itemize}
     \item online
       \begin{itemize}
-      \item compute the chains $p^1=R(h)$, $h^1 = H(p^1)$, $p^2 = R(h^1)$ \dots
-      \item if $p^n$ is matched by $(p_i, p^k_i)$ 
-      \item recompute the chain of $(p_i, p^k_i)$; if the chain contains $h^j = h$ then $p^j$ is the inverse of $h$
+      \item<7-> compute the chains $p^1=R(h)$, $h^1 = H(p^1)$, $p^2 = R(h^1)$ \dots
+      \item<8-> if $p^n$ is matched by $(p_i, p^k_i)$ 
+      \item<9-> recompute the chain of $(p_i, p^k_i)$; if the chain contains $h^j = h$ then $p^j$ is the inverse of $h$
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -339,14 +357,23 @@
 
 \begin{frame}{Remote authentication: e.g. password}
   \begin{itemize}
-    \item $U \rightarrow id$
-    \item $S \rightarrow U: r, h, f$, where $r$ is a random ``nonce'', $f$ is a function and $h$ is a hash function 
-    \item $U \rightarrow S: v = f(r, h(P))$, where $P$ is the password
-    \item $S$ checks $f(r, h(P\ of\ id)) = v$
-    \item The system stores the hash of the passwords
-    \item Neither the password or its hash code are transmitted, a function that depends on them is transmitted
-    \item The random nonce defends against replay attacks
-    \item Can also be applied to tokens
+    \item User $U$ wants to authenticate on server $S$
+    \item<2-> $U \rightarrow S: PWD$
+    \item<3-> $U \rightarrow S: H(PWD)$
+    \item<4-> $U \rightarrow S: H(PWD,salt)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Remote authentication: e.g. password}
+  \begin{itemize}
+    \item<2-> $U \rightarrow S: id$
+    \item<2-> $S \rightarrow U: r, h, f$, where $r$ is a random ``nonce'', $f$ is a function and $h$ is a hash function 
+    \item<2-> $U \rightarrow S: v = f(r, h(P))$, where $P$ is the password
+    \item<2-> $S$ checks $f(r, h(P\ of\ id)) = v$
+    \item<4-> The system stores the hash of the passwords
+    \item<5-> Neither the password or its hash code are transmitted, a function that depends on them is transmitted
+    \item<6-> The random nonce defends against replay attacks
+    \item<2-> Can also be applied to tokens
   \end{itemize}
 \end{frame}
 
