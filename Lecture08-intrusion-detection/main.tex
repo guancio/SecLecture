@@ -6,26 +6,18 @@
 \newcommand{\todo}[1]{\alert{TODO #1}}
 
 \title{Intrusion Detection}
-\subtitle{Lecture 8 \\ Chapter 8\\Computer Security DD2395}
+\subtitle{Lecture 7 \\ Chapter 8\\Computer Security DD2395}
 \author[R. Guanciale]{
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2013-10-03}
+\date{2015-11-20}
 \begin{document}
 
 \begin{frame}[plain]
   \titlepage
 \end{frame}
 
-\begin{frame}{Frequently Asked Questions}
-  \begin{itemize}
-  \item Labs: please send your questions to the lab assistants. 
-    If you feel your problem is not handled contact me.
-  \item Late registrations: waiting administration for an answer
-  \item Previous exams
-  \end{itemize}
-\end{frame}
 
 \begin{frame}{Intruders}
   \begin{itemize}
@@ -58,6 +50,20 @@
   \item impersonating a user to reset password 
   \item using an unattended workstation 
   \item wireless cracking
+  \item unauthorised bitcoin transactions
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Intrusion Prevention/Firewall}
+  \begin{itemize}
+  \item Avoid remote shell from outside the local network
+  \item Avoid usage of misconfigured services (e.g. default services)
+  \item Limit the connections to a database server
+  \item Prevent the activation of malicious services
+  \item Prevent TCP/IP attacks
+  \item Limit e-mail/forum spam
+  \item Forbid execution of unsigned code/code injection
+  \item <2-> But we can not predict all possible illicit behaviours (e.g. Zero day bugs)
   \end{itemize}
 \end{frame}
 
@@ -215,6 +221,7 @@ system resources in an unauthorized manner.
       \begin{itemize}
       \item Host-based IDS: monitor single host activity
       \item Network-based IDS: monitor network trafﬁc
+      \item Distributed IDS
       \end{itemize}
     \item logical components:
       \begin{itemize}
@@ -253,7 +260,7 @@ system resources in an unauthorized manner.
     \end{itemize}
   \end{itemize}
   \column{0.5\linewidth}
-  \includegraphics[width=1\linewidth]{falsepositive}
+  \includegraphics[width=1\linewidth]{behaviour}
   \end{columns}
 \end{frame}
 
@@ -276,33 +283,9 @@ system resources in an unauthorized manner.
   \item Defense has to work all the time, attack only 
     once
   \item That's the same in physical security
-  \item Today we were unlucky,
-    but remember we only have to be lucky once.
-    You will have to be lucky always
   \end{itemize}
   For stories about intrusions, penetration testing, 
 see Kevin Mitnick ``The Art of Intrusion''
-\end{frame}
-
-\begin{frame}{Host-Based IDS}
-  \begin{itemize}
-  \item specialized software to monitor system activity to 
-    detect suspicious behavior 
-    \begin{itemize}
-    \item primary purpose is to detect intrusions, log suspicious events, 
-      and send alerts 
-    \item can detect both external and internal intrusions 
-    \end{itemize}
-  \item two approaches, often used in combination: 
-    \begin{itemize}
-    \item anomaly detection - defines normal/expected behavior 
-      \begin{itemize}
-      \item threshold detection 
-      \item profile based 
-      \end{itemize}
-    \item signature detection - defines improper behavior
-    \end{itemize}
-  \end{itemize}
 \end{frame}
 
 
@@ -324,6 +307,18 @@ see Kevin Mitnick ``The Art of Intrusion''
       \end{itemize}
     \end{itemize}
   \end{itemize}
+\end{frame}
+
+\begin{frame}{IDS approaches}
+  Two approaches, often used in combination: 
+    \begin{itemize}
+    \item anomaly detection - defines normal/expected behavior 
+      \begin{itemize}
+      \item threshold detection 
+      \item profile based 
+      \end{itemize}
+    \item signature detection - defines improper behavior
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Anomaly Detection}
@@ -362,6 +357,7 @@ see Kevin Mitnick ``The Art of Intrusion''
     abnormal normal and actual attack?
     \begin{itemize}
       \item black Friday/cyber Monday
+      \item Slashdotting
       \item \dots
     \end{itemize}
   \end{itemize}
@@ -396,20 +392,80 @@ see Kevin Mitnick ``The Art of Intrusion''
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Distributed Host-Based IDS}
-  
-  \begin{center}
-    \includegraphics[width=0.9\linewidth]{distributed-host-ids}
-  \end{center}
+\begin{frame}{Host-Based IDS}
+  \begin{itemize}
+  \item specialized software to monitor system activity to 
+    detect suspicious behavior 
+    \begin{itemize}
+    \item primary purpose is to detect intrusions, log suspicious events, 
+      and send alerts 
+    \item can detect both external and internal intrusions 
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
+\begin{frame}[t]{Host-Based: use case}
+  Detect a virus (if prevention failed)
+\end{frame}
 
-\begin{frame}{Distributed Host-Based IDS }
+\begin{frame}[t]{Host-Based: use case}
+  Detect a virus (if prevention failed)
+  \\[20pt]
   \begin{itemize}
-  \item Different audit record formats 
-  \item Collection point in network, need to transfer raw 
-    data or summaries – confidentiality, integrity 
-  \item Centralized vs. decentralized architecture
+  \item Clam AntiVirus (ClamAV)
+  \item Scan email attachment (prevention)
+  \item On-demand (user started/scheduled) scanning via a user process
+    \\[20pt]
+  \item<2-> The ClamAV SW itself can be compromised by malware
+  \item<3-> The malware can compromise libc, faking the results of fread
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Host-Based: use case}
+  Detect a virus (if prevention failed)
+  \\[20pt]
+  \begin{itemize}
+  \item On-demand scanning using syscalls
+  \\[20pt]
+  \item<2-> The malware can compromise the OS and fake the results of syscalls
+  \item<3-> Window between two scans
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Host-Based: use case}
+  Detect a virus (if prevention failed)
+  \\[20pt]
+  \begin{itemize}
+  \item On-access scanning via kernel module (e.g. SE-linux)
+  \\[20pt]
+  \item<2-> Malware never write himself on the disk as executable
+    \begin{itemize}
+      \item<3-> it is stored in a data-file and loaded by buffer overflow
+      \item<4-> it is non-persistent
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Host-Based: use case}
+  Detect a virus (if prevention failed)
+  \\[20pt]
+  \begin{itemize}
+  \item Use executable space protection $W \oplus X$
+  \item On-demand scanning via kernel module (e.g. SE-linux) of memory pages
+  \\[20pt]
+  \item<2-> What if the OS is compromised
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Host-Based: use case}
+  Detect a virus (if prevention failed)
+  \\[20pt]
+  \begin{itemize}
+  \item Use virtual machine introspection
+  \item On-demand scanning via run-time monitor
+  \\[20pt]
+  \item<2-> Difficult to fill the ``semantic gap''
+  \item<3-> What if the malware is polymorphic?
   \end{itemize}
 \end{frame}
 
@@ -432,7 +488,7 @@ see Kevin Mitnick ``The Art of Intrusion''
 
 \begin{frame}{NIDS Sensor Deployment}
    \begin{center}
-    \includegraphics[width=0.9\linewidth]{nids}
+    \includegraphics[width=0.9\linewidth]{net}
   \end{center}
 \end{frame}
 
@@ -457,17 +513,29 @@ see Kevin Mitnick ``The Art of Intrusion''
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Distributed Adaptive Intrusion Detection}
-   \begin{center}
-    \includegraphics[width=0.6\linewidth]{daids}
+\begin{frame}{Distributed Host-Based IDS}
+  
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{dist1}
   \end{center}
 \end{frame}
 
-\begin{frame}{Intrusion Detection Exchange Format}
+
+\begin{frame}{Distributed Host-Based IDS }
+  \begin{itemize}
+  \item Different audit record formats 
+  \item Collection point in network, need to transfer raw 
+    data or summaries – confidentiality, integrity 
+  \item Centralized vs. decentralized architecture
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Distributed Adaptive Intrusion Detection}
    \begin{center}
-    \includegraphics[width=0.6\linewidth]{ids-format}
+    \includegraphics[width=0.6\linewidth]{dist}
   \end{center}
 \end{frame}
+
 
 \begin{frame}{Honeypots}
   \begin{itemize}
@@ -479,14 +547,14 @@ see Kevin Mitnick ``The Art of Intrusion''
     \item without exposing production systems 
     \end{itemize}
   \item initially were single systems 
-  \item more recently are/emulate entire networks
-  \item usage of virtual platform and networks
-  \item usage of watermark in digital contents (Canary trap)
-  \item an email address that is not used for any other purpose than
+  \item<2-> more recently are/emulate entire networks
+  \item<2-> usage of virtual platform and networks
+  \item<3-> usage of watermark in digital contents (Canary trap)
+  \item<3-> an email address that is not used for any other purpose than
     to receive spam
-  \item try on your network
+  \item<4-> try on your network
     \begin{itemize}
-      \item leave your phone wi-fi tethering unsecured
+      \item leave your phone wi-fi tethering unsecured in an airport
       \item use WEP on your wi-fi
     \end{itemize}
   \end{itemize}
@@ -494,7 +562,7 @@ see Kevin Mitnick ``The Art of Intrusion''
 
 \begin{frame}{Honeypot Deployment}
    \begin{center}
-    \includegraphics[width=0.6\linewidth]{honeypot}
+    \includegraphics[width=0.6\linewidth]{honey}
   \end{center}
 \end{frame}
 
@@ -538,15 +606,15 @@ See Ross Anderson's book:
   \item 2 types of intrusions: error-causing or not 
   \item Response can lead to DoS
   \item False alarms, users/attackers get around them 
-  \item Rules: discrimination, data protection law: citizens are 
-    entitled to know the algorithms used to process their 
-    personal data
+%  \item Rules: discrimination, data protection law: citizens are 
+%    entitled to know the algorithms used to process their 
+%    personal data
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Limitations of Intrusion Detection}
   \begin{itemize}
-  \item NW: Internet is noisy (bugs, out-of-date DNS), leads to 
+  \item Internet is noisy (bugs, out-of-date DNS), leads to 
     false positives 
   \item ``too few attacks'' – base rate fallacy 
   \item Version-specific attacks, constant need for updates 
