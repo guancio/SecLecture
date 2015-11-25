@@ -27,7 +27,20 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Computer Security Models}
+``A design without specification cannot be right or wrong,
+  it can only be surprising!''
+  \\
+  Young
+  \\
+  Use formal machinery to state properties, describe specifications
+  and analyze designs
+\end{frame}
+
+
 \begin{frame}{Access controls}
+  Formalize restrictions of accesses to resources\\[10pt]
+\begin{center}
   \begin{tabular}{|c|c|c|c|}
     \hline
     M & file1 & file2 & directory \\
@@ -39,6 +52,7 @@
     user3 & r & - & r,w \\
     \hline
   \end{tabular}
+\end{center}
   \begin{itemize}
   \item $s$ can do $op$ on $o$ if $op \in M[s,o]$
   \item Discretionary AC: ``owner'' sets permissions
@@ -79,7 +93,7 @@
 
 \begin{frame}{Bell-La Padula (BLP) Model}
   \begin{itemize}
-  \item security levels (partially) ordered, form a (lattice) tree
+  \item security levels (partially) ordered
     \begin{itemize}
     \item $L0 < L1 < L2 < L3$
     \item $L0 < L1$, $L0 < L2$, $L1 < L3$, $L2 < L3$
@@ -91,17 +105,17 @@
     \end{itemize}
     \item access modes:
     \begin{itemize}
-    \item read ($r$)
-    \item append ($a$)
-    \item write ($w$)
-    \item execute ($x$)
+    \item $r$: read
+    \item $a$: append
+    \item $w$: write
+    \item $x$: execute
     \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{BLP State}
   \begin{itemize}
-  \item triple $(b,M,f)$
+  \item state is a triple $(b,M,f, H)$
   \item current access set $b = \{(s_1,o_1,a_1),\dots,(s_n,o_n,a_n)\}$
     \begin{itemize}
     \item $(s_i,o_i,a_i)$: the subject $s_i$ is exercising the access
@@ -118,9 +132,8 @@
       \item $f_c(s_j)$: current sec.level of subject $s_j$
         ($f_c(s_j) \leq f_s(s_j)$)
     \end{itemize}
-    \item more detailed models is a quadrupkle $(b,M,f, H)$,
-      where $H$ is an object hierarchy respecting the security level partial
-      order
+    \item $H$ is an object hierarchy respecting the
+      security level partial order
   \end{itemize}
 \end{frame}
 
@@ -131,22 +144,27 @@
     clearance as the object
   \item $(s_i, o_i, read) \in b$ then
     $f_c(s_i) \geq f_o(o_i)$
+  \item<2-> \alert{confidentiality}: information can not flow from more secure to 
+        less secure levels
+  \item<3-> is ss-property sufficient to guarantee confidentiality?
   \end{itemize}
 \end{frame}
 
 \begin{frame}{BLP: Simple Security}
-  \begin{itemize}
-  \item is ss-property sufficient to guarantee confidentiality?
-    \begin{itemize}
-    \item<2-> information can not flow from more secure to 
-      less secure levels
-    \end{itemize}
-  \end{itemize}
-  \only<2> {
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{mlisious_writer}
-  \end{center}
+    \only<1>{
+    \includegraphics[width=0.4\linewidth]{blp-ss1}
   }
+    \only<2>{
+    \includegraphics[width=0.4\linewidth]{blp-ss2}
+  }
+    \only<3>{
+    \includegraphics[width=0.4\linewidth]{blp-ss3}
+  }
+    \only<4>{
+    \includegraphics[width=0.4\linewidth]{blp-ss4}
+  }
+  \end{center}
 \end{frame}
 
 \begin{frame}{BLP: Star Security}
@@ -174,6 +192,20 @@
   \item only (owner) permitted accesses are allowed
   \item $(s_i, o_i, a_i) \in b$ then
     $a_i \in M[s_i, o_i]$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{BLP Rules}
+  \begin{itemize}
+    \item get access: add a triple $(s,o,a)$ to $b$
+    \item release access: remove triple from $b$
+    \item change object level ($f_o$)
+    \item change current level of subject ($f_c$)
+    \item give access permission (M) 
+    \item rescind access permission (M) 
+    \item object hierarchy: create an object: add a leaf,
+      delete a group of objects (H)
   \end{itemize}
 \end{frame}
 
@@ -217,35 +249,103 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{BLP Rules}
-  \begin{itemize}
-    \item get access: add a triple $(s,o,a)$ to $b$
-    \item release access: remove triple from $b$
-    \item change object level ($f_o$)
-    \item change current level of subject ($f_c$)
-    \item give access permission (M) 
-    \item rescind access permission (M) 
-    \item object hierarchy: create an object: add a leaf,
-      delete a group of objects (H)
-  \end{itemize}
-\end{frame}
+%initial
+%7-Create an object
+%5-Give access permission
+%1-Get access
 
-\begin{frame}{BLP: Example (i)}
+\begin{frame}[t]{BLP: Example}
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{example1}
+    \includegraphics[width=0.5\linewidth]{ex1}
+  \end{center}
+\end{frame}
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{ex2}
+  \end{center}
+\begin{enumerate}
+  \item Create an object
+\end{enumerate}
+\end{frame}
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{ex3}
+  \end{center}
+\begin{enumerate}
+  \item Give access permission
+\end{enumerate}
+\end{frame}
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{ex4}
+  \end{center}
+\end{frame}
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{ex5}
+  \end{center}
+\end{frame}
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{ex6}
+  \end{center}
+\begin{enumerate}
+  \item Create an object
+  \item Give access permission
+\end{enumerate}
+\end{frame}
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{ex7}
   \end{center}
 \end{frame}
 
-\begin{frame}{BLP: Example (ii)}
+\begin{frame}[t]{BLP: Example}
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{example2}
+    \includegraphics[width=0.8\linewidth]{ex8}
   \end{center}
+\begin{enumerate}
+  \item Give access permission
+\end{enumerate}
 \end{frame}
 
-\begin{frame}{BLP: Example (iii)}
+\begin{frame}[t]{BLP: Example}
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{example3}
+    \includegraphics[width=0.8\linewidth]{ex9}
   \end{center}
+\begin{enumerate}
+  \item Change current level
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{ex10}
+  \end{center}
+\begin{enumerate}
+  \item Create an object
+  \item Give access permission
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{ex11}
+  \end{center}
+\begin{enumerate}
+  \item Create an object
+  \item Give access permission
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{BLP: Example}
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{ex12}
+  \end{center}
+\begin{enumerate}
+  \item Give access permission
+  \item Change object level (declassification)
+\end{enumerate}
 \end{frame}
 
 \begin{frame}{BLP Limitation}
@@ -332,7 +432,21 @@
 
 \begin{frame}{Chinese Wall: Example}
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{ChineseWall}
+\only<1>{
+    \includegraphics[width=0.8\linewidth]{cw1}
+}
+\only<2>{
+    \includegraphics[width=0.8\linewidth]{cw2}
+}
+\only<3>{
+    \includegraphics[width=0.8\linewidth]{cw3}
+}
+\only<4>{
+    \includegraphics[width=0.8\linewidth]{cw4}
+}
+\only<5>{
+    \includegraphics[width=0.8\linewidth]{cw5}
+}
   \end{center}
 \end{frame}
 
@@ -343,40 +457,30 @@
   \item verifiability
   \end{itemize}
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{reference_monitor}
-  \end{center}
-\end{frame}
-
-\begin{frame}{RBAC MLS}
-  \begin{itemize}
-    \item each permission assigns a read or write permission to an
-      object
-    \item the read level of a role is the least upper bound of the
-      level of readable objects
-    \item the write level of a role is the greatest lower bound of the
-      level of writable objects
-    \item for each user assignment, the role read level musts be
-      dominated by the user security level  
-    \item for each user assignment, the role write level musts dominate
-      the user security level  
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{RBAC MLS}
-  \begin{center}
-    \includegraphics[width=0.6\linewidth]{roles}
+\only<1>{
+    \includegraphics[width=0.4\linewidth]{referenceMonitor}
+}
+\only<2>{
+    \includegraphics[width=0.4\linewidth]{fw}
+}
+\only<3>{
+    \includegraphics[width=0.4\linewidth]{antispam}
+}
+\only<4>{
+    \includegraphics[width=0.4\linewidth]{antivirus}
+}
   \end{center}
 \end{frame}
 
 \begin{frame}{MLS and (relational)-databases}
   \only<1>{
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{database1}
+    \includegraphics[width=0.8\linewidth]{database1}
   \end{center}
 }
   \only<2>{
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{database2}
+    \includegraphics[width=0.8\linewidth]{database2}
   \end{center}
 }
 \end{frame}
@@ -415,6 +519,9 @@
   \item avoid problem if use database / table granularity
   \end{itemize}
 \end{frame}
+
+
+
 
 \begin{frame}{Trusted Platform Module}
   \begin{itemize}
