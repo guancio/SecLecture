@@ -11,7 +11,7 @@
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2013-11-18}
+\date{2015-11-26}
 \begin{document}
 
 \begin{frame}[plain]
@@ -46,7 +46,7 @@
 
 \begin{frame}{Classic Denial of Service Attacks}
   \begin{center}
-    \includegraphics[width=0.8\linewidth]{standard_dos}
+    \includegraphics[width=0.8\linewidth]{dos1}
   \end{center}
 \end{frame}
 
@@ -67,10 +67,39 @@
 
 \begin{frame}{Source Address Spoofing }
   \begin{itemize}
-    \item Why would an attacker bother doing that?
+  \item Why would an attacker bother doing that?
+  \item<2-> To hide his identity
+  \item<3-> To avoid back traffic
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{dos2}
+  \end{center}
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Source Address Spoofing }
+  \begin{itemize}
+  \item Why would an attacker bother doing that?
+  \item To hide his identity
+  \item To avoid back traffic
+  \item IMCP Answers increase the victim's congestion
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{dos3}
+  \end{center}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Source Address Spoofing }
+  \begin{itemize}
+  \item Why would an attacker bother doing that?
+  \item To hide his identity
+  \item To avoid back traffic
+  \item IMCP Answers increase the victim's congestion
+  \item IMCP Answers can be used to identify attacks
+  \begin{center}
+    \includegraphics[width=0.6\linewidth]{dos4}
+  \end{center}
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{SYN Spoofing }
   \begin{itemize}
@@ -85,14 +114,19 @@
 
 \begin{frame}{TCP Connection Handshake}
   \begin{center}
-    \includegraphics[width=0.5\linewidth]{tcp_conn}
+    \includegraphics[width=0.5\linewidth]{syn1}
   \end{center}
 \end{frame}
 
 \begin{frame}{SYN Spoofing Attack}
   \begin{center}
-    \includegraphics[width=0.8\linewidth]{syn_spoof}
+    \includegraphics[width=0.8\linewidth]{syn2}
   \end{center}
+  \begin{itemize}
+  \item  Use non-existent C
+  \item  Use C behind a dropping FW
+  \item  Overload C
+  \end{itemize}
 \end{frame}
 
 
@@ -152,15 +186,14 @@
 
 \begin{frame}{DDoS Control Hierarchy}
   \begin{center}
-    \includegraphics[width=0.8\linewidth]{ddos}
+    \includegraphics[width=1\linewidth]{ddos}
   \end{center}
 \end{frame}
 
 \begin{frame}{Connections}
   \begin{itemize}
   \item  (D)DoS – Malware – Countermeasures 
-    (intrusion detection, firewalls, AC, 
-    authentication) 
+    (intrusion detection, firewalls, authentication) 
   \item  Risk to become a zombie 
   \item  Example: MyDoom 
     \begin{itemize}
@@ -181,7 +214,7 @@
   \item  server response is directed at target 
   \item  if send many requests to multiple servers, 
     response can flood target 
-  \item  various protocols e.g. UDP or TCP/SYN 
+  \item  various protocols e.g. ICMP, UDP or TCP/SYN 
   \item  ideally want response larger than request 
   \item  prevent if block source spoofed packets
   \end{itemize}
@@ -236,19 +269,22 @@
 
 \begin{frame}{SMTP}
   \begin{itemize}
+  \item Mail reflection
+  \begin{itemize}
   \item A sends: from: c@C to: b@B hello
   \item B sends: from: b@B to: c@C vacation message
   \item C sends: from: c@C to: b@B vacation message
-  \item Quota full
-  \item User not allowed e.g. SMTP fax proxy
-  \item Non existing user
+  \end{itemize}
+  \item<2-> Quota full
+  \item<3-> User not allowed e.g. SMTP fax proxy
+  \item<4-> Non existing user
   \end{itemize}
 \end{frame}
 
 \begin{frame}{ZIP}
   \begin{itemize}
   \item Infinite recursive zip: e.g. r.zip
-  \item Bombs (e.g. non recursive files)    
+  \item<2-> Bombs (e.g. non recursive files)    
     \begin{itemize}
       \item gzip: 100 GB, 97 MB compressed, 1000:1 ration
       \item bzip2: 100 GB, 69 KB, $1.6*10^6$:1
@@ -338,8 +374,9 @@
   \begin{itemize}
   \item  block spoofed source addresses 
     \begin{itemize}
-    \item  on routers as close to source as possible 
+    \item  on routers as close to source as possible (ingress filtering)
     \item  still far too rarely implemented 
+    \item  alternatively enforce ``unicast severse path''
     \end{itemize}
   \item  rate controls in upstream distribution nets 
     \begin{itemize}
@@ -348,7 +385,7 @@
     \end{itemize}
   \item  use modified TCP connection handling 
     \begin{itemize}
-    \item  use SYN cookies when table full 
+    \item  use SYN cookies when table full (consumes computational resources)
     \item  or selective or random drop when table full 
     \end{itemize}
   \end{itemize}
@@ -357,7 +394,8 @@
 \begin{frame}{Attack Prevention }
   \begin{itemize}
   \item  block IP directed broadcasts 
-  \item  block suspicious services \& combinations 
+  \item  block suspicious services (e.g. echo) \& combinations (DNS to
+    echo port)
   \item  manage application attacks with “puzzles” to 
     distinguish legitimate human requests 
   \item  good general system security practices 
