@@ -224,31 +224,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Prove security: state space analysis}
-  \begin{itemize}
-  \item $R$ = the set of states reachable by transitions from a
-    (set of) initial state(s) $\star$
-  \item $P$ = the set of authorized states (the three properties hold)
-  \item System secure if $R \subseteq P$
-  \item System insecure if $\exists S \in R. S \not \in P$
-  \end{itemize}
-  \only<2> {
-  \begin{center}
-    \includegraphics[width=0.5\linewidth]{secure_system}
-  \end{center}}
-  \only<3> {
-  \begin{center}
-    \includegraphics[width=0.5\linewidth]{insicure_system}
-  \end{center}}
-\end{frame}
-
-\begin{frame}{Prove security: state space analysis}
-  \begin{itemize}
-  \item Prove that initial state is secure 
-  \item Show that each transition preserves security
-  \end{itemize}
-\end{frame}
-
 %initial
 %7-Create an object
 %5-Give access permission
@@ -358,6 +333,149 @@
       ``clean'' the information)
     \item ``trusted''  means ``can hurt you''
     \item ``trustworthy'' means ``verified not to hurt you''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Prove security: state space analysis}
+  \begin{itemize}
+  \item $R$ = the set of states reachable by transitions from a
+    (set of) initial state(s) $\star$
+  \item $P$ = the set of authorized states (the three properties hold)
+  \item System secure if $R \subseteq P$
+  \item System insecure if $\exists S \in R. S \not \in P$
+  \end{itemize}
+  \only<2> {
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{secure_system}
+  \end{center}}
+  \only<3> {
+  \begin{center}
+    \includegraphics[width=0.5\linewidth]{insicure_system}
+  \end{center}}
+\end{frame}
+
+\begin{frame}{Prove security: state space analysis}
+  \begin{itemize}
+  \item for all $\star \rightarrow p_1 \rightarrow \dots p_n$ holds
+    $\{\star, p_1, \dots, p_n\} \subseteq P$
+  \item Prove that initial state $\star$ is secure 
+  \item Show that each transition preserves security
+  \item<2-> Ok for state-based properties
+  \item<2-> Not enough for information flow properties
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: information flow properties}
+  \begin{verbatim}
+secret_key = 123456
+program()
+ public_var = 1
+  \end{verbatim}
+  \begin{itemize}
+  \item Reason about knowledge
+  \item<2-> $\{(pv=1, sk=123456)\} \subseteq P$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: information flow properties}
+  \begin{verbatim}
+secret_key = 123456
+program()
+ public_var = secret_key
+  \end{verbatim}
+  \begin{itemize}
+  \item Reason about knowledge
+  \item<2-> $\{(pv=sk, sk=123456)\} \not \subseteq P$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: information flow properties}
+  \begin{verbatim}
+secret_key = 123456
+program()
+ public_var = random()
+  \end{verbatim}
+  \begin{itemize}
+  \item Reason about knowledge
+  \item<2-> $\{(pv=1, sk=123456), (pv=2, sk=123456), \dots ,
+    (pv=123456, sk=123456), \dots\} \subseteq P$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: information flow properties}
+  \begin{verbatim}
+secret_key = 123456
+program()
+ if (secret_key mod 2 == 0)
+   public_var += 42
+  \end{verbatim}
+  \begin{itemize}
+  \item Reason about knowledge
+  \item<2-> State based properties are not enough
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Prove security: hyperproperties}
+  \begin{itemize}
+  \item let $H$ (high) be the classified variables
+  \item let $L$ (low) be the public variables
+  \item for every execution $\star \rightarrow p_1 \rightarrow \dots p_n$
+  \item if $L(\star) = L(\star')$ then
+  \item there is an execution  $\star' \rightarrow p'_1 \rightarrow \dots p'_n$
+  \item such that $L(p_i) = L(p'_i)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: hyperproperties}
+  \begin{itemize}
+  \item for every execution $\star \rightarrow p_1 \rightarrow \dots p_n$
+    if $L(\star) = L(\star')$  then there is an execution
+    $\star' \rightarrow p'_1 \rightarrow \dots p'_n$
+  such that $L(p_i) = L(p'_i)$
+  \end{itemize}
+  \begin{verbatim}
+secret_key = 123456, secret_key' = 654321
+program()
+ public_var = 1
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: hyperproperties}
+  \begin{itemize}
+  \item for every execution $\star \rightarrow p_1 \rightarrow \dots p_n$
+    if $L(\star) = L(\star')$  then there is an execution
+    $\star' \rightarrow p'_1 \rightarrow \dots p'_n$
+  such that $L(p_i) = L(p'_i)$
+  \end{itemize}
+  \begin{verbatim}
+secret_key = 123456, secret_key' = 654321
+program()
+ public_var = random()
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: hyperproperties}
+  \begin{itemize}
+  \item for every execution $\star \rightarrow p_1 \rightarrow \dots p_n$
+    if $L(\star) = L(\star')$  then there is an execution
+    $\star' \rightarrow p'_1 \rightarrow \dots p'_n$
+  such that $L(p_i) = L(p'_i)$
+  \end{itemize}
+  \begin{verbatim}
+secret_key = 123456, secret_key' = 654321
+program()
+ if (secret_key mod 2 == 0)
+   public_var += 42
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Prove security: hyperproperties}
+  \begin{itemize}
+  \item for every execution $\star \rightarrow p_1 \rightarrow \dots p_n$
+    if $L(\star) = L(\star')$  then there is an execution
+    $\star' \rightarrow p'_1 \rightarrow \dots p'_n$
+  such that $L(p_i) = L(p'_i)$
+  \item alternative use epistemic logic
   \end{itemize}
 \end{frame}
 
@@ -521,6 +639,51 @@
 \end{frame}
 
 
+\begin{frame}{Trusted system}
+  \begin{itemize}
+  \item Trusted system:
+    \begin{itemize}
+    \item systems that is relied upon to a specified extent to enforce a specified security policy
+    \end{itemize}
+  \item Chain of trust
+    \begin{itemize}
+    \item is established by validating each component of hardware/software/data from the bottom up
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Secure boot}
+  \begin{itemize}
+  \item boot chain
+    \begin{itemize}
+      \item Boot ROM $S_0$ executes, then loads and starts BIOS
+      \item BIOS $S_1$ executes, then loads and starts Boot Loader
+        (e.g. GRUB)
+      \item Boot loader $S_2$
+      \item Kernel $S_3$
+      \item SATA/SCSI driver
+      \item Ext4/NTFS driver
+      \item ....
+\only<1>{
+      \item Login service
+      \item Shell
+      \item Chrome
+      \item Plug in
+}
+    \end{itemize}
+   \item<2-> each stage $S_i$
+     
+     \begin{itemize}
+       \item holds a public key $PU_i$
+       \item is shipped with a certificate $cert_{i}$
+         signed with $PR_{i-1}$
+       \item measure $S_{i+1}$ by computing the hash of the
+         code of $S_{i+1}$
+       \item executes $S_{i+1}$ only if $SHA(S_{i+1}) = Dec(PU_i, cert_{i+i})$
+     \end{itemize}
+  \end{itemize}
+\end{frame}
+
 
 
 \begin{frame}{Trusted Platform Module}
@@ -536,7 +699,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{TPM: Authenticated boot}
+\begin{frame}{TPM: Secure boot}
   \begin{itemize}
   \item boot chain
     \begin{itemize}
@@ -548,21 +711,49 @@
       \item SATA/SCSI driver
       \item Ext4/NTFS driver
       \item ....
-      \item Login service
-      \item Shell
-      \item Chrome
-      \item Plug in
+    \end{itemize}
+   \item TPM provide the key $PU_0$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{TPM: Authenticated boot, remote attestation}
+  \begin{itemize}
+  \item boot chain
+    \begin{itemize}
+      \item Boot ROM $S_0$ executes, then loads and starts BIOS
+      \item BIOS $S_1$ executes, then loads and starts Boot Loader
+        (e.g. GRUB)
+      \item Boot loader $S_2$
+      \item Kernel $S_3$
+      \item SATA/SCSI driver
+      \item Ext4/NTFS driver
+      \item ....
     \end{itemize}
    \item each stage $S_i$
-     
      \begin{itemize}
        \item measure $S_{i+1}$ by computing the hash of the executable
          code of $S_{i+1}$
        \item asks to the TPM to append to the log $LOG_{i+1} =
-         SHA1(LOG_{i} | S_{i+1})$
+         SHA1(LOG_{i} | S_{i+1} | nonce)$
+       \item the log can be signed with the TPM key
      \end{itemize}
   \end{itemize}
 \end{frame}
+
+\begin{frame}{TPM: Encryption service}
+  \begin{itemize}
+  \item TPM keeps an additional master key $(PU_m, PR_m)$ that is
+    unique for the machine 
+  \item TPM generates a configuration key $(PU_c, PR_c)$ that depends
+    on the log $LOG$ and the master key
+  \item this key can be used to encrypt data that can be decrypted
+    only by the machine with the actual configuration
+  \item TPM can generate a key pair for $S_i$, the public key is used
+    to encrypt DRM content that can only be played on this machine and
+    by the SW $S_i$
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}{TPM: Criticism}
   \begin{itemize}
