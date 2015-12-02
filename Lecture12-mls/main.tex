@@ -23,7 +23,7 @@
     without introducing bugs
   \item methods to prove that a design satisfies a set of security requirements
   \item methods to prove that the implementation conforms the design
-  \item today: models and their enforcement
+  \item today: models, their enforcement (verification), trusted systems
   \end{itemize}
 \end{frame}
 
@@ -59,7 +59,7 @@
     \begin{itemize}
       \item users make mistakes
     \end{itemize}
-  \item Mandatory AC: system-wide policy decides
+  \item<2-> Mandatory AC: system-wide policy decides
     \begin{itemize}
       \item DAC can not give more access than MAC
     \end{itemize}
@@ -115,7 +115,7 @@
 
 \begin{frame}{BLP State}
   \begin{itemize}
-  \item state is a triple $(b,M,f, H)$
+  \item state is a tuple $(b,M,f, H)$
   \item current access set $b = \{(s_1,o_1,a_1),\dots,(s_n,o_n,a_n)\}$
     \begin{itemize}
     \item $(s_i,o_i,a_i)$: the subject $s_i$ is exercising the access
@@ -234,7 +234,7 @@
     \includegraphics[width=0.5\linewidth]{ex1}
   \end{center}
 \end{frame}
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D1 is the exam template}
   \begin{center}
     \includegraphics[width=0.5\linewidth]{ex2}
   \end{center}
@@ -242,7 +242,7 @@
   \item Create an object
 \end{enumerate}
 \end{frame}
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D1 is the exam template}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex3}
   \end{center}
@@ -250,17 +250,17 @@
   \item Give access permission
 \end{enumerate}
 \end{frame}
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D1 is the exam template}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex4}
   \end{center}
 \end{frame}
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D1 is the exam template}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex5}
   \end{center}
 \end{frame}
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D2 is the lab S report}
   \begin{center}
     \includegraphics[width=0.9\linewidth]{ex6}
   \end{center}
@@ -269,13 +269,13 @@
   \item Give access permission
 \end{enumerate}
 \end{frame}
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D2 is the lab S report}
   \begin{center}
     \includegraphics[width=0.9\linewidth]{ex7}
   \end{center}
 \end{frame}
 
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D2 is the lab S report}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex8}
   \end{center}
@@ -284,7 +284,7 @@
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, C2 contains the comments to the report}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex9}
   \end{center}
@@ -293,7 +293,7 @@
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, C2 contains the comments to the report}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex10}
   \end{center}
@@ -303,7 +303,7 @@
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D2 contains the exam for the student}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex11}
   \end{center}
@@ -313,7 +313,7 @@
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[t]{BLP: Example}
+\begin{frame}[t]{BLP: Example, D2 contains the exam for the student}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{ex12}
   \end{center}
@@ -336,8 +336,174 @@
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Biba Integrity Model}
+  \begin{itemize}
+    \item deals with integrity
+    \item uses integrity levels
+    \item reverses permitted flows: 
+      no ``dirty'' low-integrity info may flow to ``clean'' 
+      high-level info, but other way OK
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Biba Policy}
+  \begin{itemize}
+    \item simple integrity
+      \begin{itemize}
+      \item no write up
+      \item $(s_i, o_i, write) \in b$ then
+        $i_c(s_i) \ge i_o(o_i)$
+      \end{itemize}
+    \item integrity confinement
+      \begin{itemize}
+      \item no read down
+      \item $(s_i, o_i, read) \in b$ then
+        $i_c(s_i) \le i_o(o_i)$
+      \end{itemize}
+    \item invocation property
+      \begin{itemize}
+      \item invocation property
+      \item $(s_i, s_j, invoke) \in b$ then
+        $i_c(s_i) \ge i_c(s_j)$
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chinese Wall model}
+  \begin{itemize}
+    \item inspired by commercial applications
+    \item conflict of interest
+    \item hierarchical
+      \begin{itemize}
+      \item objects ($O \in DS$): individual item of information
+      \item dataset ($DS \in CI$): all objects that concern the same corporation
+      \item conflict of interest class ($CI$): corporations in competition
+      \end{itemize}
+    \item information can not flow between two corporations in competition
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chinese Wall policy}
+  \begin{itemize}
+    \item keep access list $H$
+    \item simple security rule
+      \begin{itemize}
+        \item $(s_i, o_i, read) \in b$ then $ss(s_i,o_i)$ where
+        \item $\exists o_j \in DS(O). (s_i, o_j, read) \in H$ or
+        \item $\not \exists o_j \in CI(O). (s_i, o_j, read) \in H$
+        \item read allowed if the subject already accesses the dataset
+          or he has not accessed any information from the CI
+      \end{itemize}
+    \item $*$-property rule
+      \begin{itemize}
+        \item $(s_i, o_i, write) \in b$ then
+        \item $ss(s_i,o_i)$
+        \item $\forall o_j.ss(s_i,o_j) \Rightarrow DS(o_j) = DS(o_i)$
+        \item write allowed if the subject can read the object and can
+          not read outside the DS
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chinese Wall: Example}
+  \begin{center}
+\only<1>{
+    \includegraphics[width=0.8\linewidth]{cw1}
+}
+\only<2>{
+    \includegraphics[width=0.8\linewidth]{cw2}
+}
+\only<3>{
+    \includegraphics[width=0.8\linewidth]{cw3}
+}
+\only<4>{
+    \includegraphics[width=0.8\linewidth]{cw4}
+}
+\only<5>{
+    \includegraphics[width=0.8\linewidth]{cw5}
+}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Reference Monitor}
+  \begin{itemize}
+  \item complete mediation
+  \item isolation
+  \item verifiability
+  \end{itemize}
+  \begin{center}
+\only<1>{
+    \includegraphics[width=0.4\linewidth]{referenceMonitor}
+}
+\only<2>{
+    \includegraphics[width=0.4\linewidth]{fw}
+}
+\only<3>{
+    \includegraphics[width=0.4\linewidth]{antispam}
+}
+\only<4>{
+    \includegraphics[width=0.4\linewidth]{antivirus}
+}
+  \end{center}
+\end{frame}
+
+\begin{frame}{MLS and (relational)-databases}
+  \only<1>{
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{database1}
+  \end{center}
+}
+  \only<2>{
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{database2}
+  \end{center}
+}
+\end{frame}
+
+\begin{frame}{MLS, databases and read}
+  \begin{itemize}
+  \item DBMS enforces simple security rule (no read up) 
+  \item inference problems if have column granularity
+    \begin{itemize}
+    \item if can query on restricted data can infer its existence 
+    \item SELECT name FROM Employee WHERE Salary $>$ 50K 
+    \item solution is to check access to all query data 
+    \end{itemize}
+  \item also have problems if have row granularity 
+    \begin{itemize}
+    \item null response in join queries can indicate restricted/empty result 
+    \end{itemize}
+  \item no extra concerns if have element granularity 
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{MLS, databases and write}
+  \begin{itemize}
+  \item enforce *-security rule (no write down) 
+  \item have problem if a low clearance user wants to 
+    insert a row with a primary key that already exists 
+    in a higher level row:
+    \begin{itemize}
+    \item can reject, but user knows row exists 
+    \item can replace, compromises data integrity 
+    \item can polyinstantiation and insert multiple rows with same 
+      key, creates conflicting entries
+    \end{itemize}
+  \item same alternatives occur on update 
+  \item avoid problem if use database / table granularity
+  \end{itemize}
+\end{frame}
+
+
 \begin{frame}{Prove security: state space analysis}
   \begin{itemize}
+  \item Map the design/implementation to the security model
+    \begin{itemize}
+      \item map states
+      \item map transitions
+    \end{itemize}
   \item $R$ = the set of states reachable by transitions from a
     (set of) initial state(s) $\star$
   \item $P$ = the set of authorized states (the three properties hold)
@@ -478,166 +644,6 @@ program()
   \item alternative use epistemic logic
   \end{itemize}
 \end{frame}
-
-\begin{frame}{Biba Integrity Model}
-  \begin{itemize}
-    \item deals with integrity
-    \item uses integrity levels
-    \item reverses permitted flows: 
-      no ``dirty'' low-integrity info may flow to ``clean'' 
-      high-level info, but other way OK
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Biba Policy}
-  \begin{itemize}
-    \item simple integrity
-      \begin{itemize}
-      \item no write up
-      \item $(s_i, o_i, write) \in b$ then
-        $i_c(s_i) \ge i_o(o_i)$
-      \end{itemize}
-    \item integrity confinement
-      \begin{itemize}
-      \item no read down
-      \item $(s_i, o_i, read) \in b$ then
-        $i_c(s_i) \le i_o(o_i)$
-      \end{itemize}
-    \item invocation property
-      \begin{itemize}
-      \item invocation property
-      \item $(s_i, s_j, invoke) \in b$ then
-        $i_c(s_i) \ge i_c(s_j)$
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Chinese Wall model}
-  \begin{itemize}
-    \item inspired by commercial applications
-    \item conflict of interest
-    \item hierarchical
-      \begin{itemize}
-      \item objects ($O \in DS$): individual item of information
-      \item dataset ($DS \in CI$): all objects that concern the same corporation
-      \item conflict of interest class ($CI$): corporations in competition
-      \end{itemize}
-    \item information can not flow between two corporations in competition
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Chinese Wall policy}
-  \begin{itemize}
-    \item keep access list $H$
-    \item simple security rule
-      \begin{itemize}
-        \item $(s_i, o_i, read) \in b$ then $ss(s_i,o_i)$ where
-        \item $\exists o_j \in DS(O). (s_i, o_j, read) \in H$ or
-        \item $\not \exists o_j \in CI(O). (s_i, o_j, read) \in H$
-        \item read allowed if the subject already accesses the dataset
-          or he has not accessed any information from the CI
-      \end{itemize}
-    \item $*$-property rule
-      \begin{itemize}
-        \item $(s_i, o_i, write) \in b$ then
-        \item $ss(s_i,o_i)$
-        \item $\forall o_j.ss(s_i,o_j) \Rightarrow DS(o_j) = DS(o_i)$
-        \item read allowed if the subject can read the object and can
-          not read outside the DS
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Chinese Wall: Example}
-  \begin{center}
-\only<1>{
-    \includegraphics[width=0.8\linewidth]{cw1}
-}
-\only<2>{
-    \includegraphics[width=0.8\linewidth]{cw2}
-}
-\only<3>{
-    \includegraphics[width=0.8\linewidth]{cw3}
-}
-\only<4>{
-    \includegraphics[width=0.8\linewidth]{cw4}
-}
-\only<5>{
-    \includegraphics[width=0.8\linewidth]{cw5}
-}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Reference Monitor}
-  \begin{itemize}
-  \item complete mediation
-  \item isolation
-  \item verifiability
-  \end{itemize}
-  \begin{center}
-\only<1>{
-    \includegraphics[width=0.4\linewidth]{referenceMonitor}
-}
-\only<2>{
-    \includegraphics[width=0.4\linewidth]{fw}
-}
-\only<3>{
-    \includegraphics[width=0.4\linewidth]{antispam}
-}
-\only<4>{
-    \includegraphics[width=0.4\linewidth]{antivirus}
-}
-  \end{center}
-\end{frame}
-
-\begin{frame}{MLS and (relational)-databases}
-  \only<1>{
-  \begin{center}
-    \includegraphics[width=0.8\linewidth]{database1}
-  \end{center}
-}
-  \only<2>{
-  \begin{center}
-    \includegraphics[width=0.8\linewidth]{database2}
-  \end{center}
-}
-\end{frame}
-
-\begin{frame}{MLS, databases and read}
-  \begin{itemize}
-  \item DBMS enforces simple security rule (no read up) 
-  \item inference problems if have column granularity
-    \begin{itemize}
-    \item if can query on restricted data can infer its existence 
-    \item SELECT name FROM Employee WHERE Salary $>$ 50K 
-    \item solution is to check access to all query data 
-    \end{itemize}
-  \item also have problems if have row granularity 
-    \begin{itemize}
-    \item null response in join queries can indicate restricted/empty result 
-    \end{itemize}
-  \item no extra concerns if have element granularity 
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}{MLS, databases and write}
-  \begin{itemize}
-  \item enforce *-security rule (no write down) 
-  \item have problem if a low clearance user wants to 
-    insert a row with a primary key that already exists 
-    in a higher level row:
-    \begin{itemize}
-    \item can reject, but user knows row exists 
-    \item can replace, compromises data integrity 
-    \item can polyinstantiation and insert multiple rows with same 
-      key, creates conflicting entries
-    \end{itemize}
-  \item same alternatives occur on update 
-  \item avoid problem if use database / table granularity
-  \end{itemize}
-\end{frame}
-
 
 \begin{frame}{Trusted system}
   \begin{itemize}

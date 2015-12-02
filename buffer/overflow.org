@@ -215,14 +215,6 @@ http://shell-storm.org/shellcode
 ./attacker.py | ./main
 
 
-./main $(python -c 'print "A" * 300')
-gdb -tui main
-set disassembly-flavor intel
-layout asm
-layout regs
-break main
-disassemble main
-
 * Shellcode Development
 - illustrate with classic Intel Linux shellcode to
   run Bourne shell interpreter
@@ -275,11 +267,31 @@ disassemble main
   - or manipulate management data structures
 
 * Heap Overflow
-- also attack buffer located in heap
+- attack buffer located in heap
   - typically located above program code
   - memory requested by programs to use in dynamic
     data structures, e.g. linked lists, malloc
 - also possible due to dangling pointers
+
+* Arithmetic Overflow
++ An integer, which has not been properly sanity checked,
+  is incremented past the maximum possible value
++ The may wrap to become a very small, or negative number
++ Can led to buffer overflows, if the integer is
+  used to computer memory offsets, affay indexes etc
++ Can led to violation of security policy
+  + x = sum of pointers to D writable by user-processes
+  + policy, allocate D to the kernel if x = 0
+  + x = 1 -> alias D -> x = 2 -> ....
+  + D non usable for kernel data-structures
+  + x = 4294967295 -> alias D -> x = 0
+  + D usable for kernel data-structures
+  + by still 2^32 aliases to D that are writable by user-processes
++ Can led to failures
++ Can led to data corruption
+  + my balance = -2147483648 euro cents ~ -20 milion euro
+  + ask to borrow 1 euro cent
+  + my balance = +2147483647 euro cents ~ +20 milion euro
 
 * Buffer overflow defences
 buffer overflows are widely exploited
@@ -330,6 +342,14 @@ if using potentially unsafe languages eg C
   - issues: recompilation, debugger support
 - or save/check safe copy of return address (shadow stack)
   - e.g. Stackshield, RAD
+- -fno-stack-protector
+  Emit extra code to check for buffer overflows, such as stack smash‐
+  ing attacks.  This is done by adding a guard variable to functions
+  with vulnerable objects.  This includes functions that call alloca,
+  and functions with buffers larger than 8 bytes.  The guards are
+  initialized when a function is entered and then checked when the
+  function exits.  If a guard check fails, an error message is
+  printed and the program exits.
 
 * Run-Time Defenses: Executable Address Space Protection
 - use virtual memory support to make some
@@ -341,6 +361,7 @@ if using potentially unsafe languages eg C
 - issues: support for executable stack/heap code
   - needed for JIT (e.g. Java) or nested functions
   - need special provisions 
+- -z execstack
 
 * Run-Time Defenses: Address Space Randomization
 - manipulate location of key data structures
