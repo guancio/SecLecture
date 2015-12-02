@@ -1,0 +1,380 @@
+* Buffer Overflow
+      
+           Lecture 09
+    Computer Security DD2395	   
+       Roberto Guanciale
+
+           2015-12-02
+
+* Buffer Overflow
+
+- A very common attack mechanism
+- One of the most dangerouse security threat
+- Major concern due to
+  - legacy code
+  - careless programming
+- Present in well-designed systems
+  - XBox
+  - Hearthbleed
+  - Stagefright
+ 
+* Buffer Overflow Basics
+
+- Caused by programming error
+  - Allows more data to be stored than capacity
+    available in a fixed sized buffer 
+  - Reads more data than the capacity
+    available in a fixed sized buffer (Over-read) 
+- Overwriting adjacent memory locations 
+  - corruption of program data
+  - unexpected transfer of control
+  - memory access violation
+  - execution of code chosen by attacker
+
+* Buffer Over-read example
+[[file:sample2/main.c]]
+
+Disable address space randomization
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+
+./main roberto 1
+./main roberto 8
+./main roberto 32
+
+* Memory layout
+| Address  | Content | Var  |
+|----------+---------+------|
+| ffffde20 | robe    | name | |
+| ffffde24 | rto\0   |      | |
+| ffffde28 |         |      | |
+| ffffde2c |         |      | |
+| ffffde30 | pwd0    | pwd  | |
+| ffffde34 | \0      |      | V
+
+* How we can fix the program?
+[[file:sample2/main.c]]
+[[file:sample2/main.diff]]
+[[elisp:(ediff "sample2/main.c" "sample2/fix.c")]]
+
+* Buffer Overflow example
+[[file:sample1/main.c]]
+
+./main roberto hello
+./main roberto pwd0
+./main 1234567812345678hello hello
+
+* Memory layout
+| Address  | Content | Var  |
+|----------+---------+------|
+| ffffde50 | robe    | name | |
+| ffffde54 | rto\0   |      | |
+| ffffde58 |         |      | |
+| ffffde5c |         |      | |
+| ffffde60 | pwd0    | pwd  | |
+| ffffde64 | \0      |      | V
+
+| Address  | Content | Var  | 
+|----------+---------+------|
+| ffffde50 | 1234    | name |
+| ffffde54 | 4568    |      |
+| ffffde58 | 1234    |      |
+| ffffde5c | 4568    |      |
+| ffffde60 | hell    | pwd  |
+| ffffde64 | o\0     |      |
+
+* How we can fix the program?
+[[file:sample1/main.c]]
+[[elisp:(ediff "sample1/main.c" "sample1/fix.c")]]
+
+* Buffer Overflow Attacks
+- to exploit a buffer overflow an attacker
+  - must identify a buffer overflow vulnerability in some
+    program
+    - inspection, tracing execution, fuzzing tools
+  - understand how buffer is stored in memory and
+    determine potential for corruption 
+
+* Programming Language Vulnerability
+- Assembler:
+  - is a bare engine; you have to build the car yourself and manually
+    supply it with gas while it's running, but if you're careful it
+    can go like a bat out of hell.
+  - at machine level all data an array of bytes
+  - interpretation depends on instructions used
+- C:
+  - is a racing car that goes incredibly fast but breaks
+    down every fifty miles
+  - data-structure abstraction
+  - you can still do *((int *)666)=0;
+- Java/ML/Python/modern high-level languages
+  - station wagons / cars you can drive it without a license / cars with controls not in the usual places
+  - have a strong notion of type and valid operations
+  - not vulnerable to buffer overflows
+  - does incur overhead, some limits on use 
+
+* C/C++/etc programming language
+- have high-level control structures
+- but allow direct access to memory
+  - hence are vulnerable to buffer overflow
+  - have a large legacy of widely used, unsafe, and hence
+    vulnerable code
+
+* Memory Layout
+[[file:memory.png]]
+
+[[file:sample4/main.c]]
+
+
+* C Stack
+[[file:sample5/main.c]]
+
+./main
+hello
+
+[[file:stack1.png]]
+
+
+
+
+* C stack example
+[[file:stack2.png]]
+* C stack example
+[[file:stack3.png]]
+* C stack example
+[[file:stack4.png]]
+* C stack example
+[[file:stack5.png]]
+* C stack example
+[[file:stack6.png]]
+
+
+
+* Stack Buffer Overflow
+- occurs when buffer is located on stack
+  - used by Morris Worm
+- have local variables below saved frame pointer
+  and return address
+- hence overflow of a local buffer can potentially
+  overwrite these key control items
+- attacker overwrites return address with address
+  of desired code
+
+* Game Console Example 
+- XBox softmod
+- exploits in savegame MechAssault, Splinter Cell, and 007: Agent Under Fire
+  - execution of arbitrary code: FTP server to copy a font
+- Font-hack exploits a buffer underflow in the Xbox font loader which is part of the dashboard
+  - execution of arbitrary unsigned code
+
+* Stack Buffer Overflow
+./main
+123456781234567
+./main
+1234567812345678
+
+[[file:sample5/attacker.py]]
+./attacker.py | ./main
+
+0x400546
+buffer can be on stack, heap, global data 
+
+* Attacker need to know
+- Where the function is loaded (the address is used
+  to override the return pointer)
+  - use debugger
+- Variables space below the frame pointer
+  - inspection
+- Valid value for overwriting frame pointer, as
+  return address is being overwritten, taking into
+  account little-Endian, big-Endian distinction
+
+* Effects of buffer overflow
+- Target data changed
+- Target control flow changed
+- Target program changed
+- DoS (target crashes)
+
+* Shellcode
+- code supplied by attacker
+  - often saved in buffer being overflowed
+  - traditionally transferred control to a shell
+- machine code
+  - specific to processor and operating system
+  - traditionally needed good assembly language skills
+    to create
+  - more recently have automated sites/tools
+
+* Example Shellcode
+http://shell-storm.org/shellcode
+
+[[file:sample6/shell.asm]]
+[[file:sample6/Makefile]]
+[[file:sample6/main.c]]
+[[file:sample6/attacker.py]]
+
+./attacker.py | ./main
+
+
+./main $(python -c 'print "A" * 300')
+gdb -tui main
+set disassembly-flavor intel
+layout asm
+layout regs
+break main
+disassemble main
+
+* Shellcode Development
+- illustrate with classic Intel Linux shellcode to
+  run Bourne shell interpreter
+- shellcode must
+  - marshall argument for execve() and call it
+  - or directly invoke the syscall
+  - include all code to invoke system function
+  - be position-independent
+  - not contain NULLs (C string terminator)
+
+* More Stack Overflow Variants
+- target program can be:
+  - a trusted system utility
+  - network service daemon
+  - commonly used library code, e.g. image
+- shellcode functions
+  - spawn shell
+  - create listener to launch shell on connect
+  - create reverse connection to attacker
+  - flush firewall rules
+
+* Return to System Call
+- attacker gains control of the call stack
+- hijacks program control flow
+- attacker constructs suitable parameters on stack
+  above return address
+- function returns and library function executes
+  e.g. system(“shell commands”) 
+
+* Return oriented programming 
+- attacker gains control of the call stack
+- hijacks program control flow
+- executes chosen machine instruction sequences
+  - called "gadgets"
+- each gadget ends in a return instruction
+- gadgets are located in a subroutine
+  - within the existing program
+  - within shared library code
+- chained together, gadgets allow to perform arbitrary operations
+
+* Global Data Overflow
+- can attack buffer located in global data
+  - may be located above program code
+  - if has function pointer and vulnerable buffer
+  - or adjacent process management tables
+  - aim to overwrite function pointer later called
+- no return address
+  - hence no easy transfer of control
+  - may have function pointers can exploit (e.g. C++ virtual tables)
+  - or manipulate management data structures
+
+* Heap Overflow
+- also attack buffer located in heap
+  - typically located above program code
+  - memory requested by programs to use in dynamic
+    data structures, e.g. linked lists, malloc
+- also possible due to dangling pointers
+
+* Buffer overflow defences
+buffer overflows are widely exploited
+- large amount of vulnerable code in use
+- despite cause and countermeasures known
+- two broad defense approaches
+  - compile-time - harden new programs
+  - run-time - handle attacks on existing programs
+
+* Compile-Time Defenses: Programming Language 
+- use a modern high-level languages with strong typing
+  - you can not access to untyped memory
+  - not vulnerable to buffer overflow
+  - compiler enforces range checks and permissible
+    operations on variables
+- do have cost in resource use
+- and restrictions on access to hardware
+  - so still need some code in C like languages
+- there can be a buffer overflow if there is a bug in
+  the language interpreter or JIT compiler
+
+* Compile-Time Defenses: Safe Coding Techniques 
+if using potentially unsafe languages eg C
+- programmer must explicitly write safe code
+  - by design with new code
+  - after code review of existing code
+- buffer overflow safety a subset of general safe
+  coding techniques
+  - allow for graceful failure
+  - checking have sufficient space in any buffer 
+
+* Compile-Time Defenses: Language Extension, Safe Libraries
+- proposals for safety extensions to C
+  - performance penalties
+  - must compile programs with special compiler
+- have several safer standard library variants
+  - new functions, e.g. strlcpy()
+  - safer re-implementation of standard functions as a
+    dynamic library, e.g. Libsafe
+
+* Compile-Time Defenses: Stack Protection
+- add function entry and exit code to check stack for signs of corruption
+- use random (different for every execution) canary
+  - e.g. Stackguard, Win /GS
+- check for overwrite between local variables and saved
+  frame pointer and return address
+  - abort program if change found
+  - issues: recompilation, debugger support
+- or save/check safe copy of return address (shadow stack)
+  - e.g. Stackshield, RAD
+
+* Run-Time Defenses: Executable Address Space Protection
+- use virtual memory support to make some
+  regions of memory non-executable
+  - e.g. stack, heap, global data
+  - need h/w support in MMU
+  - long existed on SPARC / Solaris systems
+  - recent on x86/ARM Linux/Unix/Windows systems
+- issues: support for executable stack/heap code
+  - needed for JIT (e.g. Java) or nested functions
+  - need special provisions 
+
+* Run-Time Defenses: Address Space Randomization
+- manipulate location of key data structures
+  - stack, heap, global data
+  - using random shift for each process
+- have large address range on modern systems
+  means wasting some has negligible impact
+  - also randomize location of heap buffers
+  - and location of standard library functions 
+- echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+
+* Run-Time Defenses: Guard Pages
+- place guard pages between critical regions of memory
+  - flagged in MMU as illegal addresses
+  - any access aborts process
+  - can even place between stack frames and heap buffers
+- at execution time and space cost 
+
+* Other Defenses: Use malware technique
+- implement a metamorphic engine
+- every instance of the application is different
+  - different number of local variables
+  - different alignment of datastructures
+  - different number of instruction
+- a buffer overflow in one instance can not be used in
+  another one
+
+* Other Defenses: Formal verification
+- Formal model of the application and
+  verification of its correctness
+- Expensive: ~2000$ per line of code
+- Verified isolation kernels
+- Software fault isolation
+
+
+* Notes
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
