@@ -9,7 +9,7 @@
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2013-12-17}
+\date{2015-12-09}
 \begin{document}
 
 \begin{frame}[plain]
@@ -64,6 +64,22 @@ Brad Sagan, social psychologist
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Social engineering is nothing new}
+  \begin{itemize}
+    \item In 1849, Samuel Williams, engineered gullible strangers out of
+      their valuables simply by asking ``Have you confidence in me to
+      trust me with your watch until tomorrow?''
+    \item Joseph Weil ran a variety of scams, including conning Benito
+      Mussollini out of 2 million USD by selling him phony rights to
+      mining lands in Colorado
+    \item Technology has made some kinds of fraud more difficult to
+      commit
+    \item It also created new opportunities for adaptable fraudsters
+  \end{itemize}
+\end{frame}
+
+
 \begin{frame}{Techniques: Trapping of roles}
   \begin{itemize}
     \item Build a common enemy / being ally
@@ -72,7 +88,7 @@ Brad Sagan, social psychologist
       the ``Tree of Life''
     \item<2-> Today: call an enterprise and inform about the internal
       corporate restructuring
-    \item<2-> The enterprise stakholders the common enemy 
+    \item<2-> The enterprise stakeholders the common enemy 
   \end{itemize}
 \end{frame}
 
@@ -84,7 +100,7 @@ Brad Sagan, social psychologist
       wooden horse (full of soldiers) - a ``gift'' - outside the gates of the city
     \item<2-> Today: (Baiting) left a USB pen in the parking lot
     \item<2-> Today: left a DVD titled ``CVC recodring''
-    \item<2-> Today: build an opened WiFi (at the airport) and dump the traffic
+    \item<2-> Today: prepare an opened WiFi (at the airport) and dump the traffic
   \end{itemize}
 \end{frame}
 
@@ -124,8 +140,9 @@ or pass a certain checkpoint.
       a location, giving the appearance of being legitimately escorted
     \item Joining a large crowd authorized to enter, and pretending to
       be a member of the crowd that is largely unchecked
+    \item \url{https://www.youtube.com/watch?v=961XJLNoTcI}
+    \item Countermeasure, use guards/two doors
   \end{itemize}
-
 \end{frame}
 
 
@@ -142,6 +159,18 @@ or pass a certain checkpoint.
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Techniques: Phishing}
+  \begin{itemize}
+    \item Fraudulently obtaining private information
+    \item Sends an e-mail that appears to come from a legitimate
+      business
+    \item Request ``verification'' of information and warn of
+      some dire consequence if it is not provided. 
+    \item Link to a fraudulent web page that seems legitimate
+    \item InteractiveVoceResponder or phone phishing
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Other Techniques}
   \begin{itemize}
     \item Distracting from systematic thinking
@@ -149,9 +178,16 @@ or pass a certain checkpoint.
     \item Hide questions
     \item Get pieces from different sources
     \item Test with personal information
-    \item Phishing
   \end{itemize}
 \end{frame}
+
+\begin{frame}{Examples}
+  \begin{itemize}
+  \item From ``The Art of Deception'', Kevin Mitnick
+  \end{itemize}
+\end{frame}
+
+
 
 \begin{frame}{Real case: the first call}
   \begin{itemize}
@@ -237,6 +273,34 @@ challenges.
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Examples: RSA}
+  \begin{itemize}
+    \item 2011 security breach in RSA
+    \item two different phishing emails over a two-day period
+    \item recipients two small groups of employees; not particularly
+      high-profile or high-value targets
+    \item subject line read ``2011 Recruitment Plan''
+    \item The email was crafted well enough to trick one of the
+      employees to retrieve it from their Junk mail folder
+    \item and open the attached excel file
+    \item the spreadsheet contained a zero-day exploit that installs a backdoor through an Adobe Flash vulnerability
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Examples: Associated Press Twitter hijack}
+  \begin{itemize}
+    \item 2013 the Twitter account of the Associated Press reported\\
+      ``Breaking: Two Explosions in the White House and Barack Obama
+      is injured.''
+    \item It was false news. AP's Twitter account had been hijacked
+    \item It had an immediate impact, the stock market dropped.
+    \item Tweet 13:07, Dow Jones start do decrease 13:08, DJ $-1\%$
+      13:10, 13:11 news began to spread that the tweet was erroneous
+    \item Started with a phishing attack
+  \end{itemize}
+\end{frame}
+
+
 \begin{frame}{Countermeasure}
   \begin{itemize}
     \item Clear protocols that are enforced
@@ -244,125 +308,126 @@ challenges.
     \item Simple rules to define sensitive information
     \item Simple rule to identify / authorize
     \item Data classification policy
-    \item Testing
+    \item Unannounced, periodic tests of the security framework
     \item Least Privilege
     \item Open Design
+    \item<2-> Using a waste management service that has dumpsters with locks
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Secure Multiparty Computation}
-  \begin{itemize}
-    \item $n$ participants with their private inputs
-      $x_1,\dots,x_n$
-    \item compute $f_i(x_1,\dots,x_n)$ without disclosing the private
-      inputs
-    \item e.g. the millionaire problem:
-      $x_1 > x_2$
-    \item e.g. social networks
-    \item e.g. enterprise cooperation
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Building blocks (1): Oblivious transfer}
-  \begin{itemize}
-    \item $1-2$ OT
-    \item $x_1 = \{m_0, m_1\}$, $x_2 = \{0, 1\}$
-    \item $f_2(x_1, x_2) = x_1[x_2] = m_{x_2}$, $f_1(x_1, x_2) = 1$
-      
-      \begin{enumerate}
-        \item $1$ generates private/public key $p_k, P_k$, generates random $r_0, r_1$
-        \item $1 \rightarrow 2: P_k,r_0,r_1$
-        \item $2$ generates random $k$
-        \item $2 \rightarrow 1: P_k(k) + r_{x_2} = v$
-        \item $1$ computes $k_i = p_k(v-r_i)$: $k_0=k$ or $k_1=k$
-        \item $1 \rightarrow 2: m'_i = m_i+k_i$
-        \item $2$ computes $m'_{x_2} - k$
-      \end{enumerate}
-    \item Can be extended as $1$ out of $n$ transfer
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Building blocks (2): Yao's garbled circuits}
-  
-  \begin{itemize}
-  \item let $g$ be a boolean gate $g:\{0,1\} \times \{0,1\}
-    \rightarrow \{0,1\}$ (and, or, xor, \dots)
-  \item let $k^0_1$, $k^1_1$, $k^0_2$, $k^1_2$, $k^0_3$, $k^1_3$ be
-    six keys of a symmetric encryption scheme
-  \item encode the gateway as a random permutation of
-    $c_{i,j} = E_{k^i_1}(E_{k^i_2}(k^{g(i,j)}_3))$
-  \item executing a gate:
-    
-    \begin{itemize}
-    \item having the gate encoding, and the cryptos representing its
-      inputs $k'_1$ and $k'_2$
-    \item the crypto output is the $k'_3=D_{k'_1}(D_{k'_2}(c_{i,j}))$
-      such that $k'_3 \neq \bullet$
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-% \begin{frame}{Garbled gate example}
-%   \begin{tabular}{cccccccc}
-%     1 & 2 & AND & OR & > & = \\
-%     0 & 0 & 0   & 0  & 0 & 1 \\
-%     0 & 1 & 0   & 1  & 0 & 0 \\
-%     1 & 0 & 0   & 1  & 1 & 0 \\
-%     1 & 1 & 1   & 1  & 0 & 1 \\
-%   \end{tabular}
+% \begin{frame}{Secure Multiparty Computation}
+%   \begin{itemize}
+%     \item $n$ participants with their private inputs
+%       $x_1,\dots,x_n$
+%     \item compute $f_i(x_1,\dots,x_n)$ without disclosing the private
+%       inputs
+%     \item e.g. the millionaire problem:
+%       $x_1 > x_2$
+%     \item e.g. social networks
+%     \item e.g. enterprise cooperation
+%   \end{itemize}
 % \end{frame}
 
-\begin{frame}{Building blocks (2): Yao's garbled circuits (2)}
-  \begin{itemize}
-  \item Let $m$ be a circuit: wires and gates
-  \item names the wire $w_i$ such that
-  \begin{itemize}
-    \item if two wires exit from the same gate, they have the same name
-  \end{itemize}
-  \item for each wire, generates the keys $k^0_{w_i}$ and $k^1_{w_i}$
-  \item generate the gate encoding
-  \item the output gates have encoding $c_{i,j} =
-    E_{k^i_1}(E_{k^i_2}(g(i,j)))$
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Building blocks (2): Yao's garbled circuits (3)}
-  \begin{itemize}
-  \item Participant $1$ generates the keys and the circuit
-  \item Participant $1$ sends the circuit to $2$
-  \item Participant $1$ sends the encryption of its input bits to $2$
-  \item How can the participant $2$ obtain the encryption of its input
-    bits?
-  \item<2-> OT-transfer, for each bit it executes the 1-2 OT to get
-    the wire key corresponding to $0$ or $1$
-  \item<3-> Participant $2$ executes the circuit
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Building blocks (1): Oblivious transfer}
+%   \begin{itemize}
+%     \item $1-2$ OT
+%     \item $x_1 = \{m_0, m_1\}$, $x_2 = \{0, 1\}$
+%     \item $f_2(x_1, x_2) = x_1[x_2] = m_{x_2}$, $f_1(x_1, x_2) = 1$
+      
+%       \begin{enumerate}
+%         \item $1$ generates private/public key $p_k, P_k$, generates random $r_0, r_1$
+%         \item $1 \rightarrow 2: P_k,r_0,r_1$
+%         \item $2$ generates random $k$
+%         \item $2 \rightarrow 1: P_k(k) + r_{x_2} = v$
+%         \item $1$ computes $k_i = p_k(v-r_i)$: $k_0=k$ or $k_1=k$
+%         \item $1 \rightarrow 2: m'_i = m_i+k_i$
+%         \item $2$ computes $m'_{x_2} - k$
+%       \end{enumerate}
+%     \item Can be extended as $1$ out of $n$ transfer
+%   \end{itemize}
+% \end{frame}
 
 
-\begin{frame}{Exam}
-  \begin{itemize}
-  \item Only topics of the book
-  \item Similar to the previous years
-  \item Closed book
-  \item Examples
-    \begin{itemize}
-      \item Explain the concepts of honeypot
-      \item Million user names and passwords were leaked
-        by hackers and put up on a web forum.
-        The passwords were hashed but not salted
-      \item Explain the strengths and weaknesses of each of the
-        following ﬁrewall deployment scenarios: network perimeter,
-        host based
-      \item Explain the IP spoofing and its security effects
-      \item Write a C program with a buffer overflow
-      \item Describe the strategies used by a virus to hide himself
-      \item Describe an cryptography algorithm
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Building blocks (2): Yao's garbled circuits}
+  
+%   \begin{itemize}
+%   \item let $g$ be a boolean gate $g:\{0,1\} \times \{0,1\}
+%     \rightarrow \{0,1\}$ (and, or, xor, \dots)
+%   \item let $k^0_1$, $k^1_1$, $k^0_2$, $k^1_2$, $k^0_3$, $k^1_3$ be
+%     six keys of a symmetric encryption scheme
+%   \item encode the gateway as a random permutation of
+%     $c_{i,j} = E_{k^i_1}(E_{k^i_2}(k^{g(i,j)}_3))$
+%   \item executing a gate:
+    
+%     \begin{itemize}
+%     \item having the gate encoding, and the cryptos representing its
+%       inputs $k'_1$ and $k'_2$
+%     \item the crypto output is the $k'_3=D_{k'_1}(D_{k'_2}(c_{i,j}))$
+%       such that $k'_3 \neq \bullet$
+%     \end{itemize}
+%   \end{itemize}
+% \end{frame}
+
+
+% % \begin{frame}{Garbled gate example}
+% %   \begin{tabular}{cccccccc}
+% %     1 & 2 & AND & OR & > & = \\
+% %     0 & 0 & 0   & 0  & 0 & 1 \\
+% %     0 & 1 & 0   & 1  & 0 & 0 \\
+% %     1 & 0 & 0   & 1  & 1 & 0 \\
+% %     1 & 1 & 1   & 1  & 0 & 1 \\
+% %   \end{tabular}
+% % \end{frame}
+
+% \begin{frame}{Building blocks (2): Yao's garbled circuits (2)}
+%   \begin{itemize}
+%   \item Let $m$ be a circuit: wires and gates
+%   \item names the wire $w_i$ such that
+%   \begin{itemize}
+%     \item if two wires exit from the same gate, they have the same name
+%   \end{itemize}
+%   \item for each wire, generates the keys $k^0_{w_i}$ and $k^1_{w_i}$
+%   \item generate the gate encoding
+%   \item the output gates have encoding $c_{i,j} =
+%     E_{k^i_1}(E_{k^i_2}(g(i,j)))$
+%   \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Building blocks (2): Yao's garbled circuits (3)}
+%   \begin{itemize}
+%   \item Participant $1$ generates the keys and the circuit
+%   \item Participant $1$ sends the circuit to $2$
+%   \item Participant $1$ sends the encryption of its input bits to $2$
+%   \item How can the participant $2$ obtain the encryption of its input
+%     bits?
+%   \item<2-> OT-transfer, for each bit it executes the 1-2 OT to get
+%     the wire key corresponding to $0$ or $1$
+%   \item<3-> Participant $2$ executes the circuit
+%   \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}{Exam}
+%   \begin{itemize}
+%   \item Only topics of the book
+%   \item Similar to the previous years
+%   \item Closed book
+%   \item Examples
+%     \begin{itemize}
+%       \item Explain the concepts of honeypot
+%       \item Million user names and passwords were leaked
+%         by hackers and put up on a web forum.
+%         The passwords were hashed but not salted
+%       \item Explain the strengths and weaknesses of each of the
+%         following ﬁrewall deployment scenarios: network perimeter,
+%         host based
+%       \item Explain the IP spoofing and its security effects
+%       \item Write a C program with a buffer overflow
+%       \item Describe the strategies used by a virus to hide himself
+%       \item Describe an cryptography algorithm
+%     \end{itemize}
+%   \end{itemize}
+% \end{frame}
 
 % \begin{frame}{Example: $>$}
 %   $max([b_{10}, b_{11}], [b_{20}, b_{21}] = (b_{10} > b_{20}) or

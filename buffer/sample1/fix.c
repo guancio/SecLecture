@@ -17,8 +17,8 @@ int main(int argc, char ** argv) {
   
   printf("Hello %s\n",name);
   printf("PWD %s\n",pwd);
-  printf("Pointer %x\n",name);
-  printf("Pointer %x\n",pwd);
+  printf("Pointer %p\n",name);
+  printf("Pointer %p\n",pwd);
 
   if (strcmp(pwd, argv[2]))
     printf("non authorized\n");

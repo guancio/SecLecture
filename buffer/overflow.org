@@ -1,10 +1,12 @@
+#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0
+
 * Buffer Overflow
       
            Lecture 09
     Computer Security DD2395	   
        Roberto Guanciale
 
-           2015-12-02
+           2015-12-04
 
 * Buffer Overflow
 
@@ -15,8 +17,8 @@
   - careless programming
 - Present in well-designed systems
   - XBox
-  - Hearthbleed
-  - Stagefright
+  - Hearthbleed (OpenSSL)
+  - Stagefright (Android media-stack)
  
 * Buffer Overflow Basics
 
@@ -42,14 +44,14 @@ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 ./main roberto 32
 
 * Memory layout
-| Address  | Content | Var  |
-|----------+---------+------|
-| ffffde20 | robe    | name | |
-| ffffde24 | rto\0   |      | |
-| ffffde28 |         |      | |
-| ffffde2c |         |      | |
-| ffffde30 | pwd0    | pwd  | |
-| ffffde34 | \0      |      | V
+|        Address | Content | Var  |
+|----------------+---------+------|
+| 0x7fffffffde20 | robe    | name |
+| 0x7fffffffde24 | rto\0   |      |
+| 0x7fffffffde28 |         |      |
+| 0x7fffffffde2c |         |      |
+| 0x7fffffffde30 | pwd0    | pwd  |
+| 0x7fffffffde34 | \0      |      |
 
 * How we can fix the program?
 [[file:sample2/main.c]]
@@ -59,28 +61,28 @@ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 * Buffer Overflow example
 [[file:sample1/main.c]]
 
-./main roberto hello
 ./main roberto pwd0
+./main roberto hello
 ./main 1234567812345678hello hello
 
 * Memory layout
-| Address  | Content | Var  |
-|----------+---------+------|
-| ffffde50 | robe    | name | |
-| ffffde54 | rto\0   |      | |
-| ffffde58 |         |      | |
-| ffffde5c |         |      | |
-| ffffde60 | pwd0    | pwd  | |
-| ffffde64 | \0      |      | V
+|        Address | Content | Var  |
+|----------------+---------+------|
+| 0x7fffffffde10 | robe    | name |
+| 0x7fffffffde14 | rto\0   |      |
+| 0x7fffffffde18 |         |      |
+| 0x7fffffffde1c |         |      |
+| 0x7fffffffde20 | pwd0    | pwd  |
+| 0x7fffffffde24 | \0      |      |
 
-| Address  | Content | Var  | 
-|----------+---------+------|
-| ffffde50 | 1234    | name |
-| ffffde54 | 4568    |      |
-| ffffde58 | 1234    |      |
-| ffffde5c | 4568    |      |
-| ffffde60 | hell    | pwd  |
-| ffffde64 | o\0     |      |
+|        Address | Content | Var  |
+|----------------+---------+------|
+| 0x7fffffffde10 |    1234 | name |
+| 0x7fffffffde14 |    4568 |      |
+| 0x7fffffffde18 |    1234 |      |
+| 0x7fffffffde1c |    4568 |      |
+| 0x7fffffffde20 |    hell | pwd  |
+| 0x7fffffffde24 |     o\0 |      |
 
 * How we can fix the program?
 [[file:sample1/main.c]]
@@ -107,11 +109,12 @@ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
   - data-structure abstraction
   - you can still do *((int *)666)=0;
 - Java/ML/Python/modern high-level languages
-  - station wagons / cars you can drive it without a license / cars with controls not in the usual places
+  - station wagons / cars you can drive it without a license / cars
+    with controls not in the usual places
   - have a strong notion of type and valid operations
   - not vulnerable to buffer overflows
   - does incur overhead, some limits on use 
-
+    
 * C/C++/etc programming language
 - have high-level control structures
 - but allow direct access to memory
@@ -139,8 +142,6 @@ hello
 * C stack example
 [[file:stack2.png]]
 * C stack example
-[[file:stack3.png]]
-* C stack example
 [[file:stack4.png]]
 * C stack example
 [[file:stack5.png]]
@@ -161,9 +162,11 @@ hello
 
 * Game Console Example 
 - XBox softmod
-- exploits in savegame MechAssault, Splinter Cell, and 007: Agent Under Fire
+- exploits in savegame MechAssault, Splinter Cell, and 007:
+  Agent Under Fire
   - execution of arbitrary code: FTP server to copy a font
-- Font-hack exploits a buffer underflow in the Xbox font loader which is part of the dashboard
+- Font-hack exploits a buffer underflow in the Xbox font
+  loader which is part of the dashboard
   - execution of arbitrary unsigned code
 
 * Stack Buffer Overflow
@@ -175,7 +178,6 @@ hello
 [[file:sample5/attacker.py]]
 ./attacker.py | ./main
 
-0x400546
 buffer can be on stack, heap, global data 
 
 * Attacker need to know
@@ -189,10 +191,10 @@ buffer can be on stack, heap, global data
   account little-Endian, big-Endian distinction
 
 * Effects of buffer overflow
-- Target data changed
-- Target control flow changed
-- Target program changed
-- DoS (target crashes)
+- Victim data changed
+- Victim control flow changed
+- Victim program changed
+- DoS (victim crashes)
 
 * Shellcode
 - code supplied by attacker
@@ -226,15 +228,15 @@ http://shell-storm.org/shellcode
   - not contain NULLs (C string terminator)
 
 * More Stack Overflow Variants
-- target program can be:
+- victim program can be:
   - a trusted system utility
   - network service daemon
-  - commonly used library code, e.g. image
+  - commonly used library code, e.g. image processing
 - shellcode functions
   - spawn shell
   - create listener to launch shell on connect
   - create reverse connection to attacker
-  - flush firewall rules
+  - change firewall rules
 
 * Return to System Call
 - attacker gains control of the call stack
@@ -263,7 +265,7 @@ http://shell-storm.org/shellcode
   - aim to overwrite function pointer later called
 - no return address
   - hence no easy transfer of control
-  - may have function pointers can exploit (e.g. C++ virtual tables)
+  - may have function pointers (e.g. C++ virtual tables)
   - or manipulate management data structures
 
 * Heap Overflow
@@ -272,13 +274,15 @@ http://shell-storm.org/shellcode
   - memory requested by programs to use in dynamic
     data structures, e.g. linked lists, malloc
 - also possible due to dangling pointers
+- no return address
+  - may have function pointers (e.g. C++ virtual tables)
 
 * Arithmetic Overflow
 + An integer, which has not been properly sanity checked,
   is incremented past the maximum possible value
 + The may wrap to become a very small, or negative number
 + Can led to buffer overflows, if the integer is
-  used to computer memory offsets, affay indexes etc
+  used to computer memory offsets, array indexes etc
 + Can led to violation of security policy
   + x = sum of pointers to D writable by user-processes
   + policy, allocate D to the kernel if x = 0
@@ -321,6 +325,7 @@ if using potentially unsafe languages eg C
 - buffer overflow safety a subset of general safe
   coding techniques
   - allow for graceful failure
+  - checking pointers yield by allocators
   - checking have sufficient space in any buffer 
 
 * Compile-Time Defenses: Language Extension, Safe Libraries
@@ -328,7 +333,7 @@ if using potentially unsafe languages eg C
   - performance penalties
   - must compile programs with special compiler
 - have several safer standard library variants
-  - new functions, e.g. strlcpy()
+  - new functions, e.g. strncpy()
   - safer re-implementation of standard functions as a
     dynamic library, e.g. Libsafe
 
@@ -342,7 +347,7 @@ if using potentially unsafe languages eg C
   - issues: recompilation, debugger support
 - or save/check safe copy of return address (shadow stack)
   - e.g. Stackshield, RAD
-- -fno-stack-protector
+- -fstack-protector
   Emit extra code to check for buffer overflows, such as stack smash‐
   ing attacks.  This is done by adding a guard variable to functions
   with vulnerable objects.  This includes functions that call alloca,
@@ -396,6 +401,10 @@ if using potentially unsafe languages eg C
 - Verified isolation kernels
 - Software fault isolation
 
+
+* Capture the flag group
+- "KTH CTF Team" on facebook
+- Wednesday, at 5:30pm
 
 * Notes
 echo 0 | sudo tee /proc/sys/kernel/randomize_va_space

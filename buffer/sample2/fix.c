@@ -14,8 +14,8 @@ int main(int argc, char ** argv) {
   
   printf("Start\n");
 
-  printf("Pointer %x\n",name);
-  printf("Pointer %x\n",pwd);
+  printf("Pointer %p\n",name);
+  printf("Pointer %p\n",pwd);
 
   strcpy(pwd, "pwd0");
   strcpy(name, argv[1]);
@@ -25,7 +25,7 @@ int main(int argc, char ** argv) {
   for (i=0; i<n && i<8; i++) {
     printf("%c", name[i]);
   }
-  printf("\n",name);
+  printf("\n");
 
  
   printf("End\n");

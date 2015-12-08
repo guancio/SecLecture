@@ -4,12 +4,12 @@
 \usepackage{listings}
 
 \title{Multilevel Security}
-\subtitle{Lecture 12 \\ Computer Security DD2395}
+\subtitle{Lecture 10 \\ Computer Security DD2395}
 \author[R. Guanciale]{
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2013-11-18}
+\date{2015-12-03}
 \begin{document}
 
 \begin{frame}[plain]
@@ -464,6 +464,7 @@
 \begin{frame}{MLS, databases and read}
   \begin{itemize}
   \item DBMS enforces simple security rule (no read up) 
+  \item easy for database/table granularity
   \item inference problems if have column granularity
     \begin{itemize}
     \item if can query on restricted data can infer its existence 
@@ -474,7 +475,6 @@
     \begin{itemize}
     \item null response in join queries can indicate restricted/empty result 
     \end{itemize}
-  \item no extra concerns if have element granularity 
   \end{itemize}
 \end{frame}
 
@@ -524,10 +524,11 @@
   \begin{itemize}
   \item for all $\star \rightarrow p_1 \rightarrow \dots p_n$ holds
     $\{\star, p_1, \dots, p_n\} \subseteq P$
-  \item Prove that initial state $\star$ is secure 
-  \item Show that each transition preserves security
-  \item<2-> Ok for state-based properties
-  \item<2-> Not enough for information flow properties
+  \item State space analysis: model checking
+  \item<2-> Prove that initial state $\star$ is secure 
+  \item<3-> Show that each transition preserves security
+  \item<4-> Ok for state-based properties
+  \item<4-> Not enough for information flow properties
   \end{itemize}
 \end{frame}
 
@@ -535,11 +536,12 @@
   \begin{verbatim}
 secret_key = 123456
 program()
+ secret_key = secret_key + 1
  public_var = 1
   \end{verbatim}
   \begin{itemize}
   \item Reason about knowledge
-  \item<2-> $\{(pv=1, sk=123456)\} \subseteq P$
+  \item<2-> $\{(pv=1, sk=123457)\} \subseteq P$
   \end{itemize}
 \end{frame}
 
@@ -547,11 +549,12 @@ program()
   \begin{verbatim}
 secret_key = 123456
 program()
+ secret_key = secret_key + 1
  public_var = secret_key
   \end{verbatim}
   \begin{itemize}
   \item Reason about knowledge
-  \item<2-> $\{(pv=sk, sk=123456)\} \not \subseteq P$
+  \item<2-> $\{(pv=sk, sk=123457)\} \not \subseteq P$
   \end{itemize}
 \end{frame}
 
@@ -559,12 +562,13 @@ program()
   \begin{verbatim}
 secret_key = 123456
 program()
+ secret_key = secret_key + 1
  public_var = random()
   \end{verbatim}
   \begin{itemize}
   \item Reason about knowledge
-  \item<2-> $\{(pv=1, sk=123456), (pv=2, sk=123456), \dots ,
-    (pv=123456, sk=123456), \dots\} \subseteq P$
+  \item<2-> $\{(pv=1, sk=123457), (pv=2, sk=123457), \dots ,
+    (pv=123457, sk=123457), \dots\} \subseteq P$
   \end{itemize}
 \end{frame}
 
@@ -572,6 +576,7 @@ program()
   \begin{verbatim}
 secret_key = 123456
 program()
+ secret_key = secret_key + 1
  if (secret_key mod 2 == 0)
    public_var += 42
   \end{verbatim}
@@ -602,6 +607,7 @@ program()
   \begin{verbatim}
 secret_key = 123456, secret_key' = 654321
 program()
+ secret_key = secret_key + 1
  public_var = 1
   \end{verbatim}
 \end{frame}
@@ -616,6 +622,7 @@ program()
   \begin{verbatim}
 secret_key = 123456, secret_key' = 654321
 program()
+ secret_key = secret_key + 1
  public_var = random()
   \end{verbatim}
 \end{frame}
@@ -630,19 +637,10 @@ program()
   \begin{verbatim}
 secret_key = 123456, secret_key' = 654321
 program()
+ secret_key = secret_key + 1
  if (secret_key mod 2 == 0)
    public_var += 42
   \end{verbatim}
-\end{frame}
-
-\begin{frame}[fragile]{Prove security: hyperproperties}
-  \begin{itemize}
-  \item for every execution $\star \rightarrow p_1 \rightarrow \dots p_n$
-    if $L(\star) = L(\star')$  then there is an execution
-    $\star' \rightarrow p'_1 \rightarrow \dots p'_n$
-  such that $L(p_i) = L(p'_i)$
-  \item alternative use epistemic logic
-  \end{itemize}
 \end{frame}
 
 \begin{frame}{Trusted system}

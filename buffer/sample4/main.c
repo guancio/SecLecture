@@ -8,9 +8,9 @@ int main(int argc, char ** argv) {
 
   int * heap_var = malloc(sizeof(int));
 
-  printf("Global: 0x%x\n", &gloabl_var);
-  printf("Stack: 0x%x\n", &stack_var);
-  printf("Heap: 0x%x\n", heap_var);
-  printf("Code: 0x%x\n", &main);
-  printf("Lib: 0x%x\n", &malloc);
+  printf("Global: %p\n", &gloabl_var);
+  printf("Stack:  %p\n", &stack_var);
+  printf("Heap:   %p\n", heap_var);
+  printf("Code:   %p\n", &main);
+  printf("Lib:    %p\n", &malloc);
 }
