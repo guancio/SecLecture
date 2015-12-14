@@ -507,7 +507,7 @@ algorithm to solve required problem
   \begin{itemize}
     \item c.f. Netscape/Debian random number bug
     \item TCP random sequence number enabling IP spoofing
-    \item supposed to be unpredictable, but wasn’t
+    \item supposed to be unpredictable, but wasn't
   \end{itemize}
   \item when debug/test code left in production
   \begin{itemize}
@@ -526,6 +526,7 @@ algorithm to solve required problem
   \begin{itemize}
     \item often ignored by programmers
     \item assume compiler/interpreter is correct
+    \item C volatile variables
     \item c.f. Ken Thompson’s paper, Reflections on Trusting Trust
   \end{itemize}
   \item requires comparing machine code with original
@@ -747,8 +748,7 @@ for each pattern
  overwrite file contents with pattern
  flush application write buffers
  sync file system write buffers with device
-close file
-remove file
+close file \\ remove file
 \end{verbatim}
 \end{frame}
 
@@ -803,7 +803,7 @@ remove file
   \begin{itemize}
   \item may use services of other programs
   \item must identify/verify assumptions on data
-  \item esp older user programs
+  \item reuse older user programs
     \begin{itemize}
     \item now used within web interfaces
     \item must ensure safe usage of these programs
@@ -835,7 +835,15 @@ remove file
   \end{itemize}
 \end{frame}
 
-
+\begin{frame}{Concluding remarks}
+  \begin{itemize}
+  \item Tomorrow
+    \begin{itemize}
+    \item Game theory
+    \item Exam example
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 
 \end{document}
 

@@ -442,7 +442,7 @@ defect        & 0,-5 & -3,-3 \\
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Vickrey auction}
+\begin{frame}{Auction}
   \begin{itemize}
     \item a single, indivisible good is being sold
     \item $n$ buyers
@@ -461,6 +461,94 @@ p_i(B) = \left \{
   \end{array}
 \right .
 \]
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Auction}
+\[
+p_i(B) = \left \{
+  \begin{array}{l}
+    v_i - b_i \mbox{ if } b_i > max(B \setminus b_i)\\
+    0         \mbox{ otherwise }
+  \end{array}
+\right .
+\]
+  \begin{itemize}
+    \item there is no reason to bid $b_i > v_i$
+    \item<2-> $p_i(v_i, b_{-i}) = 0$, there is no incentive to be trustworthy
+    \item<3-> if $max(B \setminus b_i) > v_i$ (someone bids more the the value assigned by $i$) then 
+      $p_i(b_i, b_{-i}) = p_i(v_i, b_{-i}) = 0$
+    \item<4-> if $b_i < max(B \setminus b_i) < v_i$ ($j$ bids more the
+      the bid of $i$) then 
+      $p_i(b_i, b_{-i}) =  p_i(v_i, b_{-i}) = 0 < p_i(max(B \setminus
+      b_i), b_{-i})$
+    \item<5-> if $b_i > max(B \setminus b_i)$  then 
+      $p_i(b_i, b_{-i}) >  p_i(v_i, b_{-i})$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Vickrey Auction}
+  \begin{itemize}
+    \item a single, indivisible good is being sold
+    \item $n$ buyers
+    \item sealed-bid auction
+    \item each buyer reports how much he is willing to pay
+    \item<2-> the one with the highest price gets the good and pays
+      the second highest price
+    \item<3-> payoff
+\[
+p_i(B) = \left \{
+  \begin{array}{l}
+    v_i - max(B \setminus b_i) \mbox{ if } b_i > max(B \setminus b_i)\\
+    0         \mbox{ otherwise }
+  \end{array}
+\right .
+\]
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Vickrey Auction}
+\[
+p_i(B) = \left \{
+  \begin{array}{l}
+    v_i - max(B \setminus b_i) \mbox{ if } b_i > max(B \setminus b_i)\\
+    0         \mbox{ otherwise }
+  \end{array}
+\right .
+\]
+  \begin{itemize}
+    \item there is no reason to bid $b_i > v_i$
+    \item<2-> if $max(B \setminus b_i) > v_i$ (someone bids more the the value assigned by $i$) then 
+      $p_i(b_i, b_{-i}) = p_i(v_i, b_{-i}) = 0$
+    \item<3-> if $b_i > max(B \setminus b_i)$  then 
+      $p_i(b_i, b_{-i}) =  p_i(v_i, b_{-i}) = v_i - max(B \setminus b_i)$
+    \item<4-> if $b_i < max(B \setminus b_i) < v_i$  then 
+      $p_i(b_i, b_{-i}) =  0 < p_i(v_i, b_{-i}) = v_i - max(B
+      \setminus b_i)$
+    \item<5> \textbf{$b_i = v_i$ is a Nash equilibrium}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{General mechanism design}
+  \begin{itemize}
+    \item There are $n$ players, having \emph{types} $\mathbf{t} = t_1, \dots, t_n$
+    \item The type is a private information of the players
+    \item Players report the types to the auctioneer
+      $\mathbf{v} = v_1, \dots, v_n$
+    \item A mechanism $\mathcal{M}(\mathbf{a},\mathbf{p})$ consists of two functions
+      \begin{itemize}
+      \item $\mathbf{a} = a_1(v_1), \dots , a_n(v_n)$ is the
+        allocation vector (a probability vector in randomized games)
+      \item $\mathbf{p} = p_1(v_1), \dots , p_n(v_n)$ is the payment
+        vector
+      \end{itemize}
+    \item Player utility (payoff) $u_i(v_i \mid t_i) = a_i(\mathbf{v}) \circ
+      t_i - p_i(\mathbf{v})$
+    \item A mechanism is called truthful if $v_i = t_i$ is a dominant strategy
+      equilibrium
   \end{itemize}
 \end{frame}
 
