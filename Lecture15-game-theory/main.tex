@@ -364,13 +364,13 @@ me & $\alpha$
   \item<2-> Let $x \in S$ be a strategy profile (an instance of the game)
   \item<3-> Let $f(x) = (f_1(x), f_2(x), \dots, f_n(x))$ be the payoff
     function
-  \item<4-> Let $x_i$ be the strategy profile of $i$ and $x_{-i}$ be a
+  \item<4-> Let $x_i$ be the strategy profile of $i$ and $x_{\bar i}$ be a
     strategy profile of all other players
   \item<5-> A strategy profile $x \in S$ is a Nash equilibrium
     if no unilateral deviation by any single player is profitable for
     that player
 \[
-  \forall i,x'_i\in S_i :  f_i(x_{i}, x_{-i}) \geq f_i(x'_{i},x_{-i}).
+  \forall i,x'_i\in S_i :  f_i(x_{i}, x_{\bar i}) \geq f_i(x'_{i},x_{\bar i}).
 \]
 
   \end{itemize}
@@ -406,8 +406,7 @@ rabbit
     \item two prisoners held in separate cells, interrogated simultaneously
     \item ``cooperate'' (with the other prisoner) by not snitching
     \item ``defect'' by betraying the other
-    \item rabbit provides less meat (1 unit)
-    \item<2-> \textbf{if only one defect, he obtain a huge benefit}
+    \item<2-> \textbf{if only one defect, he obtains a huge benefit}
     \item<4->  The prisoner's dilemma has a single Nash equilibrium:
       both players defect
     \item<5->  climate-change / cold war
