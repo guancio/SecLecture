@@ -130,7 +130,7 @@
           <y:Geometry height="362.59999999999997" width="221.39999999999998" x="1312.9600000000469" y="515.800000000163"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="101.6640625" x="59.867968750000045" y="340.6312499999999">Phisical Memory</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="105.431640625" x="57.984179687500045" y="340.6312499999999">Physical Memory</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -455,7 +455,6 @@
       </data>
     </node>
     <node id="n40">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.bpmn.Event.withShadow">
           <y:Geometry height="30.0" width="30.0" x="1266.5800000000468" y="527.800000000163"/>
@@ -470,8 +469,8 @@
             </y:ModelParameter>
           </y:NodeLabel>
           <y:StyleProperties>
-            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_END"/>
             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_END"/>
             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
             <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -480,7 +479,6 @@
       </data>
     </node>
     <node id="n41">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.bpmn.Event.withShadow">
           <y:Geometry height="30.0" width="30.0" x="1551.3400000000465" y="521.0"/>
@@ -495,8 +493,8 @@
             </y:ModelParameter>
           </y:NodeLabel>
           <y:StyleProperties>
-            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
             <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -506,13 +504,12 @@
     </node>
     <node id="n42">
       <data key="d4"/>
-      <data key="d5"/>
       <data key="d6">
         <y:SVGNode>
           <y:Geometry height="56.000000000000114" width="48.799999999999955" x="1399.8600000000467" y="421.55000000000007"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" modelName="custom" textColor="#000000" visible="true" width="10.89990234375" x="18.95004882812509" y="60.000000000000114">?<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" modelName="custom" textColor="#000000" visible="true" width="10.89990234375" x="18.950048828124864" y="60.000000000000114">?<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -527,7 +524,6 @@
       </data>
     </node>
     <edge id="e0" source="n1" target="n11">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -538,7 +534,6 @@
       </data>
     </edge>
     <edge id="e1" source="n2" target="n13">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="50.49999999999977" sy="1.5599999999992633" tx="-88.38000000000056" ty="-3.0800000000006094"/>
@@ -549,7 +544,6 @@
       </data>
     </edge>
     <edge id="e2" source="n3" target="n12">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="54.85999999999967" sy="-3.72000000000196" tx="-88.50000000000068" ty="2.199999999997999"/>
@@ -560,7 +554,6 @@
       </data>
     </edge>
     <edge id="e3" source="n21" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -571,7 +564,6 @@
       </data>
     </edge>
     <edge id="e4" source="n4" target="n15">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="57.89999999999782" sy="-1.0720000000048913" tx="-87.89200000000255" ty="0.8159999999951424"/>
@@ -582,7 +574,6 @@
       </data>
     </edge>
     <edge id="e5" source="n9" target="n16">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="67.17999999999984" sy="0.0" tx="-101.09999999999991" ty="0.0"/>
@@ -593,7 +584,6 @@
       </data>
     </edge>
     <edge id="e6" source="n26" target="n14">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-67.17999999999984" sy="0.0" tx="101.09999999999991" ty="0.0"/>
@@ -604,7 +594,6 @@
       </data>
     </edge>
     <edge id="e7" source="n27" target="n17">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-67.17999999999984" sy="0.0" tx="101.09999999999991" ty="0.0"/>
@@ -615,7 +604,6 @@
       </data>
     </edge>
     <edge id="e8" source="n28" target="n18">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-67.17999999999984" sy="0.0" tx="101.09999999999991" ty="0.0"/>
@@ -626,7 +614,6 @@
       </data>
     </edge>
     <edge id="e9" source="n33" target="n19">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -637,7 +624,6 @@
       </data>
     </edge>
     <edge id="e10" source="n42" target="n40">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -650,7 +636,6 @@
       </data>
     </edge>
     <edge id="e11" source="n42" target="n41">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">

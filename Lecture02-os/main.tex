@@ -99,32 +99,32 @@
   \item<4-> Program Counter (PC): address of the current instruction
   \end{itemize}
 \center{
-    \only<1> {
+\only<1> {
   \includegraphics[width=0.5\linewidth]{hw-0}
 }
-    \only<2> {
+\only<2> {
   \includegraphics[width=0.5\linewidth]{hw-1}
 }
-    \only<3> {
+\only<3> {
   \includegraphics[width=0.5\linewidth]{hw-2}
 }
-    \only<4> {
-  \includegraphics[width=0.5\linewidth]{hw-3}
+\only<4> {
+  \includegraphics[width=0.6\linewidth]{hw-3}
 }
     \only<5> {
-  \includegraphics[width=0.5\linewidth]{hw-4}
+  \includegraphics[width=0.6\linewidth]{hw-4}
 }
     \only<6> {
-  \includegraphics[width=0.7\linewidth]{hw-5}
+  \includegraphics[width=0.8\linewidth]{hw-5}
 }
     \only<7> {
-  \includegraphics[width=0.7\linewidth]{hw-6}
+  \includegraphics[width=0.8\linewidth]{hw-6}
 }
     \only<8> {
-  \includegraphics[width=0.7\linewidth]{hw-7}
+  \includegraphics[width=0.8\linewidth]{hw-7}
 }
     \only<9> {
-  \includegraphics[width=0.7\linewidth]{hw-8}
+  \includegraphics[width=0.8\linewidth]{hw-8}
 }}
 \end{frame}
 
@@ -212,8 +212,7 @@ int * hello(int y) {       int[] hello(int y) {
 
 \begin{frame}{Virtual Memory}
   \begin{center}
-  \includegraphics[width=0.5\linewidth]{mmu1}
-  \end{center}
+  \includegraphics[width=0.5\linewidth]{mmu1}\\[30pt]
     \only<1> {
   \includegraphics[width=0.2\linewidth]{mmu2}
 }
@@ -241,6 +240,7 @@ int * hello(int y) {       int[] hello(int y) {
     \only<9> {
   \includegraphics[width=0.5\linewidth]{mmu10}
 }
+  \end{center}
 \end{frame}
 
 
@@ -261,21 +261,20 @@ int * hello(int y) {       int[] hello(int y) {
 
 
 \begin{frame}{Context switch}
+  \begin{center}
     \only<1> {
-  \includegraphics[width=0.7\linewidth]{ctx1}
+  \includegraphics[width=0.9\linewidth]{ctx1}
 }
     \only<2> {
-  \includegraphics[width=0.7\linewidth]{ctx2}
+  \includegraphics[width=0.9\linewidth]{ctx2}
 }
     \only<3> {
-  \includegraphics[width=0.7\linewidth]{ctx3}
+  \includegraphics[width=0.9\linewidth]{ctx3}
 }
     \only<4> {
-  \includegraphics[width=0.7\linewidth]{ctx4}
+  \includegraphics[width=0.9\linewidth]{ctx4}
 }
-    \only<5> {
-  \includegraphics[width=0.7\linewidth]{ctx5}
-}
+  \end{center}
 \end{frame}
 
 
@@ -297,7 +296,7 @@ int * hello(int y) {       int[] hello(int y) {
   \begin{itemize}
     \item instruction to change mode
   \end{itemize}
-  \item<3-> From PL0 to PL1 = entering the OS?
+  \item<3-> From PL0 to PL1 = entering the OS? \alert{Question?}
   \begin{itemize}
     \item<4-> interrupts
   \end{itemize}
@@ -312,15 +311,15 @@ int * hello(int y) {       int[] hello(int y) {
   \item<2-> HW
   \begin{itemize}
     \item Mode switches to privileged
-    \item Program counter jumps to the OS ``vector table''
+    \item Program counter jumps to the OS \alert{vector table}
   \end{itemize}
   \item<3-> OS
   \begin{itemize}
     \item Saves the registers (context) in the process memory
-    \item Jumps to the ``exception handler''
+    \item Jumps to the \alert{exception handler}
     \item \dots \\
  (e.g. change MMU configuration and ``logical'' active process)
-    \item Loads the registers (context) from the memory of the  \alert{current}
+    \item Loads the registers (context) from the memory of the  \alert{active}
       process
   \end{itemize}
   \item<4-> Context switch driven by software interrupt $\Rightarrow$\\
@@ -345,10 +344,10 @@ int * hello(int y) {       int[] hello(int y) {
     \item Jumps to the ``exception handler''
     \item \dots \\
  (e.g. change MMU configuration and ``logical'' active process)
-    \item Loads the registers (context) from the memory of the  \alert{current}
+    \item Loads the registers (context) from the memory of the  \alert{active}
       process
   \end{itemize}
-  \item Preemptive multitasking
+  \item<4-> Preemptive multitasking
 \end{enumerate}
 \end{frame}
 
@@ -357,61 +356,67 @@ int * hello(int y) {       int[] hello(int y) {
   \begin{enumerate}
   \item<1-> How does the OS access the memory?
   \item<2-> Virtual memory
-  \item<7-> MMU also enforce access right
+  \item<7-> MMU enforces access right
 \end{enumerate}
+\begin{center}
 \only<3>{
-  \includegraphics[width=0.5\linewidth]{ctx1}
+  \includegraphics[width=0.8\linewidth]{ctx0}
 }
 \only<4>{
-  \includegraphics[width=0.5\linewidth]{os-mem-0}
+  \includegraphics[width=0.8\linewidth]{os-mem-0}
 }
 \only<5>{
-  \includegraphics[width=0.5\linewidth]{os-mem-1}
+  \includegraphics[width=0.8\linewidth]{os-mem-1}
 }
 \only<6>{
-  \includegraphics[width=0.5\linewidth]{os-mem-2}
+  \includegraphics[width=0.8\linewidth]{os-mem-2}
 }
 \only<7>{
-  \includegraphics[width=0.5\linewidth]{os-mem-3}
+  \includegraphics[width=0.8\linewidth]{os-mem-3}
 }
+\end{center}
 \end{frame}
 
-\begin{frame}{Peripherals}
+\begin{frame}[t]{Peripherals}
   \begin{enumerate}
   \item<1-> Interrupts
   \item<2-> Memory mapped devices
   \item<4-> Direct Memory Access
 \end{enumerate}
+\begin{center}
 \only<1>{
-  \includegraphics[width=0.5\linewidth]{timer}
+  \includegraphics[width=0.8\linewidth]{timer}
 }
 \only<2>{
-  \includegraphics[width=0.5\linewidth]{timer2}
+  \includegraphics[width=0.8\linewidth]{timer1}
 }
 \only<3>{
-  \includegraphics[width=0.5\linewidth]{dev1}
+  \includegraphics[width=0.8\linewidth]{dev1}
 }
 \only<4>{
-  \includegraphics[width=0.5\linewidth]{dev2}
+  \includegraphics[width=0.85\linewidth]{dev2}
 }
 \only<5>{
-  \includegraphics[width=0.5\linewidth]{dma}
+  \includegraphics[width=0.7\linewidth]{dma}
 }
+\end{center}
 \end{frame}
 
-\begin{frame}{Shared memory}
-  \begin{enumerate}
-\end{enumerate}
+\begin{frame}{OS blocks}
+\begin{center}
 \only<1>{
-  \includegraphics[width=0.8\linewidth]{2libre-0}
+  \includegraphics[width=0.8\linewidth]{os-blocks}
 }
 \only<2>{
-  \includegraphics[width=0.8\linewidth]{2libre-1}
+  \includegraphics[width=0.8\linewidth]{os-block-2}
 }
+\end{center}
 \end{frame}
 
-\begin{frame}{OS layers}
-\end{frame}
+
+
+
+
 
 \begin{frame}{System calls}
     \begin{itemize}
@@ -444,6 +449,20 @@ int * hello(int y) {       int[] hello(int y) {
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Shared memory}
+\begin{center}
+\only<1>{
+  \includegraphics[width=0.9\linewidth]{2libre-0}
+}
+\only<2>{
+  \includegraphics[width=0.9\linewidth]{2libre-1}
+}
+\end{center}
+\end{frame}
+
+\begin{frame}{Executing a new process}
+\end{frame}
 
 \begin{frame}{Questions?}
     Questions?

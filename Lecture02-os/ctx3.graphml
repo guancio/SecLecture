@@ -130,7 +130,7 @@
           <y:Geometry height="362.59999999999997" width="221.39999999999998" x="1312.9600000000469" y="515.800000000163"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="101.6640625" x="59.867968750000045" y="340.6312499999999">Phisical Memory</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="105.431640625" x="57.984179687500045" y="340.6312499999999">Physical Memory</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -449,7 +449,7 @@
           <y:Geometry height="28.000000000000057" width="221.39999999999998" x="1313.5600000000466" y="908.4000000001629"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="60.197265625" x="80.60136718750005" y="6.031250000000114">Registers</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="60.197265625" x="80.60136718750005" y="6.03125">Registers</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -460,13 +460,12 @@
           <y:Geometry height="25.20000000032593" width="66.51999999999987" x="1438.32000000014" y="793.3999999998367"/>
           <y:Fill color="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="60.197265625" x="3.161367187499991" y="3.231250000325872">Registers</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="b" textColor="#000000" visible="true" width="60.197265625" x="3.161367187499991" y="3.2312500003259856">Registers</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
     </node>
     <edge id="e0" source="n21" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -477,7 +476,6 @@
       </data>
     </edge>
     <edge id="e1" source="n26" target="n14">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-67.17999999999984" sy="0.0" tx="101.09999999999991" ty="0.0"/>
@@ -488,7 +486,6 @@
       </data>
     </edge>
     <edge id="e2" source="n27" target="n17">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-67.17999999999984" sy="0.0" tx="101.09999999999991" ty="0.0"/>
@@ -499,7 +496,6 @@
       </data>
     </edge>
     <edge id="e3" source="n28" target="n18">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-67.17999999999984" sy="0.0" tx="101.09999999999991" ty="0.0"/>
@@ -510,7 +506,6 @@
       </data>
     </edge>
     <edge id="e4" source="n33" target="n19">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>

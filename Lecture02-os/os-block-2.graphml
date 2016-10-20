@@ -17,8 +17,8 @@
     <node id="n0">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="257.5200000001869" y="364.10000000032613"/>
-          <y:Fill hasColor="false" transparent="false"/>
+          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="283.04000000037377" y="389.20000000065227"/>
+          <y:Fill color="#99CC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="132.859375" x="25.27031249999999" y="17.815624999999955">Process Management</y:NodeLabel>
           <y:Shape type="rectangle"/>
@@ -28,10 +28,10 @@
     <node id="n1">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="257.5200000001869" y="435.8800000006521"/>
+          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="283.04000000037377" y="460.98000000097824"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="113.88671875" x="34.75664062499999" y="17.815624999999955">Process Scheduler</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="113.88671875" x="34.75664062499999" y="17.81562500000001">Process Scheduler</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -39,10 +39,10 @@
     <node id="n2">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="470.92000000018686" y="364.1000000003262"/>
-          <y:Fill hasColor="false" transparent="false"/>
+          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="496.44000000037374" y="389.2000000006523"/>
+          <y:Fill color="#99CC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="135.666015625" x="23.86699218749999" y="17.815624999999955">Memory Management</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="135.666015625" x="23.866992187499932" y="17.81562500000001">Memory Management</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -50,10 +50,10 @@
     <node id="n3">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="257.5200000001869" y="507.66000000097796"/>
-          <y:Fill hasColor="false" transparent="false"/>
+          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="283.04000000037377" y="532.7600000013041"/>
+          <y:Fill color="#99CC00" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="92.03125" x="45.68437499999993" y="17.81562500000001">Device Drivers</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="92.03125" x="45.68437499999999" y="17.815624999999955">Device Drivers</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -61,10 +61,10 @@
     <node id="n4">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="470.92000000018675" y="435.8800000006521"/>
+          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="496.44000000037363" y="460.98000000097824"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="73.515625" x="54.942187500000045" y="17.815624999999955">File System</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="73.515625" x="54.942187500000045" y="17.81562500000001">File System</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -72,10 +72,10 @@
     <node id="n5">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="470.92000000018675" y="507.66000000097796"/>
+          <y:Geometry height="53.599999999999966" width="183.39999999999998" x="496.44000000037363" y="532.7600000013041"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="72.66015625" x="55.369921875000045" y="10.831250000000011">Networking
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="72.66015625" x="55.369921875000045" y="10.831249999999955">Networking
 TCP/IP</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -84,7 +84,7 @@ TCP/IP</y:NodeLabel>
     <node id="n6">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="53.599999999999966" width="396.79999999999984" x="257.5200000001869" y="579.4400000013038"/>
+          <y:Geometry height="53.599999999999966" width="396.79999999999984" x="283.04000000037377" y="604.54000000163"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="15.443359375" x="190.67832031249992" y="17.815624999999955">...</y:NodeLabel>
