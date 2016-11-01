@@ -14,7 +14,7 @@
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2016-11-04}
+\date{2016-11-02}
 \begin{document}
 
 \maketitle
@@ -36,21 +36,55 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{About you}
-  \begin{itemize}
-    \item University:
-    \item Program:
-    \item Computer architecture:
-    \item Programming language:
-    \item Operating Systems:
-  \end{itemize}
-\end{frame}
+% \begin{frame}{About you}
+%   \begin{itemize}
+%     \item University:
+%     \item Program:
+%     \item Computer architecture:
+%     \item Programming language:
+%     \item Operating Systems:
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}{Interactive lecture}
+% http://www.quizsocket.com/?quiz=D4842G&admin=QZ4LBCLTUWZ7GXHJA2UY6SSVJVE95R&user=GT74TFJMND76
   \center{
-    www.guancio.com\\
-    \includegraphics[width=0.5\linewidth]{qrcode}
+    https://twitter.com/roberto\_kth\\
+    @roberto\_kth\\[20pt]
+    http://www.quizsocket.com/\\
+    D4842G\\[20pt]
+    Question 1: Does quizsocket work?
+    \begin{itemize}
+      \item A - Yes!
+      \item B,C,D - No
+    \end{itemize}
   }
+\end{frame}
+
+
+\begin{frame}{Operating Systems}
+  \begin{itemize}
+  \item An OS is a program that acts an intermediary
+    between applications and computer hardware
+  \item Makes application software portable and versatile.
+  \item Allows sharing of hardware and software resources.
+  \item Provides isolation, security and protection among
+    applications.
+  \end{itemize}
+  \begin{center}
+\only<1>{
+    \includegraphics[width=0.5\linewidth]{architecture}
+}
+\only<2>{
+    \includegraphics[width=0.5\linewidth]{architecture2}
+}
+\only<3>{
+    \includegraphics[width=0.5\linewidth]{architecture3}
+}
+\only<4>{
+    \includegraphics[width=0.5\linewidth]{architecture4}
+}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Main questions}
@@ -58,38 +92,38 @@
     \item How can we run Chrome on a modern architecture?
     \item How can we isolate Chrome from LibreOffice?
     \item How can we run multiple instances of Chrome?
-    \item How can we run Chrome on two phones with
-      two different network controllers?
+    \item How does Apache handle HTTP traffic?
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Operating Systems}
-  \begin{itemize}
-  \item An OS is a program that acts an intermediary
-    between applications and computer hardware
-\alert{Image of app, OS, Devices}
-  \item Simplify the execution of applications.
-  \item Allow sharing of hardware and software resources.
-  \item Make application software portable and versatile.
-  \item Provide isolation, security and protection among
-    applications.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Example of OSes}
+\begin{frame}[t]{Example of OSes}
   \begin{itemize}
   \item Windows/Linux/OS X ($\sim$ 50 milions LOC)
-  \item<2-> Android/iOS ($\sim$ 50 milions LOC)
-  \item<3-> S40 ($\sim$ 1 milions LOC)
-  \item<4-> Free RTOS ($\sim$ 10 000 LOC)
-  \item<5-> L4 microkernel ($\sim$ 10 000 LOC)
-  \item<6-> Automotive
-  \item<7-> Nuclear power plants/Airplanes/Drones
+  \item Android/iOS ($\sim$ 50 milions LOC)
+  \item<2-> S40 ($\sim$ 1 milions LOC)
+  \item<3-> Free RTOS ($\sim$ 10 000 LOC)
   \end{itemize}
+  \begin{center}
+\only<4->{
+    \includegraphics[width=0.3\linewidth]{pc}
+}
+\only<5->{
+    \includegraphics[width=0.3\linewidth]{car}
+}
+\only<6->{
+    \includegraphics[width=0.4\linewidth]{airplane}
+}
+\only<7->{
+    \includegraphics[width=0.3\linewidth]{nuclear}
+}
+  \end{center}
 \end{frame}
 
 \begin{frame}{OS by example}
   How can we run Chrome on a modern CPU?
+\center{
+  \includegraphics[width=0.4\linewidth]{question1}
+}
 \end{frame}
 
 \begin{frame}[t]{HW architecture}
@@ -156,31 +190,53 @@ int * hello(int y) {       int[] hello(int y) {
 
 \begin{frame}[t]{Application Memory}
 \center
-{    \only<1-2> {
+{
   \includegraphics[width=0.9\linewidth]{code1}
-}
   \only<2> {
     Discuss five minutes with your colleagues\\
   }
   \only<2> {
     Where each element is allocated?
   }
-    \only<3> {
+  \only<3> {
+    Question 2: Where does malloc allocate memory?
+    \begin{itemize}
+      \item A - Code
+      \item B - Data
+      \item C - Heap
+      \item D - Stack
+    \end{itemize}
+  }
+  \only<4> {
+    Question 3: Where is y allocated?
+    \begin{itemize}
+      \item A - Code
+      \item B - Data
+      \item C - Heap
+      \item D - Stack
+    \end{itemize}
+  }
+}
+\end{frame}
+
+ \begin{frame}[t]{Application Memory}
+\center
+{   \only<1> {
   \includegraphics[width=0.9\linewidth]{code2}
 }
-    \only<4> {
+    \only<2> {
   \includegraphics[width=0.9\linewidth]{code3}
 }
-    \only<5> {
+    \only<3> {
   \includegraphics[width=0.9\linewidth]{code4}
 }
-    \only<6> {
+    \only<4> {
   \includegraphics[width=0.9\linewidth]{code5}
 }
-    \only<7> {
+    \only<5> {
   \includegraphics[width=0.9\linewidth]{code6}
 }
-    \only<8> {
+    \only<6> {
   \begin{itemize}
     \item Stack Pointer points to the bottom of the stack
       \\[20pt]
@@ -195,10 +251,9 @@ int * hello(int y) {       int[] hello(int y) {
   \begin{itemize}
   \item Modern systems do not use directly physical addresses
     \begin{itemize}
-    \item Free to allocate applications in different memory area
-    \item Free to dynamically allocate memory for processes
-    \item Run the same software in systems with 1GB or 2 GB of memory
-    \item Run the same binary as two distinct processes
+    \item Run the same software in systems with 1 GB or 2 GB of memory
+    \item Guarantee that two independent applications do not use the
+      same addresses
     \end{itemize}
   \item<2-> Virtual memory
     \begin{itemize}
@@ -212,33 +267,33 @@ int * hello(int y) {       int[] hello(int y) {
 
 \begin{frame}{Virtual Memory}
   \begin{center}
-  \includegraphics[width=0.5\linewidth]{mmu1}\\[30pt]
+  \includegraphics[width=0.7\linewidth]{mmu1}\\[10pt]
     \only<1> {
-  \includegraphics[width=0.2\linewidth]{mmu2}
+  \includegraphics[width=0.3\linewidth]{mmu2}
 }
     \only<2> {
-  \includegraphics[width=0.2\linewidth]{mmu3}
+  \includegraphics[width=0.3\linewidth]{mmu3}
 }
     \only<3> {
-  \includegraphics[width=0.5\linewidth]{mmu4}
+  \includegraphics[width=0.7\linewidth]{mmu4}
 }
     \only<4> {
-  \includegraphics[width=0.5\linewidth]{mmu5}
+  \includegraphics[width=0.7\linewidth]{mmu5}
 }
     \only<5> {
-  \includegraphics[width=0.5\linewidth]{mmu6}
+  \includegraphics[width=0.7\linewidth]{mmu6}
 }
     \only<6> {
-  \includegraphics[width=0.5\linewidth]{mmu7}
+  \includegraphics[width=0.7\linewidth]{mmu7}
 }
     \only<7> {
-  \includegraphics[width=0.5\linewidth]{mmu8}
+  \includegraphics[width=0.7\linewidth]{mmu8}
 }
     \only<8> {
-  \includegraphics[width=0.5\linewidth]{mmu9}
+  \includegraphics[width=0.7\linewidth]{mmu9}
 }
     \only<9> {
-  \includegraphics[width=0.5\linewidth]{mmu10}
+  \includegraphics[width=0.7\linewidth]{mmu10}
 }
   \end{center}
 \end{frame}
@@ -257,22 +312,25 @@ int * hello(int y) {       int[] hello(int y) {
       \end{itemize}
     \item <3-> One of the main tasks of an OS
   \end{itemize}
+\center{
+  \includegraphics[width=0.4\linewidth]{question2}
+}
 \end{frame}
 
 
 \begin{frame}{Context switch}
   \begin{center}
     \only<1> {
-  \includegraphics[width=0.9\linewidth]{ctx1}
+  \includegraphics[height=6cm]{ctx1}
 }
     \only<2> {
-  \includegraphics[width=0.9\linewidth]{ctx2}
+  \includegraphics[height=6cm]{ctx2}
 }
     \only<3> {
-  \includegraphics[width=0.9\linewidth]{ctx3}
+  \includegraphics[height=6cm]{ctx3}
 }
     \only<4> {
-  \includegraphics[width=0.9\linewidth]{ctx4}
+  \includegraphics[height=6cm]{ctx4}
 }
   \end{center}
 \end{frame}
@@ -284,19 +342,19 @@ int * hello(int y) {       int[] hello(int y) {
 
 \begin{frame}{HW architecture}
   \begin{itemize}
-  \item Privilege level (i.e. Ring 3/Ring 0, PL1/PL0, CPU modes)
-  \item OS takes control of privileged level
-  \item Everything else uses non-privileged level
+  \item Execution mode (i.e. restricted/un-restricted)
+  \item OS takes control of un-restricted mode
+  \item Everything else uses restricted mode
   \end{itemize}
   \begin{center}
-  \includegraphics[width=0.5\linewidth]{mode0}
+  \includegraphics[width=0.6\linewidth]{mode0}
   \end{center}
   \begin{itemize}
-  \item<2-> From PL1 to PL0 = exiting the OS
+  \item<2-> From un-restricted to restricted = exiting the OS
   \begin{itemize}
     \item instruction to change mode
   \end{itemize}
-  \item<3-> From PL0 to PL1 = entering the OS? \alert{Question?}
+  \item<3-> From restricted to un-restricted = entering the OS?
   \begin{itemize}
     \item<4-> interrupts
   \end{itemize}
@@ -310,7 +368,7 @@ int * hello(int y) {       int[] hello(int y) {
   \item<1-> Application executes the Software Interrupt Instruction
   \item<2-> HW
   \begin{itemize}
-    \item Mode switches to privileged
+    \item Mode switches to un-restricted
     \item Program counter jumps to the OS \alert{vector table}
   \end{itemize}
   \item<3-> OS
@@ -321,32 +379,36 @@ int * hello(int y) {       int[] hello(int y) {
  (e.g. change MMU configuration and ``logical'' active process)
     \item Loads the registers (context) from the memory of the  \alert{active}
       process
+    \item Switches the mode to restricted
   \end{itemize}
-  \item<4-> Context switch driven by software interrupt $\Rightarrow$\\
-    Cooperative/non-preemptive multitasking
+
 \end{enumerate}
+\end{frame}
+
+\begin{frame}{Non-preemptive multitasking}
+  \begin{itemize}
+  \item Context switch driven by software interrupt
+  \item Cooperative/non-preemptive multitasking
+  \end{itemize}
+  \begin{center}
+    \only<1> {
+  \includegraphics[width=0.5\linewidth]{windows3-1}
+}
+  \end{center}
 \end{frame}
 
 \begin{frame}{HW Interrupt}
   \begin{center}
-  \includegraphics[width=0.5\linewidth]{timer}
+  \includegraphics[width=0.7\linewidth]{timer}
   \end{center}
   \begin{enumerate}
   \item<1-> Peripheral (timer) delivers an Hardware Interrupt
   \item<2-> HW
   \begin{itemize}
-    \item Mode switches to privileged
+    \item Mode switches to un-restricted
     \item Program counter jumps to the OS ``vector table''
   \end{itemize}
-  \item<3-> OS
-  \begin{itemize}
-    \item Saves the registers (context) in the process memory
-    \item Jumps to the ``exception handler''
-    \item \dots \\
- (e.g. change MMU configuration and ``logical'' active process)
-    \item Loads the registers (context) from the memory of the  \alert{active}
-      process
-  \end{itemize}
+  \item<3-> OS implements context switch
   \item<4-> Preemptive multitasking
 \end{enumerate}
 \end{frame}
@@ -354,25 +416,34 @@ int * hello(int y) {       int[] hello(int y) {
 
 \begin{frame}{OS Memory}
   \begin{enumerate}
-  \item<1-> How does the OS access the memory?
-  \item<2-> Virtual memory
+  \item<1-> Question 4: How does the OS access the memory?
+    \only<1-2>{
+      \begin{itemize}
+        \item A - Using directly physical addresses
+        \item B - Using the same virtual addresses of processes
+        \item \alert<2>{C - Using dedicated virtual addresses}
+      \end{itemize}
+    }
   \item<7-> MMU enforces access right
 \end{enumerate}
 \begin{center}
+    \only<1-2> {
+  \includegraphics[width=0.4\linewidth]{question3}
+}
 \only<3>{
-  \includegraphics[width=0.8\linewidth]{ctx0}
+  \includegraphics[width=0.9\linewidth]{ctx0}
 }
 \only<4>{
-  \includegraphics[width=0.8\linewidth]{os-mem-0}
+  \includegraphics[width=0.9\linewidth]{os-mem-0}
 }
 \only<5>{
-  \includegraphics[width=0.8\linewidth]{os-mem-1}
+  \includegraphics[width=0.9\linewidth]{os-mem-1}
 }
 \only<6>{
-  \includegraphics[width=0.8\linewidth]{os-mem-2}
+  \includegraphics[width=0.9\linewidth]{os-mem-2}
 }
 \only<7>{
-  \includegraphics[width=0.8\linewidth]{os-mem-3}
+  \includegraphics[width=0.9\linewidth]{os-mem-3}
 }
 \end{center}
 \end{frame}
@@ -402,6 +473,23 @@ int * hello(int y) {       int[] hello(int y) {
 \end{center}
 \end{frame}
 
+\begin{frame}{Processes}
+\begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{2libre-0}
+}
+\only<2>{
+  \includegraphics[width=1\linewidth]{2libre-1}
+}
+\end{center}
+\end{frame}
+
+\begin{frame}{Threads}
+\begin{center}
+  \includegraphics[width=1\linewidth]{thread}
+\end{center}
+\end{frame}
+
 \begin{frame}{OS blocks}
 \begin{center}
 \only<1>{
@@ -422,7 +510,7 @@ int * hello(int y) {       int[] hello(int y) {
     \begin{itemize}
       \item Request OS services
     \begin{itemize}
-      \item \alert<2>{File management}
+      \item File management
       \item Device Management
       \item Memory allocation
       \item Process Control
@@ -450,18 +538,244 @@ int * hello(int y) {       int[] hello(int y) {
 \end{frame}
 
 
-\begin{frame}{Shared memory}
-\begin{center}
-\only<1>{
-  \includegraphics[width=0.9\linewidth]{2libre-0}
-}
-\only<2>{
-  \includegraphics[width=0.9\linewidth]{2libre-1}
-}
-\end{center}
+\begin{frame}[t]{OS by example}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+  How does Apache handle HTTP traffic?\\
+\end{column}
+\begin{column}[t]{0.5\textwidth}
+  Question 5: Do you know what TCP/IP handshake is?
+  \begin{itemize}
+    \item A - Yes
+    \item B - No
+  \end{itemize}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Executing a new process}
+\begin{frame}[t]{OS by example}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+  How does Apache handle HTTP traffic?
+\end{column}
+\begin{column}[t]{0.5\textwidth}
+  \includegraphics[width=0.9\linewidth]{open}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[t]{OS by example}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+  How does Apache handle HTTP traffic?
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+  \includegraphics[width=0.9\linewidth]{sock_mem_0}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}[t,fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_0}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_1}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+serv_addr.sin_port = htons(80);
+bind(fd1, serv_addr, ...);
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_1}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_2}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+   
+
+
+
+\begin{frame}[fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+serv_addr.sin_port = htons(80);
+bind(fd1, serv_addr, ...);
+listen(fd1, ...);
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_2}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_3}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+serv_addr.sin_port = htons(80);
+bind(fd1, serv_addr, ...);
+listen(fd1, ...);
+...
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_3}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_4}
+     }
+\only<3>{
+  \includegraphics[width=1\linewidth]{sock_mem_5}
+     }
+\only<4>{
+  \includegraphics[width=1\linewidth]{sock_mem_6}
+     }
+\only<5>{
+  \includegraphics[width=1\linewidth]{sock_mem_7}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+serv_addr.sin_port = htons(80);
+bind(fd1, serv_addr, ...);
+listen(fd1, ...);
+...
+fd2 = accept(fd1, ...);
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_7}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_8}
+     }
+\only<3>{
+  \includegraphics[width=1\linewidth]{sock_mem_9}
+     }
+\only<4>{
+  \includegraphics[width=1\linewidth]{sock_mem_10}
+     }
+\only<5>{
+  \includegraphics[width=1\linewidth]{sock_mem_11}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+serv_addr.sin_port = htons(80);
+bind(fd1, serv_addr, ...);
+listen(fd1, ...);
+...
+fd2 = accept(fd1, ...);
+n = read(fd2,buffer1,size );
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_11}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_12}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Handling network traffic}
+\begin{columns}
+\begin{column}[t]{0.5\textwidth}
+\begin{verbatim}
+int fd1 = socket(...);
+serv_addr.sin_port = htons(80);
+bind(fd1, serv_addr, ...);
+listen(fd1, ...);
+...
+fd2 = accept(fd1, ...);
+n = read(fd2,buffer1,size );
+send(fd2, buffer2, size);
+\end{verbatim}
+\end{column}
+\begin{column}[t]{0.5\textwidth}  %%<--- here
+    \begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{sock_mem_12}
+     }
+\only<2>{
+  \includegraphics[width=1\linewidth]{sock_mem_13}
+     }
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Summary}
+  \begin{itemize}
+    \item Process memory layout
+    \item Processes vs Thread
+    \item OS is key part of the Trusting Computing Base
+    \item OS allows sharing resources
+    \item OS monitors resources
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Questions?}
