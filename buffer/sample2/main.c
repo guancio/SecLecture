@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -8,10 +9,10 @@
 //./main roberto 32
 
 int main(int argc, char ** argv) {
-  char pwd[8];
   char name[8];
+  char pwd[8];
   int i,n = 0;
-  
+
   printf("Start\n");
 
   printf("Pointer %p\n",name);
@@ -20,14 +21,13 @@ int main(int argc, char ** argv) {
   strcpy(pwd, "pwd0");
   strcpy(name, argv[1]);
   n = atoi(argv[2]);
-    
+
   printf("Echo ");
   for (i=0; i<n; i++) {
     printf("%c", name[i]);
   }
   printf("\n");
 
- 
   printf("End\n");
   return 0;
 }
