@@ -477,7 +477,6 @@
       </data>
     </node>
     <node id="n42">
-      <data key="d5"/>
       <data key="d6">
         <y:ImageNode>
           <y:Geometry height="87.0" width="87.0" x="1115.400000000091" y="922.800000000324"/>
@@ -489,7 +488,6 @@
       </data>
     </node>
     <node id="n43">
-      <data key="d5"/>
       <data key="d6">
         <y:ImageNode>
           <y:Geometry height="97.0" width="97.0" x="1685.2000000000448" y="912.800000000324"/>
@@ -561,6 +559,18 @@
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e6" source="n43" target="n39">
+      <data key="d9"/>
+      <data key="d10">
+        <y:QuadCurveEdge straightness="0.1">
+          <y:Path sx="0.0" sy="0.0" tx="22.93999999990683" ty="13.09999999999809">
+            <y:Point x="1589.0" y="995.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+        </y:QuadCurveEdge>
       </data>
     </edge>
   </graph>

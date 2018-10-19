@@ -9,12 +9,12 @@
 \setbeamertemplate{footline}[frame number]
 
 \title{Operating Systems}
-\subtitle{Lecture 2 \\ Computer Security DD2395}
+\subtitle{Lecture 3 \\ Computer Security DD2395}
 \author[R. Guanciale]{
   Roberto Guanciale\\
   robertog@kth.se
 }
-\date{2016-11-02}
+\date{2017-11-03}
 \begin{document}
 
 \maketitle
@@ -27,11 +27,11 @@
         \item Hack-proof Operating Systems
       \end{itemize}
     \item Enthusiast software developer
-    \item robertog@kth.se
-    \item Office: level 5, room 4525
+    \item robertog@kth.se (use [DD2395] in mail subject)
+    \item Office: Building D, level 5, room 4529
     \item You are welcomed (no booking required, no fee)
     \begin{itemize}
-      \item Wednesday 14:00-15:00
+      \item Tuesday 13:15-14:30
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -46,20 +46,18 @@
 %   \end{itemize}
 % \end{frame}
 
-\begin{frame}{Interactive lecture}
-% http://www.quizsocket.com/?quiz=D4842G&admin=QZ4LBCLTUWZ7GXHJA2UY6SSVJVE95R&user=GT74TFJMND76
-  \center{
-    https://twitter.com/roberto\_kth\\
-    @roberto\_kth\\[20pt]
-    http://www.quizsocket.com/\\
-    D4842G\\[20pt]
-    Question 1: Does quizsocket work?
-    \begin{itemize}
-      \item A - Yes!
-      \item B,C,D - No
-    \end{itemize}
-  }
-\end{frame}
+% \begin{frame}{Interactive lecture}
+% % http://www.quizsocket.com/?quiz=D4842G&admin=QZ4LBCLTUWZ7GXHJA2UY6SSVJVE95R&user=GT74TFJMND76
+%   \center{
+%     http://www.quizsocket.com/\\
+%     D4842G\\[20pt]
+%     Question 1: Does quizsocket work?
+%     \begin{itemize}
+%       \item A - Yes!
+%       \item B,C,D - No
+%     \end{itemize}
+%   }
+% \end{frame}
 
 
 \begin{frame}{Operating Systems}
@@ -92,7 +90,7 @@
     \item How can we run Chrome on a modern architecture?
     \item How can we isolate Chrome from LibreOffice?
     \item How can we run multiple instances of Chrome?
-    \item How does Apache handle HTTP traffic?
+    \item How can we interact with peripherals?
   \end{itemize}
 \end{frame}
 
@@ -336,6 +334,22 @@ int * hello(int y) {       int[] hello(int y) {
 \end{frame}
 
 
+\begin{frame}{Processes}
+\begin{center}
+\only<1>{
+  \includegraphics[width=1\linewidth]{2libre-0}
+}
+\only<2>{
+  \includegraphics[width=1\linewidth]{2libre-1}
+}
+\end{center}
+\end{frame}
+
+\begin{frame}{Threads}
+\begin{center}
+  \includegraphics[width=1\linewidth]{thread}
+\end{center}
+\end{frame}
 
 
 
@@ -364,6 +378,9 @@ int * hello(int y) {       int[] hello(int y) {
 
 
 \begin{frame}{SW interrupt}
+\begin{center}
+\includegraphics[width=0.5\linewidth]{switch}
+\end{center}
   \begin{enumerate}
   \item<1-> Application executes the Software Interrupt Instruction
   \item<2-> HW
@@ -384,35 +401,6 @@ int * hello(int y) {       int[] hello(int y) {
 
 \end{enumerate}
 \end{frame}
-
-\begin{frame}{Non-preemptive multitasking}
-  \begin{itemize}
-  \item Context switch driven by software interrupt
-  \item Cooperative/non-preemptive multitasking
-  \end{itemize}
-  \begin{center}
-    \only<1> {
-  \includegraphics[width=0.5\linewidth]{windows3-1}
-}
-  \end{center}
-\end{frame}
-
-\begin{frame}{HW Interrupt}
-  \begin{center}
-  \includegraphics[width=0.7\linewidth]{timer}
-  \end{center}
-  \begin{enumerate}
-  \item<1-> Peripheral (timer) delivers an Hardware Interrupt
-  \item<2-> HW
-  \begin{itemize}
-    \item Mode switches to un-restricted
-    \item Program counter jumps to the OS ``vector table''
-  \end{itemize}
-  \item<3-> OS implements context switch
-  \item<4-> Preemptive multitasking
-\end{enumerate}
-\end{frame}
-
 
 \begin{frame}{OS Memory}
   \begin{enumerate}
@@ -448,6 +436,36 @@ int * hello(int y) {       int[] hello(int y) {
 \end{center}
 \end{frame}
 
+\begin{frame}{Non-preemptive multitasking}
+  \begin{itemize}
+  \item Context switch driven by software interrupt
+  \item Cooperative/non-preemptive multitasking
+  \end{itemize}
+  \begin{center}
+    \only<1> {
+  \includegraphics[width=0.5\linewidth]{windows3-1}
+}
+  \end{center}
+\end{frame}
+
+\begin{frame}{HW Interrupt}
+  \begin{center}
+  \includegraphics[width=0.7\linewidth]{timer}
+  \end{center}
+  \begin{enumerate}
+  \item<1-> Peripheral (timer) delivers an Hardware Interrupt
+  \item<2-> HW
+  \begin{itemize}
+    \item Mode switches to un-restricted
+    \item Program counter jumps to the OS ``vector table''
+  \end{itemize}
+  \item<3-> OS implements context switch
+  \item<4-> Preemptive multitasking
+\end{enumerate}
+\end{frame}
+
+
+
 \begin{frame}[t]{Peripherals}
   \begin{enumerate}
   \item<1-> Interrupts
@@ -473,22 +491,6 @@ int * hello(int y) {       int[] hello(int y) {
 \end{center}
 \end{frame}
 
-\begin{frame}{Processes}
-\begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{2libre-0}
-}
-\only<2>{
-  \includegraphics[width=1\linewidth]{2libre-1}
-}
-\end{center}
-\end{frame}
-
-\begin{frame}{Threads}
-\begin{center}
-  \includegraphics[width=1\linewidth]{thread}
-\end{center}
-\end{frame}
 
 \begin{frame}{OS blocks}
 \begin{center}
@@ -538,235 +540,6 @@ int * hello(int y) {       int[] hello(int y) {
 \end{frame}
 
 
-\begin{frame}[t]{OS by example}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-  How does Apache handle HTTP traffic?\\
-\end{column}
-\begin{column}[t]{0.5\textwidth}
-  Question 5: Do you know what TCP/IP handshake is?
-  \begin{itemize}
-    \item A - Yes
-    \item B - No
-  \end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[t]{OS by example}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-  How does Apache handle HTTP traffic?
-\end{column}
-\begin{column}[t]{0.5\textwidth}
-  \includegraphics[width=0.9\linewidth]{open}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[t]{OS by example}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-  How does Apache handle HTTP traffic?
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-  \includegraphics[width=0.9\linewidth]{sock_mem_0}
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-
-\begin{frame}[t,fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_0}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_1}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-serv_addr.sin_port = htons(80);
-bind(fd1, serv_addr, ...);
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_1}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_2}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-   
-
-
-
-\begin{frame}[fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-serv_addr.sin_port = htons(80);
-bind(fd1, serv_addr, ...);
-listen(fd1, ...);
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_2}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_3}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-serv_addr.sin_port = htons(80);
-bind(fd1, serv_addr, ...);
-listen(fd1, ...);
-...
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_3}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_4}
-     }
-\only<3>{
-  \includegraphics[width=1\linewidth]{sock_mem_5}
-     }
-\only<4>{
-  \includegraphics[width=1\linewidth]{sock_mem_6}
-     }
-\only<5>{
-  \includegraphics[width=1\linewidth]{sock_mem_7}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-serv_addr.sin_port = htons(80);
-bind(fd1, serv_addr, ...);
-listen(fd1, ...);
-...
-fd2 = accept(fd1, ...);
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_7}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_8}
-     }
-\only<3>{
-  \includegraphics[width=1\linewidth]{sock_mem_9}
-     }
-\only<4>{
-  \includegraphics[width=1\linewidth]{sock_mem_10}
-     }
-\only<5>{
-  \includegraphics[width=1\linewidth]{sock_mem_11}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-serv_addr.sin_port = htons(80);
-bind(fd1, serv_addr, ...);
-listen(fd1, ...);
-...
-fd2 = accept(fd1, ...);
-n = read(fd2,buffer1,size );
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_11}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_12}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Handling network traffic}
-\begin{columns}
-\begin{column}[t]{0.5\textwidth}
-\begin{verbatim}
-int fd1 = socket(...);
-serv_addr.sin_port = htons(80);
-bind(fd1, serv_addr, ...);
-listen(fd1, ...);
-...
-fd2 = accept(fd1, ...);
-n = read(fd2,buffer1,size );
-send(fd2, buffer2, size);
-\end{verbatim}
-\end{column}
-\begin{column}[t]{0.5\textwidth}  %%<--- here
-    \begin{center}
-\only<1>{
-  \includegraphics[width=1\linewidth]{sock_mem_12}
-     }
-\only<2>{
-  \includegraphics[width=1\linewidth]{sock_mem_13}
-     }
-\end{center}
-\end{column}
-\end{columns}
-\end{frame}
 
 \begin{frame}{Summary}
   \begin{itemize}
