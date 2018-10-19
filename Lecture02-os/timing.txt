@@ -1,0 +1,21 @@
+0.15.0 Start / Me
+0.17.5 You
+0.20.0 on-line
+0.22.5 questions
+0.24.5 OS
+0.27 Examples OS
+0.30 Os by example 1
+0.31 HW architecture
+0.35 Application Memory
+0.37 Question
+0.45 Stack
+0.47 Virtual Memory
+0.49.5 MMU
+0.53 Os isolation
+0.55 Context switch
+0.58 CPU modes
+break 10 mins think about mode switch
+1.00 Answer/Exceptions
+1.05 Timer
+
+
